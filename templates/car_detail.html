@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <link rel="stylesheet" href="/assets/css/animation.css">
+        <link rel="stylesheet" href="/assets/css/index.css">
+        <link data-react-helmet="true" rel="preload" href="/shared/fonts/roboto-v30-latin-ext_latin-regular.woff2" as="font" crossorigin="anonymous">
+        <title>Detalle Vehiculo</title>
+    </head>
+    <body>
+        <header>
+          FlexiCoche
+        </header>
+        <!--div class="container" style="display:flex;flex-direction:row;flex-wrap:nowrap;justify-content: flex-start;">
+            <div class="container" name="panel_izquierdo" style="display:flex;flex-direction:column;max-width:200px">
+                <div class="container car"><img class="img-thumbnail" src="../imgCoches/bmwx5.png" style="width:100px;margin:5px"></div>
+                <div class="container car"><img class="img-thumbnail" src="../imgCoches/bmwx5.png" style="width:100px;margin:5px"></div>
+                <div class="container car"><img class="img-thumbnail" src="../imgCoches/bmwx5.png" style="width:100px;margin:5px"></div>
+            </div>
+            <div class="container" name="panel_derecho">
+                <img src="../imgCoches/bmwx5.png" style="width:500px">
+            </div>
+        </div-->
+
+        <div class="container">
+          <div class="card mb-3" style="margin-top:10px;box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);">
+            <div class="row g-0" style="padding:10px">
+              <div class="col-md-7">
+                <div id="carrusel" class="carousel slide" data-bs-ride="carousel" style="width:600px">
+                  <!-- Indicators/dots -->
+                  <div class="carousel-indicators">
+                    <button type="button" data-bs-target="#carrusel" data-bs-slide-to="0" class="active"></button>
+                    <button type="button" data-bs-target="#carrusel" data-bs-slide-to="1"></button>
+                    <button type="button" data-bs-target="#carrusel" data-bs-slide-to="2"></button>
+                  </div>
+                  <!-- The slideshow/carousel -->
+                  <div class="carousel-inner">
+                    <div class="carousel-item active">
+                      <img src="/assets/images/BMW_X5_FRONTAL.png" alt="Frontal BMW" class="d-block w-100" style="width:300px;height:300px">
+                      <div class="carousel-caption">
+                        
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="/assets/images/BMW_X5_PERFIL.png" alt="Perfil BMW" class="d-block w-100"  style="width:300px;height:300px">
+                      <div class="carousel-caption">
+                        
+                      </div>
+                    </div>
+                    <div class="carousel-item">
+                      <img src="/assets/images/BMW_X5_TRASERA.png" alt="Trasera BMW" class="d-block w-100"  style="width:300px;height:300px">
+                      <div class="carousel-caption">
+                        
+                      </div>
+                    </div>
+                  </div>
+                  <!-- Left and right controls/icons -->
+                  <button class="carousel-control-prev" type="button" data-bs-target="#carrusel" data-bs-slide="prev">
+                    <span class="carousel-control-prev-icon" style="color:gray"></span>
+                  </button>
+                  <button class="carousel-control-next" type="button" data-bs-target="#carrusel" data-bs-slide="next">
+                    <span class="carousel-control-next-icon"></span>
+                  </button>
+                </div>
+              </div>
+              <div class="col-md-5">
+                <div class="container" name="panel_derecho" style="background-color:white;height:350px">
+                    <div style="display:flex;flex-direction: column;justify-content: flex-start;">
+                      <div style="text-align: left;">
+                        <strong>Opciones de Pago</strong>
+                      </div>
+                      <div name="pay_options" class="form-control" style="border-color:gray;border-style:solid;border-width:2px">
+                        <div class="form-check" style="margin:15px;">
+                          <input type="radio" class="form-check-input" id="radio_pay1" name="optradio_pay" value="option1" checked> <strong>Mejor precio</strong>
+                          <label class="form-check-label" for="radio_pay1"></label>
+                        </div>
+                        <div class="form-check" style="margin:15px;">
+                          <input type="radio" class="form-check-input" id="radio_pay2" name="optradio_pay" value="option2"><strong>Mantente flexible</strong>
+                          <label class="form-check-label" for="radio_pay2"></label>
+                        </div>
+                      </div>
+                      <div style="text-align: left;">
+                        <strong>Kilometraje</strong>
+                      </div>
+                      <div name="opt_km" class="form-control" style="border-color:gray;border-style:solid;border-width:2px">
+                        <div class="form-check" style="margin:15px;">
+                          <input type="radio" class="form-check-input" id="radio_km1" name="optradio_km" value="option1" checked><strong>1200 KM</strong>
+                          <label class="form-check-label" for="radio_km1"></label>
+                        </div>
+                        <div class="form-check" style="margin:15px;">
+                          <input type="radio" class="form-check-input" id="radio_km2" name="optradio_km" value="option2"><strong>Ilimitado</strong>
+                          <label class="form-check-label" for="radio_km2"></label>
+                        </div>
+                      </div>
+                      <div style="display:flex;flex-direction:row;justify-content: space-between;">
+                        <div style="text-align: left;">
+                          <strong> $67.9 /día</strong><br/>
+                          <a href="#"> Detalle de los precios</a>
+                        </div>
+                        <div>
+                          <button type="button" class="btn" style="background-color:orangered;font-weight:bold">Siguiente</button>
+                        </div>
+                      </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="container">
+          <div class="cars">
+              <div class="car">
+                  <a href="/assets/templates/car_detail.html" target="_blank" style="text-decoration: none;">
+                      <img src="/assets/img/ford fiesta.png" alt="Ford Fiesta" class="car-fordfiesta">
+                      <h2 class="car_title">Ford Fiesta</h2>
+                      <p class="car_detail">Compacto y eficiente para la ciudad.</p>
+                  </a>
+              </div>
+              <div class="car">
+                  <a href="/assets/templates/car_detail.html" target="_blank" style="text-decoration: none;">
+                      <img src="/assets/img/toyota corolla.png" alt="Toyota Corolla" class="car-toyotacorolla">
+                      <h2 class="car_title">Toyota Corolla</h2>
+                      <p class="car_detail">Espacioso y cómodo para viajes largos.</p>
+                  </a>
+              </div>
+              <div class="car">
+                  <a href="/assets/templates/car_detail.html" target="_blank" style="text-decoration: none;">
+                      <img src="/assets/img/bmwx5.png" alt="BMW x5" class="car-bmwx5">
+                      <h2 class="car_title">BMW X5</h2>
+                      <p class="car_detail">Lujo y potencia en un solo paquete.</p>
+                  </a>
+              </div>
+          </div>
+        </div>
+
+    </body>
+</html>
