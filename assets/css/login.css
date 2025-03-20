@@ -1,73 +1,81 @@
-body {
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
     font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
+}
+body {
     display: flex;
-    flex-direction: column;
+    justify-content: center;
     align-items: center;
     height: 100vh;
-    margin: 0;
+    background-color: #f3f3f3;
+    position: relative;
 }
-.header-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: 1200px; width: 100%; margin: 0 auto;
-    padding: 10px;
-    background: #007bff;
-    color: white;
-}
-.logo {
+.menu-button {
     position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    font-size: 24px;
+    cursor: pointer;
 }
-.auth-icons {
-    margin-left: auto;
-}
-.auth-icons a {
-    color: white;
-    text-decoration: none;
-    margin-left: 15px;
-}
-.auth-icons a:hover {
-    text-decoration: underline;
-}
-.login-container {
-    background: white;
-    padding: 30px;
+.container {
+    display: flex;
+    width: 75%;
+    height: 75%;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
-    margin-top: 50px;
+    overflow: hidden;
+    background-color: white;
 }
-.login-container h2 {
+.form-section {
+    width: 50%;
+    padding: 40px;
+}
+.form-section h2 {
+    font-size: 24px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+.form-section p {
+    color: #555;
+    font-size: 14px;
     margin-bottom: 20px;
 }
-.login-container input {
+.form-section a {
+    color: #007bff;
+    text-decoration: none;
+}
+.form-section form label {
+    display: block;
+    font-weight: bold;
+    margin: 10px 0 5px;
+    font-size: 14px;
+}
+.form-section form input {
     width: 100%;
     padding: 10px;
-    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
+    margin-bottom: 15px;
 }
-.login-container button {
+.form-section button {
     width: 100%;
-    padding: 10px;
-    background: #007bff;
+    background-color: black;
     color: white;
+    padding: 10px;
     border: none;
     border-radius: 5px;
     cursor: pointer;
 }
-.login-container button:hover {
-    background: #0056b3;
+.image-section {
+    width: 50%;
+    background-color: #000;
 }
-.login-container .register-link {
-    margin-top: 15px;
-    display: block;
-    color: #007bff;
-    text-decoration: none;
-}
-.login-container .register-link:hover {
-    text-decoration: underline;
+.image-section img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
