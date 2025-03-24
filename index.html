@@ -1,150 +1,104 @@
 <!DOCTYPE html>
 <html lang="es">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FlexiCoche - Alquiler de Coches</title>
     <script src="/js/vendors/fontawesome-loader.js"></script>
-    <link rel="stylesheet" href="./assets/css/index.css" />
-    <link rel="stylesheet" href="./assets/css/animation.css" />
-  </head>
-  <body>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="./assets/css/index.css">
+    <link rel="stylesheet" href="./assets/css/animation.css">
+</head>
+<body>
     <header class="header">
-      <div class="nav-bar">
-        <div class="nav-logo">FLEXICOCHE</div>
-        <div class="nav-links-container">
-          <a class="nav-link active" href="#topSection" id="topLink">Home</a>
-          <a class="nav-link" href="#contactSection" id="contactLink"
-            >Contacto</a
-          >
+        <div class="nav-bar">
+            <div class="nav-logo">FLEXICOCHES</div>
 
-          <!-- Sección de autenticación dinámica -->
-          <div class="auth-section">
+
+            <div class="nav-links-container">
+                <a class="nav-link active" href="#topSection" id="topLink">Home</a>
+                <a class="nav-link" href="#contactSection" id="contactLink">Contacto</a>
+                <!-- Sección de autenticación dinámica -->
+            <div class="auth-section">
             <div class="user-info hidden" id="userInfo">
-              <span class="user-email" id="headerUserEmail"></span>
-              <button class="logout-btn" id="headerLogoutBtn">
-                <i class="fas fa-sign-out-alt"></i>
-              </button>
+                <span class="user-email" id="headerUserEmail"></span>
+                <button class="logout-btn" id="headerLogoutBtn"><i class="fas fa-sign-out-alt"></i></button>
             </div>
-            <a
-              class="nav-link auth-trigger"
-              href="./templates/login.html"
-              id="loginLink"
-            >
-              <i class="fas fa-user"></i>
-            </a>
-          </div>
-        </div>
-      </div>
-    </header>
+            <a class="nav-link auth-trigger" href="./templates/login.html" id="loginLink"><i class="fas fa-user"></i></a>
+            </div>
+            </div>
 
+
+        </div>
+    </header>
     <div class="container">
-      <div class="search-panel">
-        <img
-          src="/assets/images/mustang.jpg"
-          alt="Banner"
-          class="banner-image"
-        />
-        <div class="search-form">
-          <h2>Encuentra tu coche ideal</h2>
-          <form>
-            <label for="vehicle-type">Tipo de Vehículo:</label>
-            <select id="vehicle-type" name="vehicle-type">
-              <option value="coche">Coche</option>
-              <option value="moto">Moto</option>
-              <option value="camion">Camión</option>
-            </select>
-            <label for="brand">Marca:</label>
-            <select id="brand" name="brand">
-              <option value="ford">Ford</option>
-              <option value="toyota">Toyota</option>
-              <option value="bmw">BMW</option>
-            </select>
-            <label for="province">Provincia:</label>
-            <select id="province" name="province">
-              <option value="madrid">Madrid</option>
-              <option value="barcelona">Barcelona</option>
-              <option value="valencia">Valencia</option>
-            </select>
-            <label for="price">Precio:</label>
-            <input
-              type="number"
-              id="price"
-              name="price"
-              placeholder="Máximo precio"
-            />
-            <button type="submit" class="btn">Buscar</button>
-          </form>
+        <div class="search-panel">
+            <img src="./assets/img/mustang.jpg" alt="Banner" class="banner-image">
+            <div class="search-form">
+                <h2>Encuentra tu coche ideal</h2>
+                <form>
+                    <label for="vehicle-type">Tipo de Vehículo:</label>
+                    <select id="vehicle-type" name="vehicle-type">
+                        <option value="coche">Coche</option>
+                        <option value="moto">Moto</option>
+                        <option value="camion">Camión</option>
+                    </select>
+                    <label for="brand">Marca:</label>
+                    <select id="brand" name="brand">
+                        <option value="ford">Ford</option>
+                        <option value="toyota">Toyota</option>
+                        <option value="bmw">BMW</option>
+                    </select>
+                    <label for="province">Provincia:</label>
+                    <select id="province" name="province">
+                        <option value="madrid">Madrid</option>
+                        <option value="barcelona">Barcelona</option>
+                        <option value="valencia">Valencia</option>
+                    </select>
+                    <label for="price">Precio:</label>
+                    <input type="number" id="price" name="price" placeholder="Máximo precio">
+                    <button type="submit" class="btn">Buscar</button>
+                </form>
+            </div>
+        </div>        
+        <div class="cars">
+            <div class="car">
+                <a href="./templates/car_detail.html" target="_blank" style="text-decoration: none;">
+                    <img src="./assets/img/ford fiesta.png" alt="Ford Fiesta" class="car-fordfiesta">
+                    <h2 class="car_title">Ford Fiesta</h2>
+                    <p class="car_detail">Compacto y eficiente para la ciudad.</p>
+                </a>
+            </div>
+            <div class="car">
+                <a href="./templates/car_detail.html" target="_blank" style="text-decoration: none;">
+                    <img src="./assets/img/toyota corolla.png" alt="Toyota Corolla" class="car-toyotacorolla">
+                    <h2 class="car_title">Toyota Corolla</h2>
+                    <p class="car_detail">Espacioso y cómodo para viajes largos.</p>
+                </a>
+            </div>
+            <div class="car">
+                <a href="./templates/car_detail.html" target="_blank" style="text-decoration: none;">
+                    <img src="./assets/img/bmwx5.png" alt="BMW X5" class="car-bmwx5">
+                    <h2 class="car_title">BMW X5</h2>
+                    <p class="car_detail">Lujo y potencia en un solo paquete.</p>
+                </a>
+            </div>
         </div>
-      </div>
-      <div class="cars">
-        <div class="car">
-          <a
-            href="./templates/car_detail.html"
-            target="_blank"
-            style="text-decoration: none"
-          >
-            <img
-              src="/assets/images/ford fiesta.png"
-              alt="Ford Fiesta"
-              class="car-fordfiesta"
-            />
-            <h2 class="car_title">Ford Fiesta</h2>
-            <p class="car_detail">Compacto y eficiente para la ciudad.</p>
-          </a>
-        </div>
-        <div class="car">
-          <a
-            href="./templates/car_detail.html"
-            target="_blank"
-            style="text-decoration: none"
-          >
-            <img
-              src="/assets/images/toyota corolla.png"
-              alt="Toyota Corolla"
-              class="car-toyotacorolla"
-            />
-            <h2 class="car_title">Toyota Corolla</h2>
-            <p class="car_detail">Espacioso y cómodo para viajes largos.</p>
-          </a>
-        </div>
-        <div class="car">
-          <a
-            href="./templates/car_detail.html"
-            target="_blank"
-            style="text-decoration: none"
-          >
-            <img
-              src="/assets/images/bmwx5.png"
-              alt="BMW X5"
-              class="car-bmwx5"
-            />
-            <h2 class="car_title">BMW X5</h2>
-            <p class="car_detail">Lujo y potencia en un solo paquete.</p>
-          </a>
-        </div>
-      </div>
     </div>
     <footer>
-      <div class="footer-content">
-        <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
-        <div class="social-icons">
-          <a href="https://www.facebook.com" target="_blank"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a href="https://www.twitter.com" target="_blank"
-            ><i class="fab fa-twitter"></i
-          ></a>
-          <a href="https://www.instagram.com" target="_blank"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a href="https://www.linkedin.com" target="_blank"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
+        <div class="footer-content">
+            <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
         </div>
-      </div>
     </footer>
+
     <script src="/js/vendors/bootstrap-loader.js"></script>
     <script type="module" src="/js/modules/pages/index.page.js"></script>
-  </body>
+
+</body>
 </html>
