@@ -8,11 +8,17 @@
     <title>Registro</title>
 </head>
 <body>
-    <button class="menu-button">☰</button>
+    <header class="header">
+        <div class="logo-container">
+            <img src="../assets/images/logo.png" alt="Logo FlexiCoche" class="logo">
+        </div>
+        <!-- Botón para ir atrás -->
+        <button class="back-button" onclick="window.location.href='../index.html'">Atrás</button>
+    </header>
     <div class="container">
         <!-- Sección de la imagen -->
         <div class="image-section">
-            <img src="../assets/img/imgRegister.png" alt="Autos">
+            <img src="../assets/images/imgRegister.png" alt="Autos">
         </div>
         
         <!-- Sección del formulario -->
@@ -21,17 +27,17 @@
             <p>¿Ya estás registrado? <a href="../templates/login.html">Inicia sesión.</a></p>
             
             <form>
-                <label>NOMBRE</label>
-                <input type="text" id="nombre" placeholder="Nombre" required>
-                
-                <label>APELLIDOS</label>
-                <input type="text" id="apellidos" placeholder="Apellidos" required>
+                <label>USUARIO</label>
+                <input type="text" id="user" placeholder="Usuario" required>
 
                 <label>EMAIL</label>
                 <input type="email" id="correo" placeholder="email@gmail.com" required>
                 
                 <label>CONTRASEÑA</label>
                 <input type="password" id="password" placeholder="******" required>
+
+                <label>REPETIR CONTRASEÑA</label>
+                <input type="password" id="rep-password" placeholder="******" required>
                 
                 <button type="submit">Crear cuenta</button>
             </form>

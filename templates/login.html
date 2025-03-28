@@ -9,7 +9,13 @@
     <link rel="stylesheet" href="../assets/css/login.css">
 </head>
 <body>
-    <button class="menu-button">☰</button>
+    <header class="header">
+        <div class="logo-container">
+            <img src="../assets/images/logo.png" alt="Logo FlexiCoche" class="logo">
+        </div>
+        <!-- Botón para ir atrás -->
+        <button class="back-button" onclick="window.location.href='../index.html'">Atrás</button>
+    </header>
     <div class="container">
         <!-- Sección del formulario -->
         <div class="form-section">
@@ -23,21 +29,18 @@
                 <label>CONTRASEÑA</label>
                 <input type="password" placeholder="******" required>
                 
-                <button type="submit">Ingresar</button>
+                <button type="submit">Iniciar sesión</button>
             </form>
         </div>
         
         <!-- Sección de la imagen -->
         <div class="image-section">
-            <img src="../assets/img/imgRegister.png" alt="Autos">
+            <img src="../assets/images/imgRegister.png" alt="Autos">
         </div>
     </div>
 
     <!-- Scripts en orden correcto -->
-    <script
-      type="module"
-      src="/js/modules/components/user.component.js"
-    ></script>
+    <script type="module" src="/js/modules/components/user.component.js"></script>
     <script type="module" src="/js/modules/pages/user.page.js"></script>
 
 </body>

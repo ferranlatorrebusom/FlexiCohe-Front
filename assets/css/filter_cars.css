@@ -41,23 +41,24 @@ body {
     margin-left: 10px; /* Margen a la izquierda del separator */
     margin-right: -30px; /* Margen a la derecha del separator */
 }
+/*-------------------------------------------------------------------------*/
+/* Estilo para el search-box */
 .search-box {
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    padding: 100px 30px;
+    background-color: #f1f1f1;
+    padding: 20px 30px;
     text-align: center;
-    color: white;
+    color: #333;
     position: relative;
-    max-width: 60%; /* Reduce el ancho máximo del contenedor */
-    margin: 20px auto 20px; /* Añade margen superior para compensar el header fijo y centra el contenedor */
+    max-width: 60%;
+    margin: 10px auto;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .search-box::after {
     content: '';
     position: absolute;
     top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
     z-index: 1;
 }
 
@@ -176,44 +177,94 @@ form button {
 form button:hover {
     background: #ffcc00; /* Cambia el color de fondo al pasar el ratón */
 }
+/*----------------------------------------------------------------------------*/
 
-.vehicles {
-    text-align: center;
-    padding: 40px 20px;
-}
-
-.vehicle-category {
-    display: flex;
-    justify-content: center;
-    flex-wrap: wrap;
-    gap: 30px;
-}
-
-.vehicle {
-    background: white;
+/* Estilo para el search-bar */
+.search-bar {
+    position: relative; /* Necesario para que el ícono del filtro se posicione relativo a este contenedor */
     padding: 20px;
-    border-radius: 10px;
-    width: 220px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    text-align: center;
+    background-color: #f1f1f1;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin: 20px;
 }
 
-.vehicle img {
+/* Estilo para el contenedor de filtros */
+.filters {
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+.filters label {
+    font-weight: bold;
+}
+.filters select, .filters input {
+    padding: 8px;
     width: 100%;
-    border-radius: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+/* Ocultar los filtros inicialmente */
+#filters-container {
+    display: none;
+    margin-top: 10px;
+    background-color: #f9f9f9;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
-.vehicle button {
-    background-color: yellow;
+/* Estilo para el ícono del filtro */
+.filter-toggle {
+    position: relative; /* Cambia a relative para que no dependa del search-box */
+    margin-top: 10px; /* Añade separación del search-box */
+    margin-left: 100px; /* Alinea el botón a la izquierda */
+    cursor: pointer;
+    z-index: 1000; /* Asegura que esté por encima de otros elementos */
+}
+
+.filter-toggle i {
+    font-size: 24px;
+    color: #333;
+    transition: color 0.3s ease;
+}
+
+.filter-toggle i:hover {
+    color: #555;
+}
+.search-button {
+    background: yellow;
     border: none;
     padding: 10px;
     cursor: pointer;
-    font-weight: bold;
-    border-radius: 5px; /* Añade bordes redondeados */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Añade sombra */
-    transition: background-color 0.3s ease; /* Añade transición para el cambio de color */
+    width: 100%;
+    margin-top: 10px;
 }
-
-.vehicle button:hover {
-    background: #ffcc00; /* Cambia el color de fondo al pasar el ratón */
+.car-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+    padding: 20px;
+}
+.car-item {
+    background: white;
+    padding: 15px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0,0,0,0.1);
+    text-align: center;
+    width: 250px;
+}
+.car-item img {
+    width: 100%;
+    border-radius: 10px;
+}
+.select-button {
+    background: yellow;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    width: 100%;
+    margin-top: 10px;
 }
