@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FlexiCoche - Detalles</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/car-detail.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <span class="logo"><img src="../assets/images/logo.png" alt="FlexiCoche Logo"></span>
+            <nav>
+                <a href="#"><i class="fas fa-car"></i> Gestionar reservas</a>
+                <a href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+                <span class="separator"></span>
+                <a href="templates/register.html"><i class="fas"></i> Regístrate</a>
+            </nav>
+        </div>
+    </header>
+    <div class="container">
+        <div id="car-box" class="grad-black-white">
+            <div class="content">
+                <h1 class="car-name">Fiat 500</h1>
+                <h5 class="car-name">Hatchback</h5>
+    
+                <div id="carousel-container">
+                    <div id="carousel-show" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <div class="img-container">
+                                    <img src="../assets/images/ford fiesta.png" class="d-block w-50" alt="Ford Fiesta">
+                                </div>
+                                
+                            </div>
+                            <div class="carousel-item">
+                                <div class="img-container">
+                                    <img src="../assets/images/ford fiesta.png" class="d-block w-50" alt="Ford Fiesta">
+                                </div>
+                                
+                            </div>
+                            <div class="carousel-item">
+                                <div class="img-container">
+                                    <img src="../assets/images/ford fiesta.png" class="d-block w-50" alt="Ford Fiesta">
+                                </div>
+                                
+                            </div>
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carousel-show" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Previous</span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carousel-show" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden">Next</span>
+                        </button>
+                    </div>
+                </div>
+                
+                <div id="car-properties">
+                    <div class="row">
+                        <div class="col-3">
+                            <h5>3 puertas</h5>
+                        </div>
+                        <div class="col-3">
+                            <h5>Automático</h5>
+                        </div>
+                        <div class="col-3">
+                            <h5>Gasolina</h5>
+                        </div>
+                        <div class="col-3">
+                            <h5>90 CV</h5>
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-3">
+                            <h5>2021</h5>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+        <!-- Car box end -->
+        <!-- Tarifas -->
+        <div id="tarifas">
+            <div class="select">
+                <div class="option">
+                    <input type="radio" id="precio_estandar" name="tarifa_base" value="Precio estándar" checked>
+                    <label for="precio_estandar">
+                        <div class="text">
+                            <div class="title"><b>Precio estándar</b></div>
+                            <div class="description">Pago inmediato. Cancelación o cambio de fecha sujeto a tarifas.</div>
+                        </div>
+                    </label>
+                </div>
+                <h4>+0,00€</h4>
+            </div>
+            <div class="select">
+                <div class="option">
+                    <input type="radio" id="tarifa_flexible" name="tarifa_base" value="Tarifa flexible">
+                    <label for="tarifa_flexible">
+                        <div class="text">
+                            <div class="title"><b>Tarifa flexible</b></div>
+                            <div class="description">Pago inmediato. Cancelación o cambio de fecha sujeto a tarifas.</div>
+                        </div>
+                    </label>
+                </div>
+                <h4>+12,72€</h4>
+            </div>
+
+            <hr>
+
+            <div class="select">
+                <div class="option">
+                    <input type="radio" id="300kmdia" name="tarifa_km" value="300kmdia" checked>
+                    <label for="300kmdia">
+                        <div class="text">
+                            <div class="title"><b>300 km / día</b></div>
+                            <div class="description">Pago inmediato. Cancelación o cambio de fecha sujeto a tarifas.</div>
+                        </div>
+                    </label>
+                </div>
+                <h4>+0,00€</h4>
+            </div>
+            <div class="select">
+                <div class="option">
+                    <input type="radio" id="km_ilimitados" name="tarifa_km" value="Kilómetros ilimitados">
+                    <label for="km_ilimitados">
+                        <div class="text">
+                            <div class="title"><b>Kilómetros ilimitados</b></div>
+                            <div class="description">Pago inmediato. Cancelación o cambio de fecha sujeto a tarifas.</div>
+                        </div>
+                    </label>
+                </div>
+                <h4>+4,70€/día</h4>
+            </div>
+        </div>
+        <!-- Tarifas end -->
+        <!-- Protección -->
+        <div id="proteccion" class="row">
+            <label class="col-3 card" for="proteccion_basica">
+                <input type="radio" id="proteccion_basica" name="proteccion" value="Protección básica" checked>
+                <div class="right">
+                    <div class="text">
+                        <div class="title"><b>Protección básica</b></div>
+                        <div class="description">-Protección contra colisión, arañazos, golpes, robo</div>
+                    </div> 
+                    <div>
+                        <b>Incluido</b>
+                    </div>
+                </div>
+            </label>
+            <label class="col-3 card" for="op2">
+                <input type="radio" id="op2" name="proteccion" value="Protección básica">
+                <div class="right">
+                    <div class="text">
+                        <div class="title"><b>Protección básica</b></div>
+                        <div class="description">-Protección contra colisión, arañazos, golpes, robo</div>
+                    </div> 
+                    <div>
+                        <b>Incluido</b>
+                    </div>
+                </div>
+            </label><label class="col-3 card" for="opt3">
+                <input type="radio" id="opt3" name="proteccion" value="Protección básica">
+                <div class="right">
+                    <div class="text">
+                        <div class="title"><b>Protección básica</b></div>
+                        <div class="description">-Protección contra colisión, arañazos, golpes, robo</div>
+                    </div> 
+                    <div>
+                        <b>Incluido</b>
+                    </div>
+                </div>
+            </label>
+        </div>
+        <!-- Protección end -->
+        <!-- Resumen -->
+        <div id="resumen">
+            <span class="price"><b>23,55€</b></span><span>&nbsp;/ día</span>
+            <div class="title"><b>Gastos de alquiler</b></div>
+            <div class="row">
+                <div class="col-10">4 días de alquiler x 23,55€</div>
+                <div class="col-2">92,20€</div>
+            </div>
+            <div class="title"><b>Impuestos y tasas adicionales</b></div>
+            <div class="row">
+                <div class="col-10">Kilómetros ilimitados 4 días x 4,70€</div>
+                <div class="col-2">+18,80€</div>
+            </div>
+            <div class="title"><b>Seguro</b></div>
+            <div class="row">
+                <div class="col-10">Protección básica</div>
+                <div class="col-2">+0,00€</div>
+            </div>
+            <div class="row total">
+                <div class="col-9">
+                    <b>TOTAL: 111,00€</b>
+                </div>
+                <button class="button col-3">
+                    <b>Reservar</b>
+                </button>
+            </div>
+        </div>
+        <!-- Resumen end -->
+    </div>
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+        </div>
+    </footer>
+</body>
+</html>

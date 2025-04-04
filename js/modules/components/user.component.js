@@ -16,7 +16,7 @@ class LoginForm extends HTMLElement {
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             border-radius: 8px;
           }
-  
+          
           form {
             display: flex;
             flex-direction: column;
