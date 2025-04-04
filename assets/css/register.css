@@ -1,120 +1,73 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Arial, sans-serif;
-}
 body {
+    font-family: Arial, sans-serif;
+    background-color: #f4f4f4;
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     align-items: center;
     height: 100vh;
-    background-color: #f3f3f3;
-    position: relative;
+    margin: 0;
 }
-.header {
-    position: fixed; /* Fija el header en la parte superior */
-    top: 0; /* Asegura que esté en la parte superior */
-    left: 0;
-    width: 100%; /* Ocupa todo el ancho de la página */
+.header-container {
     display: flex;
-    justify-content: space-between; /* Espacia el logo y el botón de atrás */
+    justify-content: space-between;
     align-items: center;
-    padding: 5px 20px; /* Reduce el padding para disminuir la altura */
-    background-color: transparent; /* Elimina el fondo del header */
-    box-shadow: none; /* Elimina la sombra */
-    z-index: 1000; /* Asegura que esté por encima de otros elementos */
-    height: auto; /* Permite que la altura se ajuste automáticamente */
-}
-
-/* Estilo para el logo */
-.logo-container {
-    display: flex;
-    align-items: center;
-}
-
-.logo {
-    width: 120px;
-    height: auto;
-}
-/* Estilo para el botón de atrás */
-.back-button {
-    background-color: black;
+    max-width: 1200px; width: 100%; margin: 0 auto;
+    padding: 10px;
+    background: #007bff;
     color: white;
-    border: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-size: 14px;
-    font-weight: bold;
-    transition: background-color 0.3s ease;
 }
-
-.back-button:hover {
-    background-color: #333;
+.logo {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
 }
-.container {
-    display: flex;
-    width: 75%;
-    height: 75%;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+.auth-icons {
+    margin-left: auto;
+}
+.auth-icons a {
+    color: white;
+    text-decoration: none;
+    margin-left: 15px;
+}
+.auth-icons a:hover {
+    text-decoration: underline;
+}
+.login-container {
+    background: white;
+    padding: 30px;
     border-radius: 10px;
-    overflow: hidden;
-    background-color: rgb(240, 201, 26);
-    margin-top: 80px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+    margin-top: 50px;
 }
-.image-section {
-    width: 50%;
-    background-color: #000;
-}
-.image-section img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-.form-section {
-    width: 50%;
-    padding: 40px;
-}
-.form-section h2 {
-    font-size: 28px;
-    font-weight: bold;
-    margin-bottom: 10px;
-}
-.form-section p {
-    color: #020202;
-    font-size: 16px;
+.login-container h2 {
     margin-bottom: 20px;
 }
-.form-section a {
-    color: #0070e7;
-    text-decoration: none;
-    font-weight: bold;
-}
-.form-section form label {
-    display: block;
-    font-weight: bold;
-    margin: 10px 0 5px;
-    font-size: 14px;
-}
-.form-section form input {
+.login-container input {
     width: 100%;
     padding: 10px;
+    margin: 10px 0;
     border: 1px solid #ccc;
     border-radius: 5px;
-    margin-bottom: 15px;
 }
-.form-section button {
-    width: 50%;
-    background-color: black;
-    color: white;
+.login-container button {
+    width: 100%;
     padding: 10px;
+    background: #007bff;
+    color: white;
     border: none;
     border-radius: 5px;
     cursor: pointer;
-    margin: 30px auto 0; /* Centra el botón horizontalmente y añade margen superior */
-    display: block; /* Asegura que el botón se comporte como un bloque para centrarlo */
-    text-align: center;
-    font-size: 17px;
-    font-weight: bold;
+}
+.login-container button:hover {
+    background: #0056b3;
+}
+.login-container .register-link {
+    margin-top: 15px;
+    display: block;
+    color: #007bff;
+    text-decoration: none;
+}
+.login-container .register-link:hover {
+    text-decoration: underline;
 }

@@ -1,47 +1,31 @@
 <!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login</title>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
-    <link rel="stylesheet" href="../assets/css/login.css">
-</head>
-<body>
-    <header class="header">
-        <div class="logo-container">
-            <img src="../assets/images/logo.png" alt="Logo FlexiCoche" class="logo">
-        </div>
-        <!-- Botón para ir atrás -->
-        <button class="back-button" onclick="window.location.href='../index.html'">Atrás</button>
+<html lang="es">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlexiCoche - Login</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+    />
+    <link rel="stylesheet" href="/assets/css/login.css" />
+  </head>
+  <body>
+    <header class="header-container">
+      <h1 class="logo">FlexiCoche</h1>
+      <div class="auth-icons">
+        <a href="login.html" class="icon"><i class="fas fa-user"></i> Login</a>
+        <a href="register.html" class="icon"
+          ><i class="fas fa-user-plus"></i> Register</a
+        >
+      </div>
     </header>
-    <div class="container">
-        <!-- Sección del formulario -->
-        <div class="form-section">
-            <h2>Iniciar Sesión</h2>
-            <p>¿No tienes cuenta? <a href="../templates/register.html">Registrate aquí.</a></p>
-            
-            <form>
-                <label>EMAIL</label>
-                <input type="email" placeholder="email@gmail.com" required>
-                
-                <label>CONTRASEÑA</label>
-                <input type="password" placeholder="******" required>
-                
-                <button type="submit">Iniciar sesión</button>
-            </form>
-        </div>
-        
-        <!-- Sección de la imagen -->
-        <div class="image-section">
-            <img src="../assets/images/imgRegister.png" alt="Autos">
-        </div>
-    </div>
 
-    <!-- Scripts en orden correcto 
-    <script type="module" src="/js/modules/components/user.component.js"></script>
-    <script type="module" src="/js/modules/pages/user.page.js"></script>-->
-
-</body>
+    <!-- Scripts en orden correcto -->
+    <script
+      type="module"
+      src="/js/modules/components/user.component.js"
+    ></script>
+    <script type="module" src="/js/modules/pages/user.page.js"></script>
+  </body>
 </html>
