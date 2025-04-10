@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/consult-reserv-admin.css">
+    <title>Reservation Manage</title>
+    <link rel="icon" type="image/png" href="../assets/icons/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <span class="logo"><a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo"></a></span>
+            <nav>
+                <a href="../templates/car-data-new.html" class="btn-yellow"><i class="fas fa-plus"></i> Agregar vehículo</a>
+                <a href="../templates/search.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+                <a href="../templates/login.html"><i class="fas fa-user"></i> Hola, Cristina</a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="contenedor">
+            <div class="vehiculo">
+                <img src="../assets/images/ford fiesta.png" alt="Fiat 500">
+                <a href="#">más info</a>
+            </div>
+            <div class="info">
+                <h1>Fiat 500</h1>
+                <p><strong>Usuario:</strong> Julián de los Santos Hernández</p>
+                <p><strong>Desde el</strong> 17/03/2025 <strong>hasta</strong> 26/03/2025</p>
+                <p><strong>Importe:</strong> 111,00€</p>
+                <p><strong>Tipo de tarifa:</strong> Tarifa flexible</p>
+                <p><strong>Seguro:</strong> Protección básica</p>
+                <p><strong>📍</strong> Sevilla</p>
+                <label for="estado"><strong>Estado:</strong></label>
+                <select id="estado">
+                    <option>Pagado</option>
+                    <option>Pendiente</option>
+                </select>
+                <div class="acciones">
+                    <button class="btn-rojo">🗑️ Eliminar</button>
+                    <button class="btn-yellow">Guardar</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

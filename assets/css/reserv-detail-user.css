@@ -1,0 +1,178 @@
+/* General Styles */
+body {
+    font-family: 'Arial', sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+    color: #333;
+}
+
+.top-bar {
+    background-color: #222;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    align-items: center;
+    height: 30px; /* Ajusta la altura según sea necesario */
+}
+
+.top-bar nav {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px; /* Reduce el margen izquierdo */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.logo img {
+    width: 140px; /* Ajusta el ancho según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+/* Main Container */
+.container {
+    max-width: 1200px;
+    margin: 10px auto;
+    padding: 5px;
+}
+
+h1 {
+    text-align: center;
+    font-size: 32px;
+    margin-bottom: 30px;
+}
+
+/* Reservation Details */
+.reservation-details {
+    display: flex;
+    gap: 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+/* Car Section */
+.car-section {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.car-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.car-section img {
+    max-width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
+.car-section a {
+    color: #007bff;
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.car-section a:hover {
+    text-decoration: underline;
+}
+
+.car-info p {
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.car-info p i {
+    color: #ff5e5e;
+    margin-right: 5px;
+}
+
+/* Invoice Section */
+.invoice-section {
+    flex: 1;
+    background: white;
+    border-radius: 10px;
+    padding: 20px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.invoice-section h2 {
+    font-size: 24px;
+    margin-bottom: 15px;
+}
+
+.invoice-section .price {
+    font-size: 28px;
+    color: #222;
+    margin-bottom: 20px;
+}
+
+.invoice-details p {
+    display: flex;
+    justify-content: space-between;
+    margin: 10px 0;
+    font-size: 16px;
+}
+
+.invoice-details p span {
+    font-weight: bold;
+    color: #333;
+}
+
+.total {
+    font-size: 20px;
+    font-weight: bold;
+    margin-top: 20px;
+    text-align: right;
+}
+
+/* Buttons */
+.actions {
+    display: flex;
+    gap: 15px;
+    margin-top: 20px;
+    justify-content: flex-end;
+}
+
+.btn-yellow {
+    background-color: #ffd700;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-yellow:hover {
+    background-color: #e6c200;
+}
+
+.btn-red {
+    background-color: #ff5e5e;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    font-size: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-red:hover {
+    background-color: #e04e4e;
+}

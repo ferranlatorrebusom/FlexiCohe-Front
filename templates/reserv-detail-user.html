@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../assets/css/reserv-manage-user.css">
+    <title>Detalles de la Reserva</title>
+    <link rel="stylesheet" href="../assets/css/reserv-detail-user.css">
+    <link rel="icon" type="image/png" href="../assets/icons/logo.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+</head>
+<body>
+    <header>
+        <div class="top-bar">
+            <span class="logo"><a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo"></a></span>
+            <nav>
+                <a href="../templates/search.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+                <a href="../templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+                <span class="separator"></span>
+                <a href="../templates/register.html"><i class="fas"></i> Regístrate</a>
+            </nav>
+        </div>
+    </header>
+    <main class="container">
+        <h1>Detalles de la reserva</h1>
+        <div class="reservation-details">
+            <!-- Car Section -->
+            <div class="car-section">
+                <h2>Fiat 500</h2>
+                <img src="../assets/images/ford fiesta.png" alt="Fiat 500">
+                <a href="#">más info</a>
+                <div class="car-info">
+                    <p><strong>Desde:</strong> <input type="date" value="2025-03-17"></p>
+                    <p><strong>Hasta:</strong> <input type="date" value="2025-03-26"></p>
+                    <p><strong>Tipo de tarifa:</strong> Tarifa flexible</p>
+                    <p><strong>Seguro:</strong> Protección básica</p>
+                    <p><i class="fas fa-map-marker-alt"></i> Sevilla</p>
+                    <p><strong>Estado:</strong> a pagar</p>
+                </div>
+            </div>
+            <!-- Invoice Section -->
+            <div class="invoice-section">
+                <h2>Factura</h2>
+                <p class="price"><strong>23,55€</strong> / día</p>
+                <div class="invoice-details">
+                    <p><strong>Gastos de alquiler</strong></p>
+                    <p>4 días de alquiler x 23,55€ <span>92,20€</span></p>
+                    <p><strong>Impuestos y tasas adicionales</strong></p>
+                    <p>Kilómetros ilimitados 4 días x 4,70€ <span>+18,80€</span></p>
+                    <p><strong>Seguro</strong></p>
+                    <p>Protección básica <span>+0,00€</span></p>
+                </div>
+                <p class="total"><strong>TOTAL:</strong> 111,00€</p>
+                <div class="actions">
+                    <button class="btn-yellow">Pagar</button>
+                    <button class="btn-red">Anular reserva</button>
+                </div>
+            </div>
+        </div>
+    </main>
+</body>
+</html>

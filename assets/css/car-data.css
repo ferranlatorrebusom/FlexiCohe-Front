@@ -1,0 +1,102 @@
+#car-data-carousel-container
+{
+    max-width: 50%;
+    margin-bottom: 2em;
+}
+
+.carousel-control-prev-icon
+{
+    background-image: url("../icons/arrow_prev.png");
+}
+
+.carousel-control-next-icon
+{
+    background-image: url("../icons/arrow_next.png");
+}
+
+.main-title
+{
+    margin: 1em;
+}
+
+#details-container
+{
+    width: 60%;
+}
+
+#details-container .row
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    margin-top: 0.4em;
+}
+
+#details-container .row span
+{
+    width: auto;
+}
+
+#details-container .row input, #details-container .row select
+{
+    height: 1.5em;
+    width: 8em;
+    font-size: medium;
+    border-radius: 0.4em;
+    border-width: 1px;
+}
+
+#details-container .col-6.up
+{
+    margin-left: 3em;
+    
+}
+
+hr
+{
+    margin-top: 4em;
+    margin-bottom: 4em;
+}
+
+#button-container
+{
+    margin-top: 3em;
+}
+
+#button-container button.yellow
+{
+    margin: 1.5em 1em 1.5em 0;
+    background-color: rgb(240,240,0);
+    border:none;
+    border-radius: 0.5em;
+    padding: 0.3em 1.5em 0.3em 1.5em;
+}
+
+#button-container button.delete
+{
+    margin: 1.5em 1em 1.5em 0;
+    background-color: rgb(255,0,0);
+    border:none;
+    border-radius: 0.5em;
+    padding: 0.3em 1em 0.3em 1em;
+}
+
+#button-container button.delete img
+{
+    height: 1em;
+}
+
+#vehicle-type button
+{
+    border: none;
+    background-color: rgb(200,200,200);
+    border-radius: 1em;
+    padding-inline: 1em;
+}
+
+#vehicle-type button.selected
+{
+    background-color: rgb(150,150,150);
+}
