@@ -23,13 +23,16 @@
         </div>
         
         <!-- Sección del formulario -->
-        <div class="form-section">
+        <div class="form-section" id="registerForm">
             <h2>Crear una cuenta</h2>
             <p>¿Ya estás registrado? <a href="../templates/login.html">Inicia sesión.</a></p>
             
             <form>
-                <label>USUARIO</label>
-                <input type="text" id="user" placeholder="Usuario" required>
+                <label>NOMBRE</label>
+                <input type="text" id="nombre" placeholder="Usuario" required>
+
+                <label>APELLIDOS</label>
+                <input type="text" id="apellidos" placeholder="Apellidos" required>
 
                 <label>EMAIL</label>
                 <input type="email" id="correo" placeholder="email@gmail.com" required>
@@ -45,7 +48,7 @@
         </div>
     </div>
    
-    <!--<script type="module" src="/js/modules/pages/register.page.js"></script>-->
+    <script type="module" src="/js/modules/pages/register.page.js"></script>
 
 </body>
 </html>

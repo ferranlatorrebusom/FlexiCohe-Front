@@ -19,32 +19,41 @@ class RegisterPage {
             return;
         }
 
-        form.addEventListener('submit', async (e) => this.handleSubmit(e));
-    }
+        const passwordInput = document.getElementById('password');
+        const repeatPasswordInput = document.getElementById('rep-password');
 
-    async handleSubmit(e) {
-        e.preventDefault();
-        
-        const userData = {
-            nombre: document.getElementById('nombre').value,
-            apellidos: document.getElementById('apellidos').value,
-            correo: document.getElementById('correo').value,
-            password: document.getElementById('password').value
-        };
+        form.addEventListener('submit', async (e) => {
+            e.preventDefault();
 
-        try {
-            await httpClient.request({
-                method: 'POST',
-                url: '/register',
-                data: userData
-            });
+            const password = passwordInput.value.trim();
+            const repeatPassword = repeatPasswordInput.value.trim();
 
-            this.showMessage('Registro exitoso! Redirigiendo...', false);
-            setTimeout(() => window.location.href = '/templates/login.html', 1500);
-            
-        } catch (error) {
-            this.showMessage(error.message || 'Error en el registro', true);
-        }
+            if (password !== repeatPassword) {
+                alert('Las contraseñas no coinciden. Por favor, verifica e inténtalo de nuevo.');
+                return;
+            }
+
+            const userData = {
+                nombre: document.getElementById('nombre').value.trim(),
+                apellidos: document.getElementById('apellidos').value.trim(),
+                correo: document.getElementById('correo').value.trim(),
+                password: password
+            };
+
+            try {
+                await httpClient.request({
+                    method: 'POST',
+                    url: '/register',
+                    data: userData
+                });
+
+                this.showMessage('Registro exitoso! Redirigiendo...', false);
+                setTimeout(() => window.location.href = '/templates/login.html', 1500);
+                
+            } catch (error) {
+                this.showMessage(error.message || 'Error en el registro', true);
+            }
+        });
     }
 
     showMessage(text, isError) {

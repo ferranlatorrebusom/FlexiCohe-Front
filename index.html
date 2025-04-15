@@ -1,94 +1,169 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>test</title>
-    <link rel="stylesheet" href="./assets/css/index.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
-    <link rel="icon" type="image/png" href="assets/icons/logo.png">
+  <meta charset="UTF-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>FlexiCoche</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
+  <link rel="stylesheet" href="./assets/css/index.css" />
+  <link rel="icon" type="image/png" href="assets/icons/logo.png" />
 </head>
 <body>
-    <header>
-        <div class="top-bar">
-            <span class="logo"><a href="../index.html"><img src="assets/images/logo.png" alt="FlexiCoche Logo"></a></span>
-            <nav>
-                <a href="templates/search.html"><i class="fas fa-car"></i> Gestionar reservas</a>
-                <a href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
-                <span class="separator"></span>
-                <a href="templates/register.html"><i class="fas"></i> Regístrate</a>
-            </nav>
-        </div>
-    </header>
-    <main>
-        <section class="search-box" style="background-image: url('./assets/images/BACKGROUND-SEARCHBOX.jpg');">
-            <div class="search-container">
-                <div class="vehicle-options">
-                    <button class="selected" onclick="selectVehicle(this)"><i class="fas fa-car"></i> Coche</button>
-                    <button onclick="selectVehicle(this)"><i class="fas fa-motorcycle"></i> Moto</button>
-                    <button onclick="selectVehicle(this)"><i class="fas fa-truck"></i> Furgoneta</button>
-                    <button onclick="selectVehicle(this)"><i class="fas fa-truck-moving"></i> Camión</button>
-                </div>
-                <form>
-                    <div class="form-group">
-                        <label for="location">Lugar</label>
-                        <input type="text" id="location" placeholder="Lugar">
-                    </div>
-                    <div class="form-group">
-                        <label for="pickup-date">Fecha de recogida</label>
-                        <input type="date" id="pickup-date">
-                    </div>
-                    <div class="form-group">
-                        <label for="return-date">Fecha de devolución</label>
-                        <input type="date" id="return-date">
-                    </div>
-                    <div class="form-bottom">
-                        <label><input type="checkbox"> Etiqueta ECO</label>
-                        <button type="submit">Buscar</button>
-                    </div>
-                </form>
-            </div>
-        </section>
-        <section class="vehicles">
-            <h2>Disponemos de los vehículos con mejor calidad/precio</h2>
-            <div class="vehicle-category">
-                <div class="vehicle">
-                    <h3>Coches</h3>
-                    <p>¿Necesitas transporte diario? Desde gasolina hasta eléctrico</p>
-                    <button>Ver más</button>
-                    <img src="./assets/images/CAR-TEST.jpg" alt="Coche">
-                </div>
-                <div class="vehicle">
-                    <h3>Motos</h3>
-                    <p>El mejor vehículo para moverte por la ciudad</p>
-                    <button>Ver más</button>
-                    <img src="./assets/images/MOTO-TEST.png" alt="Moto">
-                </div>
-                <div class="vehicle">
-                    <h3>Furgonetas</h3>
-                    <p>Para carga y descarga, mudanzas, e incluso una escapada</p>
-                    <button>Ver más</button>
-                    <img src="./assets/images/FURGONETA.jpg" alt="Furgoneta">
-                </div>
-                <div class="vehicle">
-                    <h3>Camiones</h3>
-                    <p>Uso profesional. Encuentra el modelo que más se ajuste a tus necesidades</p>
-                    <button>Ver más</button>
-                    <img src="./assets/images/camion.jpeg" alt="Camión">
-                </div>
-            </div>
-        </section>
-    </main>
-    <script>
-        function selectVehicle(button) {
-            // Elimina la clase 'selected' de todos los botones
-            const buttons = document.querySelectorAll('.vehicle-options button');
-            buttons.forEach(btn => btn.classList.remove('selected'));
+  <header>
+    <div class="top-bar">
+      <span class="logo">
+        <a href="../index.html"><img src="assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+      </span>
+      <nav class="auth-section">
+        <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+        <div  id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span id="headerUserName"></span></a></div>
+        <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+        <a class="logout-btn d-none" id="headerLogoutBtn">
+          <i class="fas fa-sign-out-alt"></i>
+        </a>
+      </nav>
+    </div>
+  </header>
 
-            // Añade la clase 'selected' al botón clicado
-            button.classList.add('selected');
+  <main>
+    <section class="search-box" style="background-image: url('./assets/images/BACKGROUND-SEARCHBOX.jpg');">
+      <div class="search-container">
+        <div class="vehicle-options">
+          <button onclick="selectVehicle(this)" data-tipo="COCHE"><i class="fas fa-car"></i> Coche</button>
+          <button onclick="selectVehicle(this)" data-tipo="MOTO"><i class="fas fa-motorcycle"></i> Moto</button>
+          <button onclick="selectVehicle(this)" data-tipo="FURGONETA"><i class="fas fa-truck"></i> Furgoneta</button>
+          <button onclick="selectVehicle(this)" data-tipo="CAMIÓN"><i class="fas fa-truck-moving"></i> Camión</button>
+        </div>
+
+        <form id="main-search-form">
+          <div class="form-group">
+            <label for="location">Lugar</label>
+            <select id="location" name="localizacion" required>
+              <option>Cargando localizaciones...</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="pickup-date">Fecha de recogida</label>
+            <input type="date" id="pickup-date" name="fechaInicio" required />
+          </div>
+          <div class="form-group">
+            <label for="return-date">Fecha de devolución</label>
+            <input type="date" id="return-date" name="fechaFin" required />
+          </div>
+          <div class="form-bottom">
+            <button type="submit">Buscar</button>
+          </div>
+        </form>
+      </div>
+    </section>
+
+    <section class="vehicles">
+      <h2>Disponemos de los vehículos con mejor calidad/precio</h2>
+      <div class="vehicle-category">
+        <div class="vehicle">
+          <h3>Coches</h3>
+          <p>¿Necesitas transporte diario? Desde gasolina hasta eléctrico</p>
+          <button>Ver más</button>
+          <img src="./assets/images/CAR-TEST.jpg" alt="Coche" />
+        </div>
+        <div class="vehicle">
+          <h3>Motos</h3>
+          <p>El mejor vehículo para moverte por la ciudad</p>
+          <button>Ver más</button>
+          <img src="./assets/images/MOTO-TEST.png" alt="Moto" />
+        </div>
+        <div class="vehicle">
+          <h3>Furgonetas</h3>
+          <p>Para carga y descarga, mudanzas, e incluso una escapada</p>
+          <button>Ver más</button>
+          <img src="./assets/images/FURGONETA.jpg" alt="Furgoneta" />
+        </div>
+        <div class="vehicle">
+          <h3>Camiones</h3>
+          <p>Uso profesional. Encuentra el modelo que más se ajuste a tus necesidades</p>
+          <button>Ver más</button>
+          <img src="./assets/images/camion.jpeg" alt="Camión" />
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    function selectVehicle(button) {
+      document.querySelectorAll('.vehicle-options button').forEach(btn => btn.classList.remove('selected'));
+      button.classList.add('selected');
+    }
+
+    document.addEventListener('DOMContentLoaded', () => {
+      const form = document.getElementById('main-search-form');
+      const pickupInput = document.getElementById('pickup-date');
+      const returnInput = document.getElementById('return-date');
+
+      // 🗓️ Establecer fecha actual por defecto
+      const hoy = new Date().toISOString().split('T')[0];
+      pickupInput.value = hoy;
+
+      form?.addEventListener('submit', (e) => {
+        e.preventDefault();
+
+        const localizacion = document.getElementById('location')?.value;
+        const fechainicio = pickupInput?.value;
+        const fechaFin = returnInput?.value;
+
+        if (!fechainicio || !fechaFin) {
+          alert('⚠️ Debes seleccionar ambas fechas para realizar la búsqueda.');
+          return;
         }
-    </script>
+
+        if (new Date(fechaFin) < new Date(fechainicio)) {
+          alert('🚫 La fecha de devolución no puede ser anterior a la de recogida.');
+          return;
+        }
+
+        const params = new URLSearchParams();
+        if (localizacion) params.append('localizacion', localizacion);
+        params.append('fechaInicio', fechainicio);
+        params.append('fechaFin', fechaFin);
+
+        localStorage.setItem('fechaInicio', fechainicio);
+        localStorage.setItem('fechaFin', fechaFin);
+        localStorage.setItem('localizacion', localizacion);
+
+        window.location.href = `templates/search.html?${params.toString()}`;
+      });
+    });
+  </script>
+
+  <!-- Carga dinámica de localizaciones -->
+  <script type="module">
+    import { getLocalizaciones } from './js/modules/api/vehicle.api.js';
+
+    document.addEventListener('DOMContentLoaded', async () => {
+      const select = document.getElementById('location');
+      if (!select) return;
+
+      try {
+        const localizaciones = await getLocalizaciones();
+        select.innerHTML = '<option value="">Selecciona una localización</option>';
+        localizaciones.forEach(loc => {
+          const option = document.createElement('option');
+          option.value = loc;
+          option.textContent = loc;
+          select.appendChild(option);
+        });
+
+        // Rellenar localStorage si se ha guardado previamente
+        const savedLoc = localStorage.getItem('localizacion');
+        if (savedLoc) select.value = savedLoc;
+
+      } catch (err) {
+        console.error('Error cargando localizaciones:', err);
+        select.innerHTML = '<option value="">Error al cargar localizaciones</option>';
+      }
+    });
+  </script>
+
+  <script type="module" src="/js/modules/pages/index.page.js"></script>
 </body>
 </html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="../assets/css/modify-profile.css">
+    <title>Modify profile</title>
+    <link rel="icon" type="image/png" href="/assets/images/logo.png">
+</head>
+
+<body>
+    <header>
+        <div class="top-bar">
+            <span class="logo">
+                <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+            </span>
+            <nav class="auth-section">
+                <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+                <div id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span
+                            id="headerUserName"></span></a></div>
+                <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+                <a class="logout-btn d-none" id="headerLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </nav>
+        </div>
+    </header>
+    <main>
+        <div class="profile-container">
+
+            <div class="profile-card">
+
+                <div class="profile-img">
+                    <img id="userProfileImage" src="../assets/images/DEFAULT-USER-IMAGE.png" alt="Foto de perfil">
+                    <a href="#" class="change-img">Cambiar imagen</a>
+
+                </div>
+                <div class="profile-info">
+                    <h2 class="username">Cristina</h2>
+                    <a href="#" class="edit-user">Editar usuario</a>
+
+                    <form class="user-form">
+                        <label>
+                            Nombre:
+                            <input type="text" value="Cristina" />
+                        </label>
+
+                        <label>
+                            Apellidos:
+                            <input type="text" value="Mendoza Caraballo" />
+                        </label>
+
+                        <label>
+                            Fecha de nacimiento:
+                            <input type="date" value="1995-09-25" />
+                        </label>
+
+                        <label>
+                            Teléfono:
+                            <input type="tel" value="+34 678 33 22 11" />
+                        </label>
+
+                        <label>
+                            DNI/NIE:
+                            <input type="text" value="00000000X" />
+                        </label>
+
+                        <div class="button-group">
+                            <button type="button" class="delete-btn">Borrar usuario</button>
+                            <button class="change-password-btn"><a href="change-password.html">Cambiar
+                                    contraseña</a></button>
+                            <button type="submit" class="save-btn">Guardar usuario</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script type="module" src="../js/modules/pages/modify-profile.page.js"></script>
+</body>
+
+</html>

@@ -16,6 +16,7 @@ export const authUtils = {
             
             return {
                 email: payload.sub,
+                username: payload.username,
                 roles: payload.roles || []
             };
         } catch (error) {
@@ -78,13 +79,17 @@ export const authUtils = {
         const userData = this.getAuthData();
         if (userData) {
             // Actualizar elementos de usuario
+            const userNameElement = document.getElementById('headerUserName');
             const emailElement = document.getElementById('headerUserEmail');
             const loginLink = document.getElementById('loginLink');
             const userInfo = document.getElementById('userInfo');
+            const headerLogoutBtn = document.getElementById('headerLogoutBtn');
 
+            if (userNameElement) userNameElement.textContent = userData.username;
             if (emailElement) emailElement.textContent = userData.email;
-            if (loginLink) loginLink.classList.add('hidden');
-            if (userInfo) userInfo.classList.remove('hidden');
+            if (loginLink) loginLink.classList.add('d-none');
+            if (userInfo) userInfo.classList.remove('d-none');
+            if (headerLogoutBtn) headerLogoutBtn.classList.remove('d-none');
         }
     },
 
@@ -92,8 +97,8 @@ export const authUtils = {
         const loginLink = document.getElementById('loginLink');
         const userInfo = document.getElementById('userInfo');
         
-        if (loginLink) loginLink.classList.remove('hidden');
-        if (userInfo) userInfo.classList.add('hidden');
+        if (loginLink) loginLink.classList.remove('d-none');
+        if (userInfo) userInfo.classList.add('d-none');
     },
 
     setupLogout() {

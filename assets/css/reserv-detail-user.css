@@ -176,3 +176,7 @@ h1 {
 .btn-red:hover {
     background-color: #e04e4e;
 }
+
+.d-none {
+    display: none !important;
+  }  

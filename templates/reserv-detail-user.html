@@ -1,62 +1,71 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link rel="stylesheet" href="../assets/css/reserv-manage-user.css">
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Detalles de la Reserva</title>
-    <link rel="stylesheet" href="../assets/css/reserv-detail-user.css">
-    <link rel="icon" type="image/png" href="../assets/icons/logo.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    <link rel="stylesheet" href="../assets/css/reserv-detail-user.css" />
+    <link rel="icon" type="image/png" href="../assets/icons/logo.png" />
 </head>
 <body>
     <header>
         <div class="top-bar">
-            <span class="logo"><a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo"></a></span>
-            <nav>
-                <a href="../templates/search.html"><i class="fas fa-car"></i> Gestionar reservas</a>
-                <a href="../templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
-                <span class="separator"></span>
-                <a href="../templates/register.html"><i class="fas"></i> Regístrate</a>
+            <span class="logo">
+                <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+            </span>
+            <nav class="auth-section">
+                <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+                <div id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span
+                            id="headerUserName"></span></a></div>
+                <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+                <a class="logout-btn d-none" id="headerLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
             </nav>
         </div>
     </header>
+
     <main class="container">
         <h1>Detalles de la reserva</h1>
-        <div class="reservation-details">
+        <div class="reservation-details" id="reservation-details">
             <!-- Car Section -->
             <div class="car-section">
-                <h2>Fiat 500</h2>
-                <img src="../assets/images/ford fiesta.png" alt="Fiat 500">
+                <h2 id="car-name">Nombre vehículo</h2>
+                <img id="car-image" src="../assets/images/default.png" alt="Vehículo" />
                 <a href="#">más info</a>
                 <div class="car-info">
-                    <p><strong>Desde:</strong> <input type="date" value="2025-03-17"></p>
-                    <p><strong>Hasta:</strong> <input type="date" value="2025-03-26"></p>
-                    <p><strong>Tipo de tarifa:</strong> Tarifa flexible</p>
-                    <p><strong>Seguro:</strong> Protección básica</p>
-                    <p><i class="fas fa-map-marker-alt"></i> Sevilla</p>
-                    <p><strong>Estado:</strong> a pagar</p>
+                    <p><strong>Desde:</strong> <input id="fecha-desde" type="date" disabled /></p>
+                    <p><strong>Hasta:</strong> <input id="fecha-hasta" type="date" disabled /></p>
+                    <p><strong>Tipo de tarifa:</strong> <span id="tarifa">Tarifa flexible</span></p>
+                    <p><strong>Seguro:</strong> <span id="seguro">Protección básica</span></p>
+                    <p><i class="fas fa-map-marker-alt"></i> <span id="localizacion">Localización</span></p>
+                    <p id="estado-texto"><strong>Estado:</strong> <span id="estado">a pagar</span></p>
                 </div>
             </div>
+
             <!-- Invoice Section -->
             <div class="invoice-section">
                 <h2>Factura</h2>
-                <p class="price"><strong>23,55€</strong> / día</p>
+                <p class="price"><strong id="precio-dia">0,00€</strong> / día</p>
                 <div class="invoice-details">
                     <p><strong>Gastos de alquiler</strong></p>
-                    <p>4 días de alquiler x 23,55€ <span>92,20€</span></p>
+                    <p id="gastos-alquiler">-</p>
                     <p><strong>Impuestos y tasas adicionales</strong></p>
-                    <p>Kilómetros ilimitados 4 días x 4,70€ <span>+18,80€</span></p>
+                    <p id="impuestos">-</p>
                     <p><strong>Seguro</strong></p>
-                    <p>Protección básica <span>+0,00€</span></p>
+                    <p id="seguro-linea">-</p>
                 </div>
-                <p class="total"><strong>TOTAL:</strong> 111,00€</p>
+                <p class="total"><strong>TOTAL:</strong> <span id="total-precio">0,00€</span></p>
                 <div class="actions">
-                    <button class="btn-yellow">Pagar</button>
-                    <button class="btn-red">Anular reserva</button>
+                    <button class="btn-yellow" id="btn-pagar">Pagar</button>
+                    <button class="btn-red" id="btn-anular">Anular reserva</button>
                 </div>
+                <div id="action-message"></div>
             </div>
         </div>
     </main>
+
+    <script type="module" src="../js/modules/pages/reserv-detail-user.page.js"></script>
 </body>
 </html>
