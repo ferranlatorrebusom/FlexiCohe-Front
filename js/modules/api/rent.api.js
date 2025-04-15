@@ -1,4 +1,4 @@
-const API_URL = 'http://localhost:8080/alquileres';
+const API_URL = 'https://flexicohe-back.onrender.com/alquileres';
 
 export async function createAlquiler(data) {
     const token = localStorage.getItem('jwtToken');
