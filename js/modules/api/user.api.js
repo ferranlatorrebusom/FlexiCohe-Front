@@ -1,6 +1,6 @@
 import { httpClient } from "../utils/http.utils.js";
 
-const API_BASE = "http://localhost:8080";
+const API_BASE = "https://flexicohe-back.onrender.com";
 
 export const userAPI = {
   async login(credenciales) {
