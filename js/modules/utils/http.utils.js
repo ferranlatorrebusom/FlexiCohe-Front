@@ -11,7 +11,7 @@ export const httpClient = {
 
     try {
       console.log(url);
-      const response = await fetch(url, config);
+      const response = await fetch('https://flexicohe-back.onrender.com'+url, config);
       const responseData = await response.json();
 
       if (!response.ok) {
