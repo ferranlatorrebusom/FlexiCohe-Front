@@ -1,7 +1,7 @@
 // vehicle.api.js
 
 export async function searchVehicles(params) {
-    const url = new URL('http://localhost:8080/vehiculos/buscador');
+    const url = new URL('https://flexicohe-back.onrender.com/vehiculos/buscador');
 
     Object.entries(params).forEach(([key, value]) => {
         if (value !== '' && value !== null && value !== undefined) {
@@ -22,7 +22,7 @@ export async function searchVehicles(params) {
 }
 
 export async function getLocalizaciones() {
-    const url = 'http://localhost:8080/vehiculos/localizaciones';
+    const url = 'https://flexicohe-back.onrender.com/vehiculos/localizaciones';
 
     const token = localStorage.getItem('token');
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
@@ -37,7 +37,7 @@ export async function getLocalizaciones() {
 }
 
 export async function getVehiculoByMatricula(matricula) {
-    const url = `http://localhost:8080/vehiculos/matricula/${matricula}`;
+    const url = `https://flexicohe-back.onrender.com/vehiculos/matricula/${matricula}`;
 
     const token = localStorage.getItem('token');
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
