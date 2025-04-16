@@ -48,7 +48,7 @@ class RegisterPage {
                 });
 
                 this.showMessage('Registro exitoso! Redirigiendo...', false);
-                setTimeout(() => window.location.href = '/templates/login.html', 1500);
+                setTimeout(() => window.location.href = 'https://flexicohe-back.onrender.com/templates/login.html', 1500);
                 
             } catch (error) {
                 this.showMessage(error.message || 'Error en el registro', true);
