@@ -25,7 +25,7 @@ export class LoginPage {
                 }
 
                 localStorage.setItem('jwtToken', response.token);
-                window.location.href = 'https://flexicohe-back.onrender.com/index.html';
+                window.location.href = 'https://flexicoche.vercel.app/index.html';
             } catch (error) {
                 console.error('Error durante el login:', error);
                 loginForm.dispatchEvent(new CustomEvent('login-error', {
@@ -54,7 +54,7 @@ export class LoginPage {
     checkAuth() {
         const token = localStorage.getItem('jwtToken');
         if (token) {
-            window.location.href = 'https://flexicohe-back.onrender.com/index.html';
+            window.location.href = 'https://flexicoche.vercel.app/index.html';
         }
     }
 }
