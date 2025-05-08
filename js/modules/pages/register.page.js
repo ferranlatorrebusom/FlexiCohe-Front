@@ -43,7 +43,7 @@ class RegisterPage {
             try {
                 await httpClient.request({
                     method: 'POST',
-                    url: '/register',
+                    url: 'https://flexicohe-back.onrender.com/register',
                     data: userData
                 });
 
