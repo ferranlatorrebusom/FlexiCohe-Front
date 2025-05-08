@@ -27,7 +27,7 @@ export const authUtils = {
 
     async validateToken() {
         try {
-            const response = await fetch('/validate-token', {
+            const response = await fetch('https://flexicohe-back.onrender.com/validate-token', {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
                 }
