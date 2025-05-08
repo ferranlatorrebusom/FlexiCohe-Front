@@ -4,6 +4,15 @@ import { authUtils } from '../utils/auth.utils.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await authUtils.init();
+
+    const userRol = localStorage.getItem('userRol');
+
+    if (userRol === 'ADMIN') {
+        document.querySelector('.btn-create')?.classList.remove('d-none');
+    } else {
+        document.querySelector('.btn-create')?.classList.add('d-none');
+    }
+
     const params = new URLSearchParams(window.location.search);
     const matricula = params.get('matricula');
 
@@ -14,6 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const fechaInicioURL = params.get('fechaInicio');
     const fechaFinURL = params.get('fechaFin');
+    const tipoVehiculoURL = params.get('tipoVehiculo');
     const stored = JSON.parse(localStorage.getItem('lastSearch') || '{}');
 
     const fechaInicioInput = document.getElementById('fechaInicio');
@@ -50,10 +60,10 @@ document.addEventListener('DOMContentLoaded', async () => {
             }));
         }
     });
-
+    
     try {
         const vehiculo = await getVehiculoByMatricula(matricula);
-        renderCarDetails(vehiculo);
+        renderCarDetails(vehiculo, tipoVehiculoURL);
     } catch (error) {
         document.getElementById('car-box').innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
     }
@@ -132,7 +142,7 @@ function formatearFecha(input) {
     }
 }
 
-function renderCarDetails(vehiculo) {
+function renderCarDetails(vehiculo, tipoVehiculo) {
     const titleElement = document.querySelector('.car-name');
     const fechaInicioInput = document.getElementById('fechaInicio');
     const fechaFinInput = document.getElementById('fechaFin');
@@ -143,15 +153,13 @@ function renderCarDetails(vehiculo) {
 
     const subtitleElement = document.querySelector('.car-name + h5');
     if (subtitleElement) {
-        subtitleElement.textContent = vehiculo.tipo || 'Tipo no disponible';
+        subtitleElement.textContent = tipoVehiculo || 'Tipo no disponible';
     }
 
-    const imageUrl = vehiculo.imagen?.imagen?.trim()
-        ? `/assets/images/${vehiculo.imagen.imagen}`
-        : '../assets/images/default.png';
+    const imagenUrl = vehiculo.imagen?.imagen?.trim() ? vehiculo.imagen?.imagen?.trim() : '/assets/images/default.png';
 
     document.querySelectorAll('#carousel-show .carousel-item img').forEach(img => {
-        img.src = imageUrl;
+        img.src = imagenUrl;
         img.alt = `Imagen de ${vehiculo.modelo}`;
     });
 

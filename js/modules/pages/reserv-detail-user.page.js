@@ -6,7 +6,6 @@ function formatearFecha(fechaIso) {
     return date.toLocaleDateString('en-CA');
 }
 
-
 function calcularDias(fInicio, fFin) {
     const inicio = new Date(fInicio);
     const fin = new Date(fFin);
@@ -16,6 +15,15 @@ function calcularDias(fInicio, fFin) {
 
 document.addEventListener('DOMContentLoaded', async () => {
     await authUtils.init();
+
+    const userRol = localStorage.getItem('userRol');
+
+    if (userRol === 'ADMIN') {
+        document.querySelector('.btn-create')?.classList.remove('d-none');
+    } else {
+        document.querySelector('.btn-create')?.classList.add('d-none');
+    }
+
     const container = document.getElementById('reservation-details');
     container.innerHTML = '<p class="text-muted">🔄 Cargando reserva...</p>';
 
@@ -27,7 +35,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         // Usamos solo el primero de momento
-        const alquiler = alquileres[0];
+        const alquiler = alquileres.at(-1);
         const { vehiculo, fechaInicio, fechaFin, estado, id } = alquiler;
         const dias = calcularDias(fechaInicio, fechaFin);
         const totalAlquiler = dias * vehiculo.precioDia;
@@ -73,35 +81,47 @@ document.addEventListener('DOMContentLoaded', async () => {
         const anularBtn = container.querySelector('#cancelBtn');
 
         // Botones
-        pagarBtn?.addEventListener('click', async () => {
+        pagarBtn.addEventListener('click', async () => {
             try {
                 await pagarAlquiler(id);
                 document.getElementById('action-message').innerHTML = '<p class="text-success">✅ Reserva pagada correctamente.</p>';
-                const estadoElemento = document.querySelector('#estado-texto');
-                if (estadoElemento) {
-                    estadoElemento.innerHTML = '<strong>Estado:</strong> procesando';
-                }
-
-                // Desactivar botón de pago
+                document.querySelector('#estado-texto').innerHTML = '<strong>Estado:</strong> procesando';
                 pagarBtn.disabled = true;
                 pagarBtn.textContent = "Pagado";
 
-
-                setTimeout(() => window.location.href = '/index.html', 2500);
+                if (userRol === 'ADMIN') {
+                    setTimeout(() => {
+                    window.location.href = '/index-admin.html';
+                    }, 2500);
+                } else {
+                    setTimeout(() => {
+                    window.location.href = '/index.html';
+                    }, 2500);
+                }
             } catch (err) {
-                console.error("❌ Error desde backend:", err.message);
-                document.getElementById('action-message').innerHTML = `<p class="text-danger">❌ Error al realizar el pago.${err.message}</p>`;
+                console.error("Error al pagar:", err);
+                document.getElementById('action-message').innerHTML = `<p class="text-danger">❌ Error al realizar el pago: ${err.message}</p>`;
             }
         });
 
-
-        anularBtn?.addEventListener('click', async () => {
+        anularBtn.addEventListener('click', async () => {
             try {
                 await anularAlquiler(id);
                 document.getElementById('action-message').innerHTML = '<p class="text-success">🗑️ Reserva anulada correctamente.</p>';
                 container.innerHTML = '<p class="text-muted">📭 Reserva anulada. No tienes ninguna reserva activa.</p>';
             } catch (err) {
+                console.error("Error al anular:", err);
                 document.getElementById('action-message').innerHTML = '<p class="text-danger">❌ Error al anular la reserva.</p>';
+            }
+
+            if (userRol === 'ADMIN') {
+                setTimeout(() => {
+                window.location.href = '/templates/index-admin.html';
+                }, 2500);
+            } else {
+                setTimeout(() => {
+                window.location.href = '/index.html';
+                }, 2500);
             }
         });
 

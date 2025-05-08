@@ -1,6 +1,4 @@
-// js/modules/pages/consult-reserv-user.page.js
-
-import { getAlquileresDelUsuario, anularAlquiler } from '../api/rent.api.js';
+import { getAlquileresDelUsuario, anularAlquiler, cambiarEstadoAlquiler } from '../api/rent.api.js';
 import { authUtils } from '../utils/auth.utils.js';
 
 function formatearFecha(fechaIso) {
@@ -19,6 +17,13 @@ document.addEventListener('DOMContentLoaded', async () => {
     await authUtils.init();
 
     const contenedor = document.querySelector('main');
+    const userRol = localStorage.getItem('userRol');
+
+    if (userRol === 'ADMIN') {
+        document.querySelector('.btn-create')?.classList.remove('d-none'); 
+    } else {
+        document.querySelector('.btn-create')?.classList.add('d-none');
+    }
 
     try {
         const alquileres = await getAlquileresDelUsuario();
@@ -33,12 +38,35 @@ document.addEventListener('DOMContentLoaded', async () => {
             const dias = calcularDias(fechaInicio, fechaFin);
             const total = (vehiculo.precioDia * dias + dias * 4.70).toFixed(2);
 
-            const isAnulable = estado.toLowerCase() !== 'procesando';
+            const titulo = document.querySelector('main h1');
+            if (titulo) {
+                titulo.textContent = userRol === 'ADMIN' ? 'Reservas de clientes' : 'Mis reservas';
+            }
+
+            const estadoLower = estado.toLowerCase();
+            const anulableEstados = ['procesando', 'a pagar'];
+            
+            const isAnulable = anulableEstados.includes(estadoLower);
             const btnDisabledAttr = isAnulable ? '' : 'disabled';
             const btnDisabledClass = isAnulable ? '' : 'btn-disabled';
 
             const div = document.createElement('div');
             div.classList.add('contenedor');
+
+            let botonesExtra = '';
+
+            if (userRol === 'ADMIN') {
+                const aceptarDisabled = estado !== 'procesando' ? 'disabled' : '';
+                const devolverDisabled = estado !== 'en alquiler' ? 'disabled' : '';
+                const pdfEnabledEstados = ['en alquiler', 'devuelto'];
+                const pdfDisabled = !pdfEnabledEstados.includes(estado.toLowerCase()) ? 'disabled' : '';
+            
+                botonesExtra = `
+                    <button class="btn-aceptar" data-id="${id}" ${aceptarDisabled}>✅ Aceptar</button>
+                    <button class="btn-devolver" data-id="${id}" ${devolverDisabled}>🔄 Devolver</button>
+                    <button class="btn-pdf" data-id="${id}" ${pdfDisabled}>📄 PDF</button>
+                `;
+            }
 
             div.innerHTML = `
                 <div class="vehiculo">
@@ -47,7 +75,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 </div>
                 <div class="info">
                     <h1>${vehiculo.marca} ${vehiculo.modelo}</h1>
-                    <p><strong>Usuario:</strong> Tú</p>
+                    <p><strong>Usuario:</strong> ${userRol === 'ADMIN' ? alquiler.usuario?.nombre || 'N/A' : 'Tú'}</p>
                     <p><strong>Desde el</strong> ${formatearFecha(fechaInicio)} <strong>hasta</strong> ${formatearFecha(fechaFin)}</p>
                     <p><strong>Importe:</strong> ${total}€</p>
                     <p><strong>Tipo de tarifa:</strong> Tarifa flexible</p>
@@ -56,26 +84,50 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p><strong>Estado:</strong> ${estado}</p>
                     <div class="acciones">
                         <button class="btn-rojo btn-anular ${btnDisabledClass}" data-id="${id}" ${btnDisabledAttr}>❌ Anular</button>
-                        <button class="btn-yellow" disabled>Devolución</button>
+                        ${botonesExtra}
                     </div>
                 </div>
             `;
-
             contenedor.appendChild(div);
         });
 
         // Event listeners SOLO para los que no están deshabilitados
         document.querySelectorAll('.btn-anular:not([disabled])').forEach(btn => {
             btn.addEventListener('click', async () => {
-                const id = btn.dataset.id;
+                const id = Number(btn.dataset.id);
                 try {
-                    await anularAlquiler(id);
-                    alert('✅ Reserva anulada correctamente.');
+                    await cambiarEstadoAlquiler(id, 'denegado');
+                    alert('❌ Reserva denegada correctamente.');
                     window.location.reload();
                 } catch (err) {
-                    console.error('Error al anular reserva:', err);
-                    alert('❌ No se pudo anular la reserva.');
+                    console.error('Error al denegar reserva:', err);
+                    alert('❌ No se pudo denegar la reserva.');
                 }
+            });
+        });
+
+        // Botón ACEPTAR
+        document.querySelectorAll('.btn-aceptar').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const id = Number(btn.dataset.id);
+                await cambiarEstadoAlquiler(id, 'en alquiler');
+            });
+        });
+
+        // Botón DEVOLVER
+        document.querySelectorAll('.btn-devolver').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const id = Number(btn.dataset.id);
+                await cambiarEstadoAlquiler(id, 'devuelto');
+            });
+        });
+
+        // Botón PDF
+        document.querySelectorAll('.btn-pdf').forEach(btn => {
+            btn.addEventListener('click', () => {
+                const id = Number(btn.dataset.id);
+                const alquiler = alquileres.find(a => a.id == id);
+                generarPDF(alquiler);
             });
         });
 

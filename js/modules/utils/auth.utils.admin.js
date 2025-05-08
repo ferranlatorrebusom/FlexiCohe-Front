@@ -6,6 +6,7 @@ export const authUtils = {
 
     getAuthData() {
         const token = localStorage.getItem('jwtToken');
+
         if (!token) return null;
 
         try {
@@ -17,7 +18,7 @@ export const authUtils = {
             return {
                 email: payload.sub,
                 username: payload.username,
-                roles: payload.roles || []
+                roles: payload.roles || (payload.scope ? [payload.scope] : []) 
             };
         } catch (error) {
             console.error('Error decodificando token:', error);
@@ -44,7 +45,7 @@ export const authUtils = {
             if (this.isAuthenticated()) {
                 const isValid = await this.validateToken();
                 if (isValid) {
-                    window.location.href = '/index.html';
+                    window.location.href = '/templates/index-admin.html';
                 } else {
                     this.logout();
                 }
@@ -78,7 +79,6 @@ export const authUtils = {
     showUserElements() {
         const userData = this.getAuthData();
         if (userData) {
-            // Actualizar elementos de usuario
             const userNameElement = document.getElementById('headerUserName');
             const emailElement = document.getElementById('headerUserEmail');
             const loginLink = document.getElementById('loginLink');
@@ -86,7 +86,6 @@ export const authUtils = {
             const headerLogoutBtn = document.getElementById('headerLogoutBtn');
 
             if (userNameElement) userNameElement.textContent = userData.username;
-            if (emailElement) emailElement.textContent = userData.email;
             if (loginLink) loginLink.classList.add('d-none');
             if (userInfo) userInfo.classList.remove('d-none');
             if (headerLogoutBtn) headerLogoutBtn.classList.remove('d-none');
@@ -96,9 +95,13 @@ export const authUtils = {
     showLoginElements() {
         const loginLink = document.getElementById('loginLink');
         const userInfo = document.getElementById('userInfo');
-        
+        const userNameElement = document.getElementById('headerUserName');
+        const headerLogoutBtn = document.getElementById('headerLogoutBtn');
+    
         if (loginLink) loginLink.classList.remove('d-none');
         if (userInfo) userInfo.classList.add('d-none');
+        if (headerLogoutBtn) headerLogoutBtn.classList.add('d-none');
+        if (userNameElement) userNameElement.textContent = '';
     },
 
     setupLogout() {
@@ -113,7 +116,7 @@ export const authUtils = {
         }
     },
 
-    logout() {
+    logout() {  
         localStorage.removeItem('jwtToken');
         window.location.href = '/templates/login.html';
     },

@@ -18,25 +18,25 @@
                 <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
             </span>
             <nav class="auth-section">
+                <a href="../templates/car-data-new.html" class="btn-yellow btn-create"><i class="fas fa-plus"></i> Agregar vehículo</a>
                 <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
-                <div id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span
-                            id="headerUserName"></span></a></div>
+                <div  id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span id="headerUserName"></span></a></div>
                 <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
                 <a class="logout-btn d-none" id="headerLogoutBtn">
-                    <i class="fas fa-sign-out-alt"></i>
+                <i class="fas fa-sign-out-alt"></i>
                 </a>
             </nav>
-        </div>
-    </header>
+            </div>
+        </header>
     <main>
         <div class="profile-container">
 
             <div class="profile-card">
 
                 <div class="profile-img">
-                    <img id="userProfileImage" src="../assets/images/DEFAULT-USER-IMAGE.png" alt="Foto de perfil">
+                    <img id="userProfileImage" src="" alt="Foto de perfil">
                     <a href="#" class="change-img">Cambiar imagen</a>
-
+                    <input type="file" id="imageInput" accept="image/*" style="display: none;" />
                 </div>
                 <div class="profile-info">
                     <h2 class="username">Cristina</h2>

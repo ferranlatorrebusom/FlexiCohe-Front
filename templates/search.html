@@ -14,20 +14,20 @@
     <body>
       <header>
         <div class="top-bar">
-            <span class="logo">
-                <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
-            </span>
-            <nav class="auth-section">
-                <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
-                <div id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span
-                            id="headerUserName"></span></a></div>
-                <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
-                <a class="logout-btn d-none" id="headerLogoutBtn">
-                    <i class="fas fa-sign-out-alt"></i>
-                </a>
-            </nav>
+          <span class="logo">
+            <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+          </span>
+          <nav class="auth-section">
+            <a href="../templates/car-data-new.html" class="btn-yellow btn-create"><i class="fas fa-plus"></i> Agregar vehículo</a>
+            <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+            <div  id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span id="headerUserName"></span></a></div>
+            <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+            <a class="logout-btn d-none" id="headerLogoutBtn">
+              <i class="fas fa-sign-out-alt"></i>
+            </a>
+          </nav>
         </div>
-    </header>
+      </header>
 
         <div class="container" id="searchBox">
           <form id="search-form">
@@ -80,62 +80,40 @@
             <div id="filter-menu" class="hidden">
               <div class="row">
                 <div class="filter-box col-3">
-                  <span><b>Tipo de vehículo</b></span>
-                  <select name="tipo">
-                    <option value="">-</option>
-                    <option>Coche</option>
-                    <option>Moto</option>
-                    <option>Furgoneta</option>
-                    <option>Camion</option>
-                  </select>
-                </div>
-                <div class="filter-box col-3">
                   <span><b>Marca</b></span>
-                  <select name="marca">
-                    <option value="">-</option>
-                  </select>
+                  <select name="marca" class="form-select"></select>
                 </div>
                 <div class="filter-box col-3">
                   <span><b>Modelo</b></span>
-                  <select name="modelo">
-                    <option value="">-</option>
-                  </select>
+                  <select name="modelo" class="form-select"></select>
                 </div>
               </div>
               <div class="row">
                 <div class="filter-box col-3">
                   <span><b>Color</b></span>
-                  <select name="color">
-                    <option value="">-</option>
-                  </select>
+                  <select name="color" class="form-select"></select>
                 </div>
                 <div class="filter-box col-3">
                   <span><b>Combustible</b></span>
-                  <select name="combustible">
-                    <option value="">-</option>
-                  </select>
+                  <select name="combustible" class="form-select"></select>
                 </div>
                 <div class="filter-box col-3">
                   <span><b>Transmisión</b></span>
-                  <select name="transmision">
-                    <option value="">-</option>
-                  </select>
+                  <select name="transmision" class="form-select"></select>
                 </div>
               </div>
               <div class="row">
                 <div class="filter-box col-3">
                   <span><b>Plazas</b></span>
-                  <select name="nPlazas">
-                    <option value="">-</option>
-                  </select>
+                  <select name="nplazas" class="form-select"></select>
                 </div>
                 <div class="filter-box col-3">
                   <span><b>Precio mínimo (€)</b></span>
-                  <input type="number" name="precioMin" class="form-control">
+                  <input type="number" name="precioMin" class="form-select">
                 </div>
                 <div class="filter-box col-3">
                   <span><b>Precio máximo (€)</b></span>
-                  <input type="number" name="precioMax" class="form-control">
+                  <input type="number" name="precioMax" class="form-select">
                 </div>
               </div>
             </div>

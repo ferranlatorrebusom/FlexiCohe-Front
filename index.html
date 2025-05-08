@@ -64,30 +64,38 @@
         <div class="vehicle">
           <h3>Coches</h3>
           <p>¿Necesitas transporte diario? Desde gasolina hasta eléctrico</p>
-          <button>Ver más</button>
           <img src="./assets/images/CAR-TEST.jpg" alt="Coche" />
         </div>
         <div class="vehicle">
           <h3>Motos</h3>
           <p>El mejor vehículo para moverte por la ciudad</p>
-          <button>Ver más</button>
           <img src="./assets/images/MOTO-TEST.png" alt="Moto" />
         </div>
         <div class="vehicle">
           <h3>Furgonetas</h3>
           <p>Para carga y descarga, mudanzas, e incluso una escapada</p>
-          <button>Ver más</button>
           <img src="./assets/images/FURGONETA.jpg" alt="Furgoneta" />
         </div>
         <div class="vehicle">
           <h3>Camiones</h3>
           <p>Uso profesional. Encuentra el modelo que más se ajuste a tus necesidades</p>
-          <button>Ver más</button>
           <img src="./assets/images/camion.jpeg" alt="Camión" />
         </div>
       </div>
     </section>
   </main>
+  
+  <footer>
+    <div class="footer-content">
+        <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+    </div>
+</footer>
 
   <script>
     function selectVehicle(button) {
@@ -137,7 +145,7 @@
 
   <!-- Carga dinámica de localizaciones -->
   <script type="module">
-    import { getLocalizaciones } from './js/modules/api/vehicle.api.js';
+    import { getLocalizaciones } from '../js/modules/api/vehicle.api.js';
 
     document.addEventListener('DOMContentLoaded', async () => {
       const select = document.getElementById('location');

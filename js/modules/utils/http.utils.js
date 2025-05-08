@@ -10,7 +10,6 @@ export const httpClient = {
     };
 
     try {
-      console.log(url);
       const response = await fetch(url, config);
       const responseData = await response.json();
 
@@ -27,7 +26,7 @@ export const httpClient = {
       if (error instanceof SyntaxError) {
         throw new Error("Error procesando la respuesta del servidor");
       }
-      throw error; // Relanzar otros errores
+      throw error;
     }
   },
 };

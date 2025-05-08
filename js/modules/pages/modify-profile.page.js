@@ -1,13 +1,24 @@
 import { authUtils } from '../utils/auth.utils.js';
+import { API_BASE } from '../utils/config.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await authUtils.init();
+    
+    const userRol = localStorage.getItem('userRol');
+
+    if (userRol === 'ADMIN') {
+        document.querySelector('.btn-create')?.classList.remove('d-none');
+    } else {
+        document.querySelector('.btn-create')?.classList.add('d-none');
+    }
+
     const form = document.querySelector('.user-form');
     const nameInput = form.querySelector('input[type="text"]');
     const lastNameInput = form.querySelectorAll('input[type="text"]')[1];
     const dobInput = form.querySelector('input[type="date"]');
     const phoneInput = form.querySelector('input[type="tel"]');
     const dniInput = form.querySelectorAll('input[type="text"]')[2];
+    const profileImg = document.querySelector('#userProfileImage');
 
     const usernameHeader = document.querySelector('.username');
     const saveBtn = form.querySelector('.save-btn');
@@ -23,7 +34,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     }
 
     try {
-        const res = await fetch('http://localhost:8080/usuarios/datos', {
+        const res = await fetch(`${API_BASE}/usuarios/datos`, {
             headers: { 'Authorization': `Bearer ${token}` }
         });
 
@@ -41,13 +52,13 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         usernameHeader.textContent = data.nombre;
 
-        const profileImg = document.querySelector('#userProfileImage');
-        if (data.imagenUrl) {
-            profileImg.src = data.imagenUrl;
+        if (data.foto) {
+            profileImg.src = data.foto;
+            console.log('Imagen cargada desde URL:', profileImg.src);
         } else {
-            profileImg.src = '../assets/images/DEFAULT-USER-IMAGE.png';
+            profileImg.src = "../assets/images/DEFAULT-USER-IMAGE.png";
         }
-
+        
     } catch (err) {
         console.error('❌ Error cargando perfil:', err);
         alert('Error al cargar tus datos.');
@@ -59,7 +70,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         [...form.elements].forEach(input => input.disabled = false);
     });
 
-    // Guardar cambios
     form.addEventListener('submit', async (e) => {
         e.preventDefault();
 
@@ -72,7 +82,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         };
 
         try {
-            const res = await fetch('http://localhost:8080/usuarios', {
+            const res = await fetch(`${API_BASE}/usuarios`, {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -92,15 +102,51 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    // Eliminar usuario (pendiente implementar)
     document.querySelector('.delete-btn')?.addEventListener('click', () => {
         alert('🔒 Funcionalidad de eliminar usuario aún no implementada.');
     });
 
-    // Cambiar contraseña (pendiente implementar)
     document.querySelector('.change-password-btn')?.addEventListener('click', (e) => {
         e.preventDefault();
         alert('🔒 Funcionalidad de cambiar contraseña aún no implementada.');
+    });
+
+    const imageInput = document.querySelector('#imageInput');
+    const changeImageBtn = document.querySelector('.change-img');
+
+
+    changeImageBtn.addEventListener('click', (e) => {
+        e.preventDefault();
+        imageInput.click(); 
+    });
+    
+    imageInput.addEventListener('change', async () => {
+        const file = imageInput.files[0];
+        if (!file) return;
+    
+        const formData = new FormData();
+        formData.append('imagen', file);
+    
+        try {
+            const token = localStorage.getItem('jwtToken');
+            const resUpload = await fetch(`${API_BASE}/usuarios/modificarImagen`, {
+                method: 'POST',
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                },
+                body: formData
+            });
+    
+            if (!resUpload.ok) throw new Error(await resUpload.text());
+    
+            alert('✅ Imagen actualizada correctamente.');
+            profileImg.src = URL.createObjectURL(file);
+    console.log(profileImg.src);
+    
+        } catch (err) {
+            console.error('❌ Error actualizando imagen:', err);
+            alert('Error al actualizar la imagen de perfil.');
+        }
     });
 });
 

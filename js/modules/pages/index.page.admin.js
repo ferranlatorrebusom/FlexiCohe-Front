@@ -1,4 +1,4 @@
-import { authUtils } from '../utils/auth.utils.js';
+import { authUtils } from '../utils/auth.utils.admin.js';
 import { getLocalizaciones } from '../api/vehicle.api.js';
 
 let selectedTipo = null;
@@ -120,9 +120,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         if (searchState.fechaFin && !searchState.fechaFin.includes('T')) {
             searchState.fechaFin += 'T10:00';
         }
-
+        
         localStorage.setItem('lastSearch', JSON.stringify(searchState));
-        window.location.href = `templates/search.html?${params.toString()}`;
+        window.location.href = `${window.location.origin}/templates/search.html?${params.toString()}`;        
     });
 
     

@@ -14,150 +14,152 @@
 <body>
     <header>
         <div class="top-bar">
-            <span class="logo"><a href="index-admin.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo"></a></span>
-            <nav>
-                <a href="../templates/car-data-new.html" class="btn-yellow"><i class="fas fa-plus"></i> Agregar vehículo</a>
-                <a href="../templates/search.html"><i class="fas fa-car"></i> Gestionar reservas</a>
-                <a href="../templates/login.html"><i class="fas fa-user"></i> Hola, Cristina</a>
+            <span class="logo">
+                <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+            </span>
+            <nav class="auth-section">
+                <a href="../templates/car-data-new.html" class="btn-yellow btn-create"><i class="fas fa-plus"></i> Agregar vehículo</a>
+                <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+                <div  id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span id="headerUserName"></span></a></div>
+                <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+                <a class="logout-btn d-none" id="headerLogoutBtn">
+                <i class="fas fa-sign-out-alt"></i>
+                </a>
             </nav>
-        </div>
-    </header>
+            </div>
+        </header>
     
-    <div class="container">
-        <h2 class="main-title">
-            <b>Detalles del vehículo</b>
-        </h2>
-        <!-- Carousel -->
-        <div id="car-data-carousel-container">
-            <div id="carousel-show" class="carousel" data-bs-ride="carousel">
-                <div class="carousel-inner">
-                    <div class="carousel-item active">
-                        <div class="img-container">
-                            <img src="../assets/images/ford-fiesta.png" class="d-block w-75" alt="Ford Fiesta">
-                        </div>
-                        
+    
+        <div class="container">
+            <h2 class="main-title"><b>Detalles del vehículo</b></h2>
+            
+            <!-- Carousel -->
+            <div id="car-data-carousel-container">
+                <div id="carousel-show" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner" id="carousel-images">
+                        <img id="foto-vehiculo" src="" alt="Foto del vehículo" style="max-width: 100%; max-height: 200px;">
                     </div>
-                    <div class="carousel-item">
-                        <div class="img-container">
-                            <img src="../assets/images/ford-fiesta.png" class="d-block w-75" alt="Ford Fiesta">
+                    <button class="carousel-control-prev" type="button" data-bs-target="#carousel-show" data-bs-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Anterior</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-bs-target="#carousel-show" data-bs-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Siguiente</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div id="details-container">
+                <form id="form-editar-vehiculo">
+                    <div class="row">
+                        <div class="col-6 up">
+                            <span>Marca:</span>
+                            <input type="text" id="marca" name="marca">
                         </div>
-                        
-                    </div>
-                    <div class="carousel-item">
-                        <div class="img-container">
-                            <img src="../assets/images/ford-fiesta.png" class="d-block w-75" alt="Ford Fiesta">
+                        <div class="col-6 up">
+                            <span>Año de matriculación:</span>
+                            <input type="text" id="anio" name="anio" style="width: 5em;">
                         </div>
-                        
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 up">
+                            <span>Modelo:</span>
+                            <input type="text" id="modelo" name="modelo">
+                        </div>
+                        <div class="col-6 up">
+                            <span>Transmisión:</span>
+                            <select id="transmision" name="transmision">
+                                <option value="Manual">Manual</option>
+                                <option value="Automática">Automática</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 up">
+                            <span>Matrícula:</span>
+                            <input type="text" id="matricula" name="matricula" readonly>
+                        </div>
+                        <div class="col-6 up">
+                            <span>Combustible:</span>
+                            <select id="combustible" name="combustible">
+                                <option value="Gasolina">Gasolina</option>
+                                <option value="Diésel">Diésel</option>
+                                <option value="Eléctrico">Eléctrico</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 up">
+                            <span>Color:</span>
+                            <input type="text" id="color" name="color">
+                        </div>
+                        <div class="col-6 up">
+                            <label for="location">Lugar</label>
+                            <select id="location" name="localizacion" required>
+                                <option>Cargando localizaciones...</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="row">
+                        <div class="col-6 up">
+                            <span>Plazas:</span>
+                            <input type="number" id="plazas" name="plazas" style="width: 3em;">
+                        </div>
+                        <div class="col-6 up">
+                            <span>Precio/día:</span>
+                            <input type="text" id="precio" name="precio">&nbsp;€
+                        </div>
+                    </div>
+
+                    <hr>
+
+                    <div class="row down">
+                        <span>
+                            <span>Carrocería:</span>
+                            <select id="carroceria" name="carroceria">
+                                <option value="Sedán">Sedán</option>
+                                <option value="SUV">SUV</option>
+                                <option value="Hatchback">Hatchback</option>
+                                <option value="Pickup">Pickup</option>
+                            </select>
+                        </span>
+                        <span>
+                            <span>Potencia:</span>
+                            <input type="text" id="potencia" name="potencia">&nbsp;CV
+                        </span>
+                        <span>
+                            <span>Puertas:</span>
+                            <input type="text" id="puertas" name="puertas">
+                        </span>
+                    </div>
+
+                    <div id="button-container" style="width: 60%; text-align: end;">
+                        <button type="button" class="delete"><img src="../assets/icons/bin.png"></button>   
+                        <button type="submit" class="yellow"><b>Guardar</b></button>
+                    </div>
+                </form>
+
+            </div>
+    
+
+            <footer>
+                <div class="footer-content">
+                    <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+                    <div class="social-icons">
+                        <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                        <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                        <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                        <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
                     </div>
                 </div>
-                <button class="carousel-control-prev" type="button" data-bs-target="#carousel-show" data-bs-slide="prev">
-                    <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Previous</span>
-                </button>
-                <button class="carousel-control-next" type="button" data-bs-target="#carousel-show" data-bs-slide="next">
-                    <span class="carousel-control-next-icon" aria-hidden="true"></span>
-                    <span class="visually-hidden">Next</span>
-                </button>
-            </div>
-        </div>
-        <!-- Carousel end -->
-        <!-- Car details -->
-        <div id="details-container">
-            <div class="row">
-                <div class="col-6 up">
-                    <span>Marca:</span>
-                    <input type="text" value="Fiat"></input>
-                </div>
-                <div class="col-6 up">
-                    <span>Año de matriculación:</span>
-                    <input type="text" value="2019" style="width: 5em;"></input>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6 up">
-                    <span>Modelo:</span>
-                    <input type="text" value="500"></input>
-                </div>
-                <div class="col-6 up">
-                    <span>Transmisión:</span>
-                    <select id="transmision">
-                        <option>Manual</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6 up">
-                    <span>Matrícula:</span>
-                    <span>8080KTT</span>
-                </div>
-                <div class="col-6 up">
-                    <span>Combustible:</span>
-                    <select id="combustible">
-                        <option>Gasolina</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6 up">
-                    <span>Color:</span>
-                    <select id="color">
-                        <option>Blanco</option>
-                    </select>
-                </div>
-                <div class="col-6 up">
-                    <span>Localización:</span>
-                    <select id="localizacion">
-                        <option>Sevilla</option>
-                    </select>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-6 up">
-                    <span>Plazas:</span>
-                    <input type="text" value="5" style="width: 3em;"></input>
-                </div>
-                <div class="col-6 up">
-                    <span>Precio/día:</span>
-                    <input type="text" value="23,55">&nbsp;€</input>
-                </div>
-            </div>
+            </footer>
 
-            <hr>
+    <script type="module" src="../js/modules/pages/car-edit.page.js"></script>
 
-            <div class="row down">
-                <span>
-                    <span>Carrocería:</span>
-                    <select id="carroceria">
-                        <option>Hatchback</option>
-                    </select>
-                </span>
-                <span>
-                    <span>Potencia:</span>
-                    <input type="text" value="69">&nbsp;CV</input>
-                </span>
-                <span>
-                    <span>Puertas:</span>
-                    <input type="text" value="5"></input>
-                </span>
-            </div>
-        </div>
-        <div id="button-container" style="width: 60%;text-align: end;">
-        <button class="delete"><img src="../assets/icons/bin.png"></button>   
-        <button class="yellow"><b>Guardar</b></button>
-        </div>
-        <!-- Car details end -->
-    </div>
-
-    <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
-            <div class="social-icons">
-                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
-        </div>
-    </footer>
 </body>
 </html>
