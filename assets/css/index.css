@@ -220,4 +220,31 @@ form button:hover {
 
 .d-none {
     display: none !important;
-  }  
+}  
+
+footer {
+    background: hwb(210 60% 38%);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    position: relative;
+}
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.social-icons {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 18px;
+    text-decoration: none;
+}
+.social-icons a:hover {
+    color: #ddd;
+}
