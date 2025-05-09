@@ -1,3 +1,3 @@
-const API_BASE = 'http://localhost:8080'; 
+const API_BASE = 'https://flexicohe-back.onrender.com'; 
 
 export { API_BASE };
