@@ -1,5 +1,6 @@
 import { authUtils } from '../utils/auth.utils.js';
 import { httpClient } from '../utils/http.utils.js';
+import { API_BASE } from '../utils/config.js';
 
 class RegisterPage {
     constructor() {
@@ -43,7 +44,7 @@ class RegisterPage {
             try {
                 await httpClient.request({
                     method: 'POST',
-                    url: 'https://flexicohe-back.onrender.com/register',
+                    url: `${API_BASE}/register`,
                     data: userData
                 });
 

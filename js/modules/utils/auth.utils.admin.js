@@ -1,4 +1,6 @@
 // utils/auth.utils.js
+import { API_BASE } from '../utils/config.js';
+
 export const authUtils = {
     isAuthenticated() {
         return !!localStorage.getItem('jwtToken');
@@ -28,7 +30,7 @@ export const authUtils = {
 
     async validateToken() {
         try {
-            const response = await fetch('/validate-token', {
+            const response = await fetch(`${API_BASE}/validate-token`, {
                 headers: {
                     'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`
                 }

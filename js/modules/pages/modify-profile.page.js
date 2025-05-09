@@ -45,7 +45,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Rellenar campos
         nameInput.value = data.nombre || '';
         lastNameInput.value = data.apellidos || '';
-        dobInput.value = convertirDdMmYyyyToIso(data.fechaNacimiento);
+        dobInput.value = data.fechaNacimiento ? convertirDdMmYyyyToIso(data.fechaNacimiento) : '';
 
         phoneInput.value = data.telefono || '';
         dniInput.value = data.ndocumento || '';
