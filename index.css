@@ -1,0 +1,300 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+}
+
+.logo img {
+    width: 140px; /* Ajusta el ancho según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.top-bar {
+    background-color: #222;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    align-items: center;
+    height: 30px; /* Ajusta la altura según sea necesario */
+}
+
+.top-bar nav {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px; /* Reduce el margen izquierdo */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.separator {
+    border-left: 2px solid white;
+    height: 20px;
+    margin-left: 10px; /* Margen a la izquierda del separator */
+    margin-right: -30px; /* Margen a la derecha del separator */
+}
+.search-box {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    padding: 30px 30px;
+    text-align: center;
+    color: white;
+    position: relative;
+    max-width: 60%; /* Reduce el ancho máximo del contenedor */
+    margin: 20px auto 20px; /* Añade margen superior para compensar el header fijo y centra el contenedor */
+}
+
+.search-box h1 {
+    position: relative;
+    z-index: 2;
+    font-size: 36px;
+    margin-bottom: 20px;
+}
+
+/*Carousel*/
+
+.carousel {
+  position: relative;
+  width: 100%;
+  height: 400px;
+  overflow: hidden;
+  background: none;
+}
+
+.carousel-images {
+  display: flex;
+  transition: transform 0.5s ease-in-out;
+}
+.carousel-images::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 1;
+}
+
+.carousel-images img {
+  width: 100%;
+  height: 400px;
+  object-fit: cover;
+  display: none;
+}
+
+.carousel-images img.active {
+  display: block;
+}
+
+.carousel-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+.carousel-btn.prev {
+  left: 10px;
+}
+
+.carousel-btn.next {
+  right: 10px;
+}
+
+/*Carousel*/
+
+.search-container {
+    position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.vehicle-options {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-bottom: 15px;
+}
+
+.vehicle-options button {
+    background: #ddd;
+    border: none;
+    padding: 10px 15px;
+    cursor: pointer;
+    border-radius:45px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.vehicle-options .selected {
+    background: black;
+    color: white;
+}
+
+form {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+}
+
+.form-group {
+    flex: 1 1 calc(33.333% - 20px); /* Ajusta el ancho de cada grupo de formulario */
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra los elementos dentro del grupo */
+    margin-bottom: 10px;
+}
+
+.form-group label {
+    margin-bottom: 5px;
+    font-weight: bold;
+}
+
+form input[type="text"],
+form input[type="date"] {
+    flex: 1 1 100%; /* Ocupa todo el ancho disponible */
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+form input[type="text"] {
+    padding-left: 30px; /* Añade espacio para el icono */
+    background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14l-4.796-5.481C2.451 5.253 2.679 5 3.004 5h9.992c.325 0 .553.253.553.659 0 .106-.03.21-.09.3l-4.796 5.481a.513.513 0 0 1-.768 0z"/></svg>') no-repeat right 10px center;
+    background-size: 16px 16px;
+}
+
+.form-bottom {
+    display: flex;
+    justify-content: center; /* Centra los elementos horizontalmente */
+    align-items: center;
+    width: 100%;
+    margin-top: 10px;
+    gap: 10px; /* Añade espacio entre los elementos */
+}
+
+form label {
+    flex: 1 1 auto; /* Ajusta el ancho según sea necesario */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    justify-content: flex-start; /* Alinea el contenido del label a la izquierda */
+    margin: 0; /* Elimina el margen */
+}
+
+form button {
+    background: yellow;
+    border: none;
+    font-weight: bold;
+    cursor: pointer;
+    padding: 10px 20px;
+    flex: 1 1 auto; /* Ajusta el ancho según sea necesario */
+    max-width: 150px; /* Limita el ancho máximo del botón */
+    margin: 0; /* Elimina el margen */
+    justify-content: flex-end; /* Alinea el botón a la derecha */
+    border-radius: 5px; /* Añade bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Añade sombra */
+    transition: background-color 0.3s ease; /* Añade transición para el cambio de color */
+}
+
+form button:hover {
+    background: #ffcc00; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.vehicles {
+    text-align: center;
+    padding: 40px 20px;
+}
+
+.vehicle-category {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 30px;
+}
+
+.vehicle {
+    background: white;
+    padding: 20px;
+    border-radius: 10px;
+    width: 220px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    text-align: center;
+}
+
+.vehicle img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+.vehicle button {
+    background-color: yellow;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px; /* Añade bordes redondeados */
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Añade sombra */
+    transition: background-color 0.3s ease; /* Añade transición para el cambio de color */
+}
+
+.vehicle button:hover {
+    background: #ffcc00; /* Cambia el color de fondo al pasar el ratón */
+}
+
+.d-none {
+    display: none !important;
+}  
+
+footer {
+    background: hwb(210 60% 38%);
+    color: white;
+    text-align: center;
+    padding: 10px;
+    margin-top: 20px;
+    position: relative;
+}
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.social-icons {
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+.social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 18px;
+    text-decoration: none;
+}
+.social-icons a:hover {
+    color: #ddd;
+}
