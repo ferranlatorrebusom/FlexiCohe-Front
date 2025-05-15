@@ -96,6 +96,11 @@ body {
   display: block;
 }
 
+.carousel-images img:not(.active) {
+  opacity: 0;
+  transition: opacity 0.5s ease-in-out; /* Transición de opacidad */
+}
+
 .carousel-btn {
   position: absolute;
   top: 50%;
@@ -124,7 +129,7 @@ body {
   left: 50%;
   transform: translate(-50%, -50%);
   z-index: 10;
-  background-color: rgba(255, 255, 255, 0.8);
+  background-color: rgba(255, 255, 255, 0.384);
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
@@ -229,7 +234,7 @@ form button:hover {
 
 .vehicles {
     text-align: center;
-    padding: 40px 20px;
+    padding: 20px 20px;
 }
 
 .vehicle-category {

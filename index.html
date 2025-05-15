@@ -7,7 +7,7 @@
   <title>FlexiCoche</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./assets/css/index.css" />
-  <link rel="icon" type="image/png" href="./assets/icons/favicon.ico" />
+  <link rel="icon" type="image/png" href="favicon.ico" />
 </head>
 <body>
   <header>
@@ -32,8 +32,8 @@
       <div class="carousel">
       <div class="carousel-images">
       <img src="./assets/images/BACKGROUND-SEARCHBOX.jpg" alt="Background 1" class="active">
-      <img src="./assets/images/BACKGROUND-SEARCHBOX.jpg" alt="Background 2">
-      <img src="./assets/images/BACKGROUND-SEARCHBOX.jpg" alt="Background 3">
+      <img src="./assets/images/BACKGROUND-SEARCHBOX1.jpg" alt="Background 2">
+      <img src="./assets/images/BACKGROUND-SEARCHBOX2.jpg" alt="Background 3">
       </div>
       <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
       <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
@@ -184,5 +184,39 @@
   </script>
 
   <script type="module" src="/js/modules/pages/index.page.js"></script>
+
+  <!-- Carrusel de imágenes -->
+
+  <script>
+  let currentSlide = 0;
+
+  function showSlide(index) {
+    const slides = document.querySelectorAll('.carousel-images img');
+    slides.forEach((slide, i) => {
+      slide.classList.remove('active');
+      if (i === index) {
+        slide.classList.add('active');
+      }
+    });
+  }
+
+  function nextSlide() {
+    const slides = document.querySelectorAll('.carousel-images img');
+    currentSlide = (currentSlide + 1) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  function prevSlide() {
+    const slides = document.querySelectorAll('.carousel-images img');
+    currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+    showSlide(currentSlide);
+  }
+
+  // Cambiar automáticamente cada 5 segundos
+  document.addEventListener('DOMContentLoaded', () => {
+    showSlide(currentSlide);
+    setInterval(nextSlide, 5000); // Cambia cada 5 segundos
+  });
+</script>
 </body>
 </html>
