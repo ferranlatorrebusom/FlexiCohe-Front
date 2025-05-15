@@ -7,7 +7,7 @@
   <title>FlexiCoche</title>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="./assets/css/index.css" />
-  <link rel="icon" type="image/png" href="assets/icons/logo.png" />
+  <link rel="icon" type="image/png" href="assets/icons/favicon.ico" />
 </head>
 <body>
   <header>
@@ -27,7 +27,18 @@
   </header>
 
   <main>
-    <section class="search-box" style="background-image: url('./assets/images/BACKGROUND-SEARCHBOX.jpg');">
+    <section class="search-box">
+
+      <div class="carousel">
+      <div class="carousel-images">
+      <img src="./assets/images/BACKGROUND-SEARCHBOX.jpg" alt="Background 1" class="active">
+      <img src="./assets/images/BACKGROUND-SEARCHBOX.jpg" alt="Background 2">
+      <img src="./assets/images/BACKGROUND-SEARCHBOX.jpg" alt="Background 3">
+      </div>
+      <button class="carousel-btn prev" onclick="prevSlide()">&#10094;</button>
+      <button class="carousel-btn next" onclick="nextSlide()">&#10095;</button>
+      </div>
+
       <div class="search-container">
         <div class="vehicle-options">
           <button onclick="selectVehicle(this)" data-tipo="COCHE"><i class="fas fa-car"></i> Coche</button>
