@@ -41,11 +41,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         const totalAlquiler = dias * vehiculo.precioDia;
         const tasaKm = dias * 4.70;
         const total = totalAlquiler + tasaKm;
+        const imagenUrl = vehiculo.imagenUrl?.trim();
 
         container.innerHTML = `
             <div class="car-section">
                 <h2>${vehiculo.marca} ${vehiculo.modelo}</h2>
-                <img src="../assets/images/${vehiculo.imagen || 'default.png'}" alt="${vehiculo.modelo}">
+                <img src="${imagenUrl || 'default.png'}" alt="${vehiculo.modelo}">
                 <a href="#">más info</a>
                 <div class="car-info">
                     <p><strong>Desde:</strong> <input type="date" value="${formatearFecha(fechaInicio)}" disabled></p>

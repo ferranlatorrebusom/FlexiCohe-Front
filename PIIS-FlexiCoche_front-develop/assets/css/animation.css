@@ -1,0 +1,19 @@
+.car {
+    transition: transform 1s ease;
+}
+
+.car:hover{
+    transform: scale(1.15) !important;
+    cursor:pointer;
+    /*border-color:blue;
+    border-style:solid;
+    border-width:1px;*/
+}
+
+.car_title{
+    color : black !important;
+}
+
+.car_detail{
+    color : black !important;
+}
