@@ -161,7 +161,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const token = localStorage.getItem('jwtToken');
 
-            const response = await fetch('/vehiculos/add', {
+            const response = await fetch(`${API_BASE}/vehiculos/add`, {
                 method: 'POST',
                 body: formData,
                 headers: {
