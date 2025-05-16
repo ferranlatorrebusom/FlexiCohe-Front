@@ -1,0 +1,219 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlexiCoche</title>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+        crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../assets/css/legal.css" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    </head>
+    <body>
+    <header>
+        <div class="top-bar">
+        <span class="logo">
+        <a href="../index.html"
+            ><img src="../assets/images/logo.png" alt="FlexiCoche Logo"
+        /></a>
+        </span>
+        <nav class="auth-section">
+        <a href="/templates/consult-reserv.html"
+            ><i class="fas fa-car"></i> Gestionar reservas</a
+          >
+          <div id="userInfo">
+            <a href="/templates/modify-profile.html"
+              ><i class="fas fa-user"></i> Hola,
+              <span id="headerUserName"></span
+            ></a>
+          </div>
+          <a id="loginLink" href="templates/login.html"
+            ><i class="fas fa-user"></i> Inicia sesión</a
+          >
+          <a class="logout-btn d-none" id="headerLogoutBtn">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+  <h1>Aviso Legal</h1>
+  <p>
+    Bienvenido a FlexiCoche. Este Aviso Legal regula el acceso, navegación y uso del sitio web <strong>FlexiCoche</strong> (en adelante, el “Sitio Web”), así como las responsabilidades derivadas de la utilización de sus contenidos.
+  </p>
+  <h2>Datos del titular</h2>
+  <ul>
+    <li><strong>Nombre comercial:</strong> FlexiCoche</li>
+    <li><strong>Domicilio social:</strong> Calle Ejemplo, 123, 28000 Madrid, España</li>
+    <li><strong>Email de contacto:</strong> <a href="mailto:info@flexicoche.com">info@flexicoche.com</a></li>
+  </ul>
+  <h2>Condiciones de uso</h2>
+  <p>
+    El acceso y uso de este Sitio Web atribuye la condición de usuario e implica la aceptación de las condiciones aquí reflejadas. El usuario se compromete a hacer un uso adecuado de los contenidos y servicios, a no emplearlos para actividades ilícitas o contrarias a la buena fe y al orden público.
+  </p>
+  <h2>Propiedad intelectual e industrial</h2>
+  <p>
+    Todos los contenidos del Sitio Web, incluyendo textos, imágenes, logotipos, iconos, software y diseño gráfico, son propiedad de FlexiCoche o de terceros que han autorizado su uso. Queda prohibida su reproducción, distribución o modificación sin autorización expresa.
+  </p>
+  <h2>Responsabilidad</h2>
+  <p>
+    FlexiCoche no se responsabiliza de los daños o perjuicios derivados del uso del Sitio Web ni de la información contenida en enlaces a sitios externos, sobre los que no tiene control.
+  </p>
+  <h2>Modificaciones</h2>
+  <p>
+    FlexiCoche se reserva el derecho de modificar en cualquier momento y sin previo aviso la presentación, configuración y contenido del Sitio Web, así como el presente Aviso Legal.
+  </p>
+  <h2>Legislación aplicable</h2>
+  <p>
+    Este Aviso Legal se rige por la legislación española. Para cualquier controversia que pudiera derivarse del acceso o uso del Sitio Web, las partes se someten a los Juzgados y Tribunales de Madrid, salvo que la ley disponga otra cosa.
+  </p>
+</main>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com" target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.twitter.com" target="_blank"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="https://www.instagram.com" target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://www.linkedin.com" target="_blank"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+        <div class="footer-links">
+          <a href="/templates/privacy.html">Política de privacidad</a> |
+          <a href="/templates/cookies.html">Política de cookies</a> |
+          <a href="/templates/legal.html">Aviso legal</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function selectVehicle(button) {
+        document
+          .querySelectorAll(".vehicle-options button")
+          .forEach((btn) => btn.classList.remove("selected"));
+        button.classList.add("selected");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("main-search-form");
+        const pickupInput = document.getElementById("pickup-date");
+        const returnInput = document.getElementById("return-date");
+
+        // 🗓️ Establecer fecha actual por defecto
+        const hoy = new Date().toISOString().split("T")[0];
+        pickupInput.value = hoy;
+
+        form?.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const localizacion = document.getElementById("location")?.value;
+          const fechainicio = pickupInput?.value;
+          const fechaFin = returnInput?.value;
+
+          if (!fechainicio || !fechaFin) {
+            alert(
+              "⚠️ Debes seleccionar ambas fechas para realizar la búsqueda."
+            );
+            return;
+          }
+
+          if (new Date(fechaFin) < new Date(fechainicio)) {
+            alert(
+              "🚫 La fecha de devolución no puede ser anterior a la de recogida."
+            );
+            return;
+          }
+
+          const params = new URLSearchParams();
+          if (localizacion) params.append("localizacion", localizacion);
+          params.append("fechaInicio", fechainicio);
+          params.append("fechaFin", fechaFin);
+
+          localStorage.setItem("fechaInicio", fechainicio);
+          localStorage.setItem("fechaFin", fechaFin);
+          localStorage.setItem("localizacion", localizacion);
+
+          window.location.href = `templates/search.html?${params.toString()}`;
+        });
+      });
+    </script>
+
+    <!-- Carga dinámica de localizaciones -->
+    <script type="module">
+      import { getLocalizaciones } from "../js/modules/api/vehicle.api.js";
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        const select = document.getElementById("location");
+        if (!select) return;
+
+        try {
+          const localizaciones = await getLocalizaciones();
+          select.innerHTML =
+            '<option value="">Selecciona una localización</option>';
+          localizaciones.forEach((loc) => {
+            const option = document.createElement("option");
+            option.value = loc;
+            option.textContent = loc;
+            select.appendChild(option);
+          });
+
+          // Rellenar localStorage si se ha guardado previamente
+          const savedLoc = localStorage.getItem("localizacion");
+          if (savedLoc) select.value = savedLoc;
+        } catch (err) {
+          console.error("Error cargando localizaciones:", err);
+          select.innerHTML =
+            '<option value="">Error al cargar localizaciones</option>';
+        }
+      });
+    </script>
+
+    <script type="module" src="/js/modules/pages/index.page.js"></script>
+
+    <!-- Carrusel de imágenes -->
+
+    <script>
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        const slides = document.querySelectorAll(".carousel-images img");
+        slides.forEach((slide, i) => {
+          slide.classList.remove("active");
+          if (i === index) {
+            slide.classList.add("active");
+          }
+        });
+      }
+
+      function nextSlide() {
+        const slides = document.querySelectorAll(".carousel-images img");
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        const slides = document.querySelectorAll(".carousel-images img");
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      // Cambiar automáticamente cada 5 segundos
+      document.addEventListener("DOMContentLoaded", () => {
+        showSlide(currentSlide);
+        setInterval(nextSlide, 5000); // Cambia cada 5 segundos
+      });
+    </script>
+  </body>
+</html>

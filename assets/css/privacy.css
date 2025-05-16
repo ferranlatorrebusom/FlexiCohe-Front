@@ -1,0 +1,167 @@
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f8f8f8;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
+}
+
+.logo img {
+    width: 140px; /* Ajusta el ancho según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+.top-bar {
+    background-color: #222;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    align-items: center;
+    height: 30px; /* Ajusta la altura según sea necesario */
+}
+
+.top-bar nav {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px; /* Reduce el margen izquierdo */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.separator {
+    border-left: 2px solid white;
+    height: 20px;
+    margin-left: 10px; /* Margen a la izquierda del separator */
+    margin-right: -30px; /* Margen a la derecha del separator */
+}
+
+/*********** Main *************/
+
+main.container {
+    background: #fff;
+    max-width: 800px;
+    margin: 40px auto 30px auto;
+    padding: 40px 30px 30px 30px;
+    border-radius: 16px;
+    box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+    color: #222;
+    font-size: 1.08rem;
+    line-height: 1.7;
+}
+
+main.container h1 {
+    color: #232526;
+    font-size: 2.3rem;
+    margin-bottom: 18px;
+    text-align: center;
+    letter-spacing: 1px;
+}
+
+main.container h2 {
+    color: #414345;
+    font-size: 1.3rem;
+    margin-top: 28px;
+    margin-bottom: 10px;
+    border-left: 4px solid #ffd600;
+    padding-left: 10px;
+}
+
+main.container ul {
+    margin-left: 25px;
+    margin-bottom: 18px;
+}
+
+main.container li {
+    margin-bottom: 7px;
+}
+
+main.container a {
+    color: #ffd600;
+    text-decoration: underline;
+    transition: color 0.2s;
+}
+
+main.container a:hover {
+    color: #232526;
+    text-decoration: underline;
+}
+
+/*********** Footer *************/
+
+footer {
+    flex-shrink: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+    padding: 35px 0 20px 0;
+    font-size: 16px;
+    margin-top: 40px;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-content p {
+    margin-bottom: 18px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ffd600;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    margin: 0 8px;
+    font-size: 22px;
+    display: inline-block;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.social-icons a:hover {
+    color: #ffd600;
+    transform: scale(1.2) rotate(-10deg);
+}

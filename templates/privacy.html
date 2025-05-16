@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+    <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>FlexiCoche</title>
+    <script
+        src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js"
+        crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="../assets/css/privacy.css" />
+    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    </head>
+    <body>
+    <header>
+        <div class="top-bar">
+        <span class="logo">
+        <a href="../index.html"
+            ><img src="../assets/images/logo.png" alt="FlexiCoche Logo"
+        /></a>
+        </span>
+        <nav class="auth-section">
+        <a href="/templates/consult-reserv.html"
+            ><i class="fas fa-car"></i> Gestionar reservas</a
+          >
+          <div id="userInfo">
+            <a href="/templates/modify-profile.html"
+              ><i class="fas fa-user"></i> Hola,
+              <span id="headerUserName"></span
+            ></a>
+          </div>
+          <a id="loginLink" href="templates/login.html"
+            ><i class="fas fa-user"></i> Inicia sesión</a
+          >
+          <a class="logout-btn d-none" id="headerLogoutBtn">
+            <i class="fas fa-sign-out-alt"></i>
+          </a>
+        </nav>
+      </div>
+    </header>
+
+    <main class="container">
+  <h1>Política de Privacidad</h1>
+  <p>
+    En FlexiCoche nos tomamos muy en serio la protección de tus datos personales. Esta página explica cómo recopilamos, utilizamos y protegemos tu información cuando utilizas nuestros servicios de alquiler de vehículos.
+  </p>
+  <h2>¿Qué datos recopilamos?</h2>
+  <ul>
+    <li>Datos de identificación: nombre, apellidos, DNI/NIE, dirección, correo electrónico y teléfono.</li>
+    <li>Datos de acceso: usuario y contraseña cifrada.</li>
+    <li>Datos de uso: historial de reservas, vehículos alquilados y preferencias.</li>
+    <li>Datos de pago: información necesaria para procesar tus pagos de forma segura.</li>
+  </ul>
+  <h2>¿Para qué usamos tus datos?</h2>
+  <ul>
+    <li>Gestionar tus reservas y el acceso a tu cuenta.</li>
+    <li>Ofrecerte atención personalizada y resolver tus consultas.</li>
+    <li>Mejorar nuestros servicios y la experiencia de usuario.</li>
+    <li>Cumplir con obligaciones legales y de seguridad.</li>
+  </ul>
+  <h2>¿Compartimos tus datos?</h2>
+  <p>
+    Tus datos no se comparten con terceros salvo obligación legal o para la correcta prestación del servicio (por ejemplo, procesadores de pago).
+  </p>
+  <h2>¿Cuáles son tus derechos?</h2>
+  <ul>
+    <li>Acceder, rectificar o eliminar tus datos personales.</li>
+    <li>Solicitar la limitación u oposición al tratamiento de tus datos.</li>
+    <li>Solicitar la portabilidad de tus datos.</li>
+    <li>Presentar una reclamación ante la Agencia Española de Protección de Datos.</li>
+  </ul>
+  <h2>Contacto</h2>
+  <p>
+    Si tienes dudas sobre nuestra política de privacidad, puedes escribirnos a <a href="mailto:info@flexicoche.com">info@flexicoche.com</a>.
+  </p>
+</main>
+
+    <footer>
+      <div class="footer-content">
+        <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+        <div class="social-icons">
+          <a href="https://www.facebook.com" target="_blank"
+            ><i class="fab fa-facebook-f"></i
+          ></a>
+          <a href="https://www.twitter.com" target="_blank"
+            ><i class="fab fa-twitter"></i
+          ></a>
+          <a href="https://www.instagram.com" target="_blank"
+            ><i class="fab fa-instagram"></i
+          ></a>
+          <a href="https://www.linkedin.com" target="_blank"
+            ><i class="fab fa-linkedin-in"></i
+          ></a>
+        </div>
+        <div class="footer-links">
+          <a href="/templates/privacy.html">Política de privacidad</a> |
+          <a href="/templates/cookies.html">Política de cookies</a> |
+          <a href="/templates/legal.html">Aviso legal</a>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      function selectVehicle(button) {
+        document
+          .querySelectorAll(".vehicle-options button")
+          .forEach((btn) => btn.classList.remove("selected"));
+        button.classList.add("selected");
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const form = document.getElementById("main-search-form");
+        const pickupInput = document.getElementById("pickup-date");
+        const returnInput = document.getElementById("return-date");
+
+        // 🗓️ Establecer fecha actual por defecto
+        const hoy = new Date().toISOString().split("T")[0];
+        pickupInput.value = hoy;
+
+        form?.addEventListener("submit", (e) => {
+          e.preventDefault();
+
+          const localizacion = document.getElementById("location")?.value;
+          const fechainicio = pickupInput?.value;
+          const fechaFin = returnInput?.value;
+
+          if (!fechainicio || !fechaFin) {
+            alert(
+              "⚠️ Debes seleccionar ambas fechas para realizar la búsqueda."
+            );
+            return;
+          }
+
+          if (new Date(fechaFin) < new Date(fechainicio)) {
+            alert(
+              "🚫 La fecha de devolución no puede ser anterior a la de recogida."
+            );
+            return;
+          }
+
+          const params = new URLSearchParams();
+          if (localizacion) params.append("localizacion", localizacion);
+          params.append("fechaInicio", fechainicio);
+          params.append("fechaFin", fechaFin);
+
+          localStorage.setItem("fechaInicio", fechainicio);
+          localStorage.setItem("fechaFin", fechaFin);
+          localStorage.setItem("localizacion", localizacion);
+
+          window.location.href = `templates/search.html?${params.toString()}`;
+        });
+      });
+    </script>
+
+    <!-- Carga dinámica de localizaciones -->
+    <script type="module">
+      import { getLocalizaciones } from "../js/modules/api/vehicle.api.js";
+
+      document.addEventListener("DOMContentLoaded", async () => {
+        const select = document.getElementById("location");
+        if (!select) return;
+
+        try {
+          const localizaciones = await getLocalizaciones();
+          select.innerHTML =
+            '<option value="">Selecciona una localización</option>';
+          localizaciones.forEach((loc) => {
+            const option = document.createElement("option");
+            option.value = loc;
+            option.textContent = loc;
+            select.appendChild(option);
+          });
+
+          // Rellenar localStorage si se ha guardado previamente
+          const savedLoc = localStorage.getItem("localizacion");
+          if (savedLoc) select.value = savedLoc;
+        } catch (err) {
+          console.error("Error cargando localizaciones:", err);
+          select.innerHTML =
+            '<option value="">Error al cargar localizaciones</option>';
+        }
+      });
+    </script>
+
+    <script type="module" src="/js/modules/pages/index.page.js"></script>
+
+    <!-- Carrusel de imágenes -->
+
+    <script>
+      let currentSlide = 0;
+
+      function showSlide(index) {
+        const slides = document.querySelectorAll(".carousel-images img");
+        slides.forEach((slide, i) => {
+          slide.classList.remove("active");
+          if (i === index) {
+            slide.classList.add("active");
+          }
+        });
+      }
+
+      function nextSlide() {
+        const slides = document.querySelectorAll(".carousel-images img");
+        currentSlide = (currentSlide + 1) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      function prevSlide() {
+        const slides = document.querySelectorAll(".carousel-images img");
+        currentSlide = (currentSlide - 1 + slides.length) % slides.length;
+        showSlide(currentSlide);
+      }
+
+      // Cambiar automáticamente cada 5 segundos
+      document.addEventListener("DOMContentLoaded", () => {
+        showSlide(currentSlide);
+        setInterval(nextSlide, 5000); // Cambia cada 5 segundos
+      });
+    </script>
+  </body>
+</html>

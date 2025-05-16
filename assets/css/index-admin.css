@@ -66,20 +66,12 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 100px 30px;
+    padding: 30px 30px;
     text-align: center;
     color: white;
     position: relative;
     max-width: 60%; /* Reduce el ancho máximo del contenedor */
     margin: 20px auto 20px; /* Añade margen superior para compensar el header fijo y centra el contenedor */
-}
-
-.search-box::after {
-    content: '';
-    position: absolute;
-    top: 0; left: 0; right: 0; bottom: 0;
-    background: rgba(0, 0, 0, 0.5);
-    z-index: 1;
 }
 
 .search-box h1 {
@@ -89,16 +81,79 @@ body {
     margin-bottom: 20px;
 }
 
-.search-container {
+/*Carousel*/
+
+.carousel {
     position: relative;
-    z-index: 2;
-    background: rgba(255, 255, 255, 0.432); /* Fondo blanco con transparencia */
+    width: 100%;
+    height: 400px;
+    overflow: hidden;
+    background: none;
+}
+
+.carousel-images {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+}
+.carousel-images::after{
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.5); /* Fondo semitransparente */
+    z-index: 1;
+}
+
+.carousel-images img {
+    width: 100%;
+    height: 400px;
+    object-fit: cover;
+    display: none;
+}
+
+.carousel-images img.active {
+    display: block;
+}
+
+.carousel-images img:not(.active) {
+    opacity: 0;
+  transition: opacity 0.5s ease-in-out; /* Transición de opacidad */
+}
+
+.carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background-color: rgba(0, 0, 0, 0.5);
+    color: white;
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    z-index: 10;
+}
+
+.carousel-btn.prev {
+    left: 10px;
+}
+
+.carousel-btn.next {
+    right: 10px;
+}
+
+/*Carousel*/
+
+.search-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.384);
     padding: 20px;
-    border-radius: 8px;
-    display: inline-block;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.3);
-    max-width: 600px;
-    margin: 0 auto;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .vehicle-options {
@@ -243,29 +298,62 @@ form button:hover {
     display: none !important;
 }
 
+/*********** Footer *************/
+
 footer {
-    background: hwb(210 60% 38%);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-    position: relative;
+    flex-shrink: 0;
+    width: 100%;
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+    padding: 35px 0 20px 0;
+    font-size: 16px;
+    margin-top: 40px;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
 }
+
 .footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
 }
-.social-icons {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-.social-icons a {
-    color: white;
-    margin: 0 10px;
+
+.footer-content p {
+    margin-bottom: 18px;
     font-size: 18px;
-    text-decoration: none;
+    letter-spacing: 1px;
 }
+
+.footer-links {
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ffd600;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    margin: 0 8px;
+    font-size: 22px;
+    display: inline-block;
+    transition: color 0.2s, transform 0.2s;
+}
+
 .social-icons a:hover {
-    color: #ddd;
+    color: #ffd600;
+    transform: scale(1.2) rotate(-10deg);
 }

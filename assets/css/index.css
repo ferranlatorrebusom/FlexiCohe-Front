@@ -125,14 +125,14 @@ body {
 
 .search-container {
     position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  z-index: 10;
-  background-color: rgba(255, 255, 255, 0.384);
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.384);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 .vehicle-options {
@@ -277,29 +277,60 @@ form button:hover {
     display: none !important;
 }  
 
+/*********** Footer *************/
+
 footer {
-    background: hwb(210 60% 38%);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-    position: relative;
+  background: linear-gradient(90deg, #232526 0%, #414345 100%);
+  color: #fff;
+  padding: 35px 0 20px 0;
+  font-size: 16px;
+  margin-top: 40px;
+  box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
 }
+
 .footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  max-width: 1100px;
+  margin: 0 auto;
+  text-align: center;
 }
+
+.footer-content p {
+  margin-bottom: 18px;
+  font-size: 18px;
+  letter-spacing: 1px;
+}
+
+.footer-links {
+  margin-top: 12px;
+  margin-bottom: 10px;
+}
+
+.footer-links a {
+  color: #ffd600;
+  text-decoration: none;
+  margin: 0 10px;
+  font-weight: 500;
+  transition: color 0.2s;
+}
+
+.footer-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
 .social-icons {
-    margin-top: 10px;
-    margin-bottom: 20px;
+  margin-bottom: 10px;
 }
+
 .social-icons a {
-    color: white;
-    margin: 0 10px;
-    font-size: 18px;
-    text-decoration: none;
+  color: #fff;
+  margin: 0 8px;
+  font-size: 22px;
+  display: inline-block;
+  transition: color 0.2s, transform 0.2s;
 }
+
 .social-icons a:hover {
-    color: #ddd;
+  color: #ffd600;
+  transform: scale(1.2) rotate(-10deg);
 }
