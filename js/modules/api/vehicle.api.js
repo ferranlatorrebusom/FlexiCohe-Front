@@ -166,22 +166,23 @@ export async function eliminarVehiculoPorMatricula(matricula) {
 export async function actualizarVehiculoCoche(matricula, carroceria, puertas, potencia) {
     const token = localStorage.getItem('jwtToken');
 
-    const res = await fetch(`${API_BASE}/vehiculos/updateVehiculoCoche/${matricula}`, {
+    const query = new URLSearchParams({ carroceria, puertas, potencia });
+
+    const res = await fetch(`${API_BASE}/vehiculos/updateVehiculoCoche/${matricula}?${query.toString()}`, {
         method: 'PUT',
         headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        },
-        body: new URLSearchParams({ carroceria, puertas, potencia })
+            'Authorization': `Bearer ${token}`
+        }
     });
-    
+
     if (!res.ok) {
         const errorText = await res.text();
-        throw new Error(errorText || 'Error al eliminar el vehículo');
+        throw new Error(errorText || 'Error al actualizar el vehículo');
     }
 
     return res;
 }
+
 
 export async function actualizarVehiculoMoto(matricula, cilindrada, baul) {
     const token = localStorage.getItem('jwtToken');
