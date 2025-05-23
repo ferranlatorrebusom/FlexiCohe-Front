@@ -178,7 +178,7 @@ function renderCarDetails(vehiculo, tipoVehiculo) {
         subtitleElement.textContent = tipoVisible;
     }
 
-    const imagenUrl = vehiculo.imagen.imagen?.trim() || '../assets/images/default.png';
+    const imagenUrl = vehiculo.imagen.imagen?.trim() || '../assets/images/DEFAULT-USER-IMAGE.png';
 console.log(imagenUrl);
 console.log(vehiculo);
 
