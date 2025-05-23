@@ -25,10 +25,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (userRol === 'ADMIN') {
         document.querySelector('.btn-create')?.classList.remove('d-none');
-        logo.href= `${API_BASE}/templates/index-admin.html`;
+        logo.href= '../templates/index-admin.html';
     } else {
         document.querySelector('.btn-create')?.classList.add('d-none');
-        logo.href= `${API_BASE}/index.html`;
+        logo.href= '/index.html';
     }
 
     const form = document.getElementById('search-form');
@@ -211,7 +211,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const queryString = `matricula=${encodeURIComponent(vehicle.matricula)}&fechaInicio=${encodeURIComponent(fechaInicio)}&fechaFin=${encodeURIComponent(fechaFin)}&tipo=${encodeURIComponent(tipo)}`;
                 const botonesAdmin = userRol === 'ADMIN'
                 ? `<div class="d-flex justify-content-center gap-2 mt-2">
-                    <a href="${API_BASE}/templates/car-data-edit.html?matricula=${encodeURIComponent(vehicle.matricula)}" class="btn btn-warning btn-sm">Editar Vehículo</a>
+                    <a href="../templates/car-data-edit.html?matricula=${encodeURIComponent(vehicle.matricula)}" class="btn btn-warning btn-sm">Editar Vehículo</a>
                     <button class="btn btn-danger btn-sm btn-eliminar" data-matricula="${vehicle.matricula}">Eliminar Vehículo</button>
                     </div>`
                 : '';
