@@ -11,10 +11,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (userRol === 'ADMIN') {
         document.querySelector('.btn-create')?.classList.remove('d-none');
-        logo.href= `${API_BASE}/templates/index-admin.html`;
+        logo.href= '../templates/index-admin.html';
     } else {
         document.querySelector('.btn-create')?.classList.add('d-none');
-        logo.href= `${API_BASE}/index.html`;
+        logo.href= '/index.html';
     }
     const params = new URLSearchParams(window.location.search);
     const matricula = params.get('matricula');
@@ -120,7 +120,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             rentMessage.textContent = '✅ Reserva realizada con éxito.';
             rentMessage.classList.remove('text-danger');
             rentMessage.classList.add('text-success'); 
-            setTimeout(() => window.location.href = `${API_BASE}/templates/reserv-detail-user.html`, 1500);
+            setTimeout(() => window.location.href = '../templates/reserv-detail-user.html', 1500);
         } catch (err) {
             rentMessage.textContent = '❌ Error al realizar la reserva.';
             rentMessage.classList.remove('text-success');
@@ -178,7 +178,7 @@ function renderCarDetails(vehiculo, tipoVehiculo) {
         subtitleElement.textContent = tipoVisible;
     }
 
-    const imagenUrl = vehiculo.imagen.imagen?.trim() || `${API_BASE}/assets/images/default.png`;
+    const imagenUrl = vehiculo.imagen.imagen?.trim() || '../assets/images/default.png';
 console.log(imagenUrl);
 console.log(vehiculo);
 
