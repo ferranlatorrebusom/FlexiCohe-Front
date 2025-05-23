@@ -95,7 +95,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
                 if (userRol === 'ADMIN') {
                     setTimeout(() => {
-                    window.location.href = '/index-admin.html';
+                    window.location.href = '/templates/index-admin.html';
                     }, 2500);
                 } else {
                     setTimeout(() => {
