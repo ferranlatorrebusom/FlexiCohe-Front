@@ -217,10 +217,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (userRol === 'ADMIN') {
         document.querySelector('.btn-create')?.classList.remove('d-none');
-        logo.href= `${API_BASE}/templates/index-admin.html`;
+        logo.href= '../templates/index-admin.html';
     } else {
         document.querySelector('.btn-create')?.classList.add('d-none');
-        logo.href= `${API_BASE}/index.html`;
+        logo.href= '/index.html';
     }
 
     try {
@@ -272,7 +272,7 @@ document.addEventListener('DOMContentLoaded', async () => {
             
             const pdfEnabledEstados = ['en alquiler', 'devuelto'];
             const pdfDisabled = !pdfEnabledEstados.includes(estado.toLowerCase()) ? 'disabled' : '';
-            botonesExtra +=`<img src="${API_BASE}/assets/icons/pdficon.png" class="btn-pdf" data-id="${id}" ${pdfDisabled}></img>`
+            botonesExtra +=`<img src="../assets/icons/pdficon.png" class="btn-pdf" data-id="${id}" ${pdfDisabled}></img>`
 
             div.innerHTML = `
                 <div class="vehiculo">
@@ -321,7 +321,7 @@ document.addEventListener('DOMContentLoaded', async () => {
                         <p><strong>Importe:</strong> ${total}€</p>
                         <p><strong>Estado:</strong> ${estado}</p>
                         <div class="acciones">
-                            <img src="${API_BASE}/assets/icons/pdficon.png" class="btn-pdf" data-id="${id}">
+                            <img src="../assets/icons/pdficon.png" class="btn-pdf" data-id="${id}">
                         </div>
                     </div>
                 `;
