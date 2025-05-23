@@ -18,10 +18,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     if (userRol === 'ADMIN') {
         document.querySelector('.btn-create')?.classList.remove('d-none');
-        logo.href= `${API_BASE}/templates/index-admin.html`;
+        logo.href= '../templates/index-admin.html';
     } else {
         document.querySelector('.btn-create')?.classList.add('d-none');
-        logo.href= `${API_BASE}/index.html`;
+        logo.href= '/index.html';
     }
     const urlParams = new URLSearchParams(window.location.search);
     const matricula = urlParams.get('matricula');    
@@ -143,7 +143,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         try {
             await eliminarVehiculoPorMatricula(matricula);
             alert('✅ Vehículo eliminado correctamente.');
-            window.location.href = `${API_BASE}/templates/search.html`; 
+            window.location.href = '../templates/search.html'; 
         } catch (err) {
             console.error('❌ Error al eliminar el vehículo:', err);
             alert('❌ No se pudo eliminar el vehículo.');
