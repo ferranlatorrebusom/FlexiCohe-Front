@@ -41,11 +41,11 @@ async function generarPDF(alquiler) {
     const seguro = 0.00;
     const subtotal = totalAlquiler + tasaKm + seguro;
     const total = subtotal.toFixed(2);
-    const imagenVehiculo = alquiler.vehiculo.imagenUrl?.trim() || `${API_BASE}/assets/images/default.png`;
+    const imagenVehiculo = alquiler.vehiculo.imagenUrl?.trim() || '../assets/images/default.png';
 
     // Logo superior derecha
     try {
-        const logo = await loadImageAsBase64(`${API_BASE}/assets/images/logo.png`);
+        const logo = await loadImageAsBase64('../assets/images/logo.png');
         doc.addImage(logo, 'PNG', 150, 10, 40, 20);
     } catch (e) {
         console.warn("Logo no cargado:", e.message);
@@ -133,7 +133,7 @@ async function generarPDF(alquiler) {
     // FACTURA SIMPLIFICADA (Página 2)
 
     try {
-        const logo = await loadImageAsBase64(`${API_BASE}/assets/images/logo.png`);
+        const logo = await loadImageAsBase64('../assets/images/logo.png');
         doc.addImage(logo, 'PNG', 150, 10, 40, 20);
     } catch (e) {
         console.warn("Logo no cargado:", e.message);
