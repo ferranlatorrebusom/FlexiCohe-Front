@@ -227,7 +227,7 @@ async function rellenarFormulario(vehiculo) {
             break;
     }
 
-    const fotoVehiculo = vehiculo.imagen.imagen?.trim() || "../assets/images/default.png";
+    const fotoVehiculo = vehiculo.imagen.imagen?.trim() || '../assets/images/default.png';
     document.getElementById('foto-vehiculo').src = fotoVehiculo;
 }
 
