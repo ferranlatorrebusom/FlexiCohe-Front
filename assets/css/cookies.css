@@ -55,6 +55,91 @@ main {
     margin-right: -30px; /* Margen a la derecha del separator */
 }
 
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 5px 10px; 
+    border: none; 
+    margin: 0; 
+    background-color: transparent; 
+    box-shadow: none;
+}
+.nav-bar {
+    position: fixed;
+    z-index: 100;
+    height: 90px;
+    top: 0;
+    left: 0;
+    right: 0;
+    padding: 5px 3%; 
+    background-color: hwb(204 60% 38% / 0.103); 
+    border: none; 
+    margin: 0; 
+    box-shadow: none;
+}
+.nav-bar.scrolled {
+    height: 70px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+.nav-logo {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    transform: translateY(-50%);
+    /*font-family: "Montserrat";*/
+    font-size: 24px;
+    font-weight: bold;
+    letter-spacing: 0px;
+    color: rgb(104, 102, 102);
+    transition: 0.4s ease;
+    cursor: pointer;
+}
+.nav-links-container {
+    position: absolute;
+    top: 50%;
+    right: 5%;
+    transform: translateY(-50%);
+}
+.nav-link {
+    color: rgb(104, 102, 102);
+    font-size: 13px;
+    text-transform: uppercase;
+    cursor: pointer;
+    font-weight: 700;
+    padding: 0 10px;
+    transition: 0.4s ease;
+}
+.nav-link.active,
+.nav-link:hover {
+    color: rgb(201, 195, 195);
+}
+.nav-link.login-icon {
+    font-size: 18px; 
+    padding: 0 10px;
+}   
+
+/* Botón amarillo */
+.btn-yellow {
+    background-color: #ffd700;
+    color: black !important;
+    border: none;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-yellow:hover {
+    background-color: #e6c200;
+}
+
+.d-none {
+    display: none !important;
+}  
+
 /*********** Main *************/
 
 main.container {
@@ -96,7 +181,7 @@ main.container li {
 }
 
 main.container a {
-    color: #ffd600;
+    color: hsl(50, 87%, 41%);
     text-decoration: underline;
     transition: color 0.2s;
 }

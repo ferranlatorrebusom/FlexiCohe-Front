@@ -1,5 +1,6 @@
 import { userAPI } from '../api/user.api.js';
 import { LoginForm } from '../components/user.component.js';
+import { API_BASE } from '../utils/config.js';
 
 export class LoginPage {
     constructor() {
@@ -28,11 +29,11 @@ export class LoginPage {
                 localStorage.setItem('jwtToken', response.token);
                 const userRole = response.roles[0]; // Tomamos el primer rol del array
                 localStorage.setItem('userRol', userRole);
-
+                
                 if (userRole === 'ADMIN') {
-                    window.location.href = '/templates/index-admin.html';
+                    window.location.href = `${API_BASE}/templates/index-admin.html`;
                 } else {
-                    window.location.href = '/index.html';
+                    window.location.href =  `${API_BASE}/index.html`;
                 }
 
             } catch (error) {

@@ -320,32 +320,7 @@ body {
     border-radius: 10px;
     /*box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);*/
 }
-footer {
-    background: hwb(210 60% 38%);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-    position: relative;
-}
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-.social-icons {
-    margin-top: 10px;
-    margin-bottom: 20px;
-}
-.social-icons a {
-    color: white;
-    margin: 0 10px;
-    font-size: 18px;
-    text-decoration: none;
-}
-.social-icons a:hover {
-    color: #ddd;
-}
+
 .car-fordfiesta {
     width:100%; 
     border-radius: 10px; 
@@ -428,6 +403,7 @@ footer {
     transition:all 0.5s;
     overflow: hidden;
     max-height: 500px;
+    margin: 40px;
 }
 
 #filter-menu .row
@@ -446,14 +422,170 @@ footer {
     min-width: 20%;
     min-height: 2em;
     display: block;
+    place-items: center;
 }
 
 .filter-box select {
     width: 80%;
     text-align: center;
-    margin:0 10% 0 10%;
+    /* margin:0 10% 0 10%; */
 }
 
 .d-none {
     display: none !important;
 }  
+
+.text-dark{
+	padding: 30px;
+}
+
+h5 {
+	font-weight: bold;
+	font-size: 30px;
+}
+
+input, select {
+	width: 180 px;
+	max-width: 180px;
+	min-width: 180px;
+}
+
+#searchBox {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background: #ccc;
+    border-radius: 10px;
+    padding: 20px;
+    margin: 20px auto;
+    max-width: 1000px;
+}
+
+.vehicle-options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin-bottom: 20px;
+    gap: 10px;
+}
+
+.options {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    gap: 20px;
+}
+
+.labeled {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 180px;
+    flex: 1;
+}
+
+@media screen and (max-width: 768px) {
+    .options {
+        flex-direction: column;
+        align-items: center;
+    }
+
+.labeled {
+    width: 100%;
+    max-width: 300px;
+}
+
+}
+
+#filter-menu .row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    margin-bottom: 20px;
+}
+
+
+#filter-menu .form-select {
+    border-radius: 5px;
+    border: 1px solid #aaa;
+    box-sizing: border-box;
+}
+
+@media screen and (max-width: 768px) {
+    #filter-menu .row {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    #filter-menu .filter-box {
+        width: 100%;
+        max-width: 300px;
+        align-items: center;
+    }
+
+    #filter-menu .form-select {
+        width: 100%;
+        max-width: 250px;
+    }
+}
+
+/*********** Footer *************/
+
+footer {
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+    padding: 35px 0 20px 0;
+    font-size: 16px;
+    margin-top: 40px;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-content p {
+    margin-bottom: 18px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ffd600;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    margin: 0 8px;
+    font-size: 22px;
+    display: inline-block;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.social-icons a:hover {
+    color: #ffd600;
+    transform: scale(1.2) rotate(-10deg);
+}

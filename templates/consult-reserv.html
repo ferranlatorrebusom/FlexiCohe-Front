@@ -6,30 +6,54 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="../assets/css/consult-reserv-admin.css">
     <title>Reservation Manage</title>
-    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.png" />
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <header>
-      <div class="top-bar">
-        <span class="logo">
-          <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
-        </span>
-        <nav class="auth-section">
-          <a href="../templates/car-data-new.html" class="btn-yellow btn-create"><i class="fas fa-plus"></i> Agregar vehículo</a>
-          <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
-          <div  id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span id="headerUserName"></span></a></div>
-          <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
-          <a class="logout-btn d-none" id="headerLogoutBtn">
-            <i class="fas fa-sign-out-alt"></i>
-          </a>
-        </nav>
-      </div>
+        <div class="top-bar">
+            <span class="logo">
+                <a href="../index.html" class="logo-link"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+            </span>
+            <nav class="auth-section">
+                <a href="../templates/car-data-new.html" class="btn-yellow btn-create"><i class="fas fa-plus"></i> Agregar vehículo</a>
+                <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+                <div  id="userInfo"><a href="/templates/modify-profile.html"><i class="fas fa-user"></i> Hola, <span id="headerUserName"></span></a></div>
+                <a id="loginLink" href="templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+                <a class="logout-btn d-none" id="headerLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
+            </nav>
+        </div>
     </header>
     <main>
         <h1>Mis reservas</h1>
     </main>
 
+    <footer>
+        <div class="footer-content">
+            <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.twitter.com" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="/templates/privacy.html">Política de privacidad</a> |
+                <a href="/templates/cookies.html">Política de cookies</a> |
+                <a href="/templates/legal.html">Aviso legal</a>
+            </div>
+        </div>
+    </footer>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
     <script type="module" src="../js/modules/pages/consult-reserv-user.page.js"></script>
 </body>

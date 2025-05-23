@@ -1,5 +1,6 @@
-import { searchVehicles, getLocalizaciones, getVehiculos } from '../api/vehicle.api.js';
+import { searchVehicles, getLocalizaciones, getVehiculos,eliminarVehiculoPorMatricula } from '../api/vehicle.api.js';
 import { authUtils } from '../utils/auth.utils.js';
+import { API_BASE } from '../utils/config.js';
 
 function restaurarTipoSeleccionado() {
     const stored = JSON.parse(localStorage.getItem('lastSearch') || '{}');
@@ -20,11 +21,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     restaurarFiltrosExtendidos();
 
     const userRol = localStorage.getItem('userRol');
+    const logo = document.querySelector('.logo-link');
 
     if (userRol === 'ADMIN') {
         document.querySelector('.btn-create')?.classList.remove('d-none');
+        logo.href= `${API_BASE}/templates/index-admin.html`;
     } else {
         document.querySelector('.btn-create')?.classList.add('d-none');
+        logo.href= `${API_BASE}/index.html`;
     }
 
     const form = document.getElementById('search-form');
@@ -107,7 +111,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const formData = new FormData(form);
         const fechaInicio = formData.get('fechaInicio');
         const fechaFin = formData.get('fechaFin');
-        const precioMin = document.querySelector('input[name="precioMin"]')?.value || '';
         const precioMax = document.querySelector('input[name="precioMax"]')?.value || '';
             
         const hoyDate = new Date();
@@ -138,7 +141,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             if (value) searchParams[key] = value;
         }
 
-        if (precioMin) searchParams['precioMin'] = precioMin;
         if (precioMax) searchParams['precioMax'] = precioMax;
 
         localStorage.setItem('lastSearch', JSON.stringify(searchParams));
@@ -159,11 +161,12 @@ document.addEventListener('DOMContentLoaded', async () => {
     if ([...urlParams.entries()].length > 0) {
         const params = Object.fromEntries(urlParams.entries());
         resultsContainer.innerHTML = '<p class="text-muted">Buscando vehículos disponibles...</p>';
-        searchVehicles(params)
-            .then(vehicles => renderResults(vehicles, params))
-            .catch(error => {
-                resultsContainer.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
-            });
+        try {
+            const vehicles = await searchVehicles(params);
+            renderResults(vehicles, params);
+        } catch (error) {
+            resultsContainer.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+        }
     }
 
     restaurarTipoSeleccionado();
@@ -177,7 +180,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         const fechaFin = currentParams?.fechaFin || '';
         const tipo = currentParams?.tipo || 'COCHE';
     
-        const precioMin = parseFloat(currentParams.precioMin || 0); 
         const precioMax = parseFloat(currentParams.precioMax || Infinity);
     
         const filtrados = vehicles.filter(vehicle => {
@@ -186,17 +188,10 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             if (isNaN(precio)) return false;
     
-            if (!isNaN(precioMin) && precio < precioMin) {
-                console.log(`Excluido ${vehicle.marca} ${vehicle.modelo} por precio < precioMin`);
-                return false;
-            }
+
             if (!isNaN(precioMax) && precio > precioMax) {
                 console.log(`Excluido ${vehicle.marca} ${vehicle.modelo} por precio > precioMax`);
                 return false;
-            }
-            if (precioMin && precioMax && parseFloat(precioMin) > parseFloat(precioMax)) {
-                feedback.textContent = '⚠️ El precio mínimo no puede ser mayor que el máximo.';
-                return;
             }
 
             if (currentParams.nplazas) {
@@ -213,18 +208,21 @@ document.addEventListener('DOMContentLoaded', async () => {
             ? filtrados.map(vehicle => {     
                 const imagenUrl = vehicle.imagenUrl?.trim();
                 
-                const queryString = `matricula=${encodeURIComponent(vehicle.matricula)}&fechaInicio=${encodeURIComponent(fechaInicio)}&fechaFin=${encodeURIComponent(fechaFin)}&tipoVehiculo=${encodeURIComponent(tipo)}`;
-                const editButton = userRol === 'ADMIN' 
-                ? `<div class="edit-button mt-2"><a href="../templates/car-data-edit.html?matricula=${encodeURIComponent(vehicle.matricula)}" class="btn btn-warning btn-sm">Editar Vehículo</a></div>` 
+                const queryString = `matricula=${encodeURIComponent(vehicle.matricula)}&fechaInicio=${encodeURIComponent(fechaInicio)}&fechaFin=${encodeURIComponent(fechaFin)}&tipo=${encodeURIComponent(tipo)}`;
+                const botonesAdmin = userRol === 'ADMIN'
+                ? `<div class="d-flex justify-content-center gap-2 mt-2">
+                    <a href="${API_BASE}/templates/car-data-edit.html?matricula=${encodeURIComponent(vehicle.matricula)}" class="btn btn-warning btn-sm">Editar Vehículo</a>
+                    <button class="btn btn-danger btn-sm btn-eliminar" data-matricula="${vehicle.matricula}">Eliminar Vehículo</button>
+                    </div>`
                 : '';
-
+                
                 return `
                     <a href="../templates/car-detail.html?${queryString}" style="text-decoration: none;">
                         <div class="card mb-3 text-dark">
                             <div class="row g-0">
                                 <div class="col-md-4">
                                     <img src="${imagenUrl}" class="img-fluid rounded-start" alt="Imagen de ${vehicle.marca} ${vehicle.modelo}">
-                                    ${editButton}
+                                    ${botonesAdmin}
                                 </div>
                                 <div class="col-md-8">
                                     <div class="card-body">
@@ -235,7 +233,8 @@ document.addEventListener('DOMContentLoaded', async () => {
                                             Color: ${vehicle.color || 'N/A'}<br>
                                             Precio/día: ${vehicle.precioDia} €<br>
                                             Año: ${vehicle.anioMatricula?.split('/')?.pop() || 'N/A'}<br>
-                                            Matrícula: ${vehicle.matricula}
+                                            Matrícula: ${vehicle.matricula}<br>
+                                            Localización: ${vehicle.localizacion}
                                         </p>
                                     </div>
                                 </div>
@@ -245,9 +244,26 @@ document.addEventListener('DOMContentLoaded', async () => {
                 `;
             }).join('')
             : '<p class="text-muted">No hay vehículos disponibles con esos criterios.</p>';
+            
+            document.querySelectorAll('.btn-eliminar').forEach(btn => {
+                btn.addEventListener('click', async (e) => {
+                    const matricula = e.currentTarget.dataset.matricula;
+                    const confirmar = confirm("¿Estás seguro de que deseas eliminar este vehículo?");
+                    if (!confirmar) return;
+
+                    try {
+                        await eliminarVehiculoPorMatricula(matricula);
+                        alert('Vehículo eliminado correctamente.');
+                        location.reload();
+
+                    } catch (err) {
+                        console.error(err);
+                        alert('Error al eliminar el vehículo.');
+                    }
+                });
+            });
+
     }
-    
-    
 });
 
 async function cargarLocalizaciones(selected = '') {
@@ -336,4 +352,14 @@ function restaurarFiltrosExtendidos() {
             select.value = savedValue;
         }
     });
+}
+
+async function ejecutarBusquedaConFiltros(params) {
+    resultsContainer.innerHTML = '<p class="text-muted">Buscando vehículos disponibles...</p>';
+    try {
+        const vehicles = await searchVehicles(params);
+        renderResults(vehicles, params);
+    } catch (error) {
+        resultsContainer.innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
+    }
 }

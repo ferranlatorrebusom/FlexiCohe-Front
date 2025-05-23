@@ -14,14 +14,14 @@ document.addEventListener("DOMContentLoaded", async function () {
         const currentPassword = inputs[0].value;
         const newPassword = inputs[1].value;
         const confirmPassword = inputs[2].value;
-
-        if (newPassword !== confirmPassword) {
-            alert("❌ Las nuevas contraseñas no coinciden.");
+        
+        if (newPassword === currentPassword) {
+            alert("❌ La nueva contraseña no puede ser igual a la actual.");
             return;
         }
 
-        if (newPassword === currentPassword) {
-            alert("❌ La nueva contraseña no puede ser igual a la actual.");
+        if (newPassword !== confirmPassword) {
+            alert("❌ Las nuevas contraseñas no coinciden.");
             return;
         }
 
@@ -46,13 +46,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 
                 const userRol = localStorage.getItem('userRol');
                 if (userRol === 'ADMIN') {
-                    window.location.href = '/templates/index-admin.html';
+                    window.location.href = `${API_BASE}/templates/index-admin.html`;
                 } else {
-                    window.location.href = '/index.html';
+                    window.location.href = `${API_BASE}/index.html`;
                 }
             } else if (response.status === 401) {
                 alert("⚠️ No estás autenticado. Vuelve a iniciar sesión.");
-                window.location.href = "/templates/login.html";
+                window.location.href = `${API_BASE}/templates/login.html`;
             } else {
                 const errorText = await response.text();
                 alert("❌ Error al cambiar la contraseña: " + errorText);

@@ -1,5 +1,6 @@
 import { authUtils } from '../utils/auth.utils.admin.js';
 import { getLocalizacionesDetalladas } from '../api/vehicle.api.js';
+import { API_BASE } from '../utils/config.js';
 
 let selectedTipo = null;
 
@@ -25,6 +26,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         return; 
     }
 
+    const userRol = localStorage.getItem('userRol');
+    const logo = document.querySelector('.logo-link');
+
+    if (userRol === 'ADMIN') {
+        document.querySelector('.btn-create')?.classList.remove('d-none');
+        logo.href= `${API_BASE}/templates/index-admin.html`;
+    } else {
+        document.querySelector('.btn-create')?.classList.add('d-none');
+        logo.href= `${API_BASE}/index.html`;
+    }
+    
     let selectedImage = null;
 
     const form = document.getElementById('main-search-form');
@@ -161,7 +173,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
             const token = localStorage.getItem('jwtToken');
 
-            const response = await fetch(`${API_BASE}/vehiculos/add`, {
+            const response = await fetch('/vehiculos/add', {
                 method: 'POST',
                 body: formData,
                 headers: {

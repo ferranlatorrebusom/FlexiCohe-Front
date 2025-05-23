@@ -6,13 +6,13 @@
     <title>Detalles de la Reserva</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
     <link rel="stylesheet" href="../assets/css/reserv-detail-user.css" />
-    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.png" />
 </head>
 <body>
     <header>
         <div class="top-bar">
             <span class="logo">
-                <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+                <a href="../index.html" class="logo-link"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
             </span>
             <nav class="auth-section">
                 <a href="../templates/car-data-new.html" class="btn-yellow btn-create"><i class="fas fa-plus"></i> Agregar vehículo</a>
@@ -33,8 +33,7 @@
             <!-- Car Section -->
             <div class="car-section">
                 <h2 id="car-name">Nombre vehículo</h2>
-                <img id="car-image" src="../assets/images/default.png" alt="Vehículo" />
-                <a href="#">más info</a>
+                <img id="car-image" alt="Vehículo" />
                 <div class="car-info">
                     <p><strong>Desde:</strong> <input id="fecha-desde" type="date" disabled /></p>
                     <p><strong>Hasta:</strong> <input id="fecha-hasta" type="date" disabled /></p>

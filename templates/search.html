@@ -9,13 +9,13 @@
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
         <link rel="stylesheet" href="../assets/css/search.css">
         <title>Detalle Vehiculo</title>
-        <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+        <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.png" />
     </head>
     <body>
       <header>
         <div class="top-bar">
           <span class="logo">
-            <a href="../index.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+            <a href="../index.html" class="logo-link"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
           </span>
           <nav class="auth-section">
             <a href="../templates/car-data-new.html" class="btn-yellow btn-create"><i class="fas fa-plus"></i> Agregar vehículo</a>
@@ -31,12 +31,12 @@
 
         <div class="container" id="searchBox">
           <form id="search-form">
-            <input type="hidden" name="tipoVehiculo" id="tipoVehiculoInput" value="Coche" />
+            <input type="hidden" id="tipoVehiculoInput" />
             <div class="vehicle-options">
-              <button class="vehicle-btn selected" data-value="COCHE"><i class="fas fa-car"></i> Coche</button>
+              <button class="vehicle-btn" data-value="COCHE"><i class="fas fa-car"></i> Coche</button>
               <button class="vehicle-btn" data-value="MOTO"><i class="fas fa-motorcycle"></i> Moto</button>
               <button class="vehicle-btn" data-value="FURGONETA"><i class="fas fa-truck"></i> Furgoneta</button>
-              <button class="vehicle-btn" data-value="CAMIÓN"><i class="fas fa-truck-moving"></i> Camión</button>
+              <button class="vehicle-btn" data-value="CAMION"><i class="fas fa-truck-moving"></i> Camión</button>
             </div>            
             
             <div class="options">
@@ -87,12 +87,13 @@
                   <span><b>Modelo</b></span>
                   <select name="modelo" class="form-select"></select>
                 </div>
-              </div>
-              <div class="row">
                 <div class="filter-box col-3">
                   <span><b>Color</b></span>
                   <select name="color" class="form-select"></select>
                 </div>
+              </div>
+              <div class="row">
+                
                 <div class="filter-box col-3">
                   <span><b>Combustible</b></span>
                   <select name="combustible" class="form-select"></select>
@@ -106,10 +107,6 @@
                 <div class="filter-box col-3">
                   <span><b>Plazas</b></span>
                   <select name="nplazas" class="form-select"></select>
-                </div>
-                <div class="filter-box col-3">
-                  <span><b>Precio mínimo (€)</b></span>
-                  <input type="number" name="precioMin" class="form-select">
                 </div>
                 <div class="filter-box col-3">
                   <span><b>Precio máximo (€)</b></span>

@@ -1,5 +1,6 @@
 import { getAlquileresDelUsuario, pagarAlquiler, anularAlquiler } from '../api/rent.api.js';
 import { authUtils } from '../utils/auth.utils.js';
+import { API_BASE } from '../utils/config.js';
 
 function formatearFecha(fechaIso) {
     const date = new Date(fechaIso);
@@ -17,11 +18,14 @@ document.addEventListener('DOMContentLoaded', async () => {
     await authUtils.init();
 
     const userRol = localStorage.getItem('userRol');
+    const logo = document.querySelector('.logo-link');
 
     if (userRol === 'ADMIN') {
         document.querySelector('.btn-create')?.classList.remove('d-none');
+        logo.href= `${API_BASE}/templates/index-admin.html`;
     } else {
         document.querySelector('.btn-create')?.classList.add('d-none');
+        logo.href= `${API_BASE}/index.html`;
     }
 
     const container = document.getElementById('reservation-details');
@@ -47,7 +51,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             <div class="car-section">
                 <h2>${vehiculo.marca} ${vehiculo.modelo}</h2>
                 <img src="${imagenUrl || 'default.png'}" alt="${vehiculo.modelo}">
-                <a href="#">más info</a>
                 <div class="car-info">
                     <p><strong>Desde:</strong> <input type="date" value="${formatearFecha(fechaInicio)}" disabled></p>
                     <p><strong>Hasta:</strong> <input type="date" value="${formatearFecha(fechaFin)}" disabled></p>

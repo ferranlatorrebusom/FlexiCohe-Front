@@ -1,18 +1,21 @@
 import { getVehiculoByMatricula } from '../api/vehicle.api.js';
 import { createAlquiler } from '../api/rent.api.js';
 import { authUtils } from '../utils/auth.utils.js';
+import { API_BASE } from '../utils/config.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     await authUtils.init();
-
+    
     const userRol = localStorage.getItem('userRol');
+    const logo = document.querySelector('.logo-link');
 
     if (userRol === 'ADMIN') {
         document.querySelector('.btn-create')?.classList.remove('d-none');
+        logo.href= `${API_BASE}/templates/index-admin.html`;
     } else {
         document.querySelector('.btn-create')?.classList.add('d-none');
+        logo.href= `${API_BASE}/index.html`;
     }
-
     const params = new URLSearchParams(window.location.search);
     const matricula = params.get('matricula');
 
@@ -23,7 +26,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const fechaInicioURL = params.get('fechaInicio');
     const fechaFinURL = params.get('fechaFin');
-    const tipoVehiculoURL = params.get('tipoVehiculo');
+    const tipoVehiculoURL = params.get('tipo');
     const stored = JSON.parse(localStorage.getItem('lastSearch') || '{}');
 
     const fechaInicioInput = document.getElementById('fechaInicio');
@@ -116,8 +119,8 @@ document.addEventListener('DOMContentLoaded', async () => {
             localStorage.removeItem('lastSearch');
             rentMessage.textContent = '✅ Reserva realizada con éxito.';
             rentMessage.classList.remove('text-danger');
-            rentMessage.classList.add('text-success');
-            setTimeout(() => window.location.href = '/templates/reserv-detail-user.html', 1500);
+            rentMessage.classList.add('text-success'); 
+            setTimeout(() => window.location.href = `${API_BASE}/templates/reserv-detail-user.html`, 1500);
         } catch (err) {
             rentMessage.textContent = '❌ Error al realizar la reserva.';
             rentMessage.classList.remove('text-success');
@@ -153,10 +156,31 @@ function renderCarDetails(vehiculo, tipoVehiculo) {
 
     const subtitleElement = document.querySelector('.car-name + h5');
     if (subtitleElement) {
-        subtitleElement.textContent = tipoVehiculo || 'Tipo no disponible';
+        // Normalizar y mostrar el tipo
+        const tipo = (tipoVehiculo || vehiculo.tipoVehiculo || '').toLowerCase();
+
+        let tipoVisible = 'Tipo no disponible';
+        switch(tipo) {
+            case 'coche':
+                tipoVisible = 'Coche';
+                break;
+            case 'moto':
+                tipoVisible = 'Moto';
+                break;
+            case 'furgoneta':
+                tipoVisible = 'Furgoneta';
+                break;
+            case 'camion':
+                tipoVisible = 'Camión';
+                break;
+        }
+
+        subtitleElement.textContent = tipoVisible;
     }
 
-    const imagenUrl = vehiculo.imagen?.imagen?.trim() ? vehiculo.imagen?.imagen?.trim() : '/assets/images/default.png';
+    const imagenUrl = vehiculo.imagen.imagen?.trim() || `${API_BASE}/assets/images/default.png`;
+console.log(imagenUrl);
+console.log(vehiculo);
 
     document.querySelectorAll('#carousel-show .carousel-item img').forEach(img => {
         img.src = imagenUrl;
@@ -170,13 +194,62 @@ function renderCarDetails(vehiculo, tipoVehiculo) {
                 <div class="col-3"><h5>${vehiculo.nplazas || '-'} plazas</h5></div>
                 <div class="col-3"><h5>${vehiculo.transmision || '-'}</h5></div>
                 <div class="col-3"><h5>${vehiculo.combustible || '-'}</h5></div>
-                <div class="col-3"><h5>${vehiculo.potencia || '-'} CV</h5></div>
-            </div>
-            <div class="row">
+                <div class="col-3"><h5>${vehiculo.color || '-'}</h5></div>
                 <div class="col-3"><h5>${new Date(vehiculo.anioMatricula).getFullYear() || '-'}</h5></div>
             </div>
         `;
+
+        // Añadir campos específicos según tipo
+        let camposExtra = '';
+        switch ((tipoVehiculo || vehiculo.tipoVehiculo || '').toLowerCase()) {
+            case 'coche':
+                camposExtra = `
+                    <div class="row">
+                        <div class="col-3"><h5>Nº puertas: ${vehiculo.puertas || '-'}</h5></div>
+                        <div class="col-3"><h5>Potencia: ${vehiculo.potencia || '-'} CV</h5></div>
+                        <div class="col-3"><h5>Carroceria:${vehiculo.carroceria || '-'}</h5></div>
+                    </div>
+                `;
+                break;
+
+            case 'moto':
+                camposExtra = `
+                    <div class="row">
+                        <div class="col-3"><h5>Baúl: ${vehiculo.baul || '-'}</h5></div>
+                        <div class="col-3"><h5>Cilindrada: ${vehiculo.cilindrada || '-'} cc</h5></div>
+                    </div>
+                `;
+                break;
+
+            case 'furgoneta':
+                camposExtra = `
+                    <div class="row">
+                        <div class="col-3"><h5>Volumen carga: ${vehiculo.volumen || '-'} m³</h5></div>
+                        <div class="col-3"><h5>Longitud: ${vehiculo.longitud || '-'} m</h5></div>
+                        <div class="col-3"><h5>Peso Máximo: ${vehiculo.pesoMax || '-'}</h5></div>
+                    </div>
+                `;
+                break;
+
+            case 'camion':
+                camposExtra = `
+                    <div class="row">
+                        <div class="col-3"><h5>Peso máximo: ${vehiculo.pesoMaximo || '-'} kg</h5></div>
+                        <div class="col-3"><h5>Altura: ${vehiculo.altura || '-'} m</h5></div>
+                        <div class="col-3"><h5>Tipo de carga: ${vehiculo.tipoCarga || '-'} </h5></div>
+                        <div class="col-3"><h5>Nº remolques: ${vehiculo.numRemolques || '-'}</h5></div>
+                        <div class="col-3"><h5>Matricula del remolque: ${vehiculo.matriculaRemolque || '-'}</h5></div>
+                    </div>
+                `;
+                break;
+
+            default:
+                camposExtra = '<p>Detalles específicos no disponibles para este tipo.</p>';
+        }
+
+        carProps.insertAdjacentHTML('beforeend', camposExtra);
     }
+    
 
     const precioPorDia = vehiculo.precioDia;
     const spanPrecio = document.querySelector('#resumen .price b');

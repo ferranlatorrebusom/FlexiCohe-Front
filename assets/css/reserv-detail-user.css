@@ -6,7 +6,7 @@ body {
     background-color: #f9f9f9;
     color: #333;
 }
-
+/* Header */
 .top-bar {
     background-color: #222;
     color: white;
@@ -14,7 +14,7 @@ body {
     justify-content: space-between;
     padding: 10px 30px;
     align-items: center;
-    height: 30px; /* Ajusta la altura según sea necesario */
+    height: 40px; /* Ajusta la altura según sea necesario */
 }
 
 .top-bar nav {
@@ -30,6 +30,10 @@ body {
     display: flex;
     align-items: center;
     gap: 5px;
+}
+
+.top-bar nav a:hover {
+    color: #ccc;
 }
 
 .logo img {
@@ -58,7 +62,6 @@ h1 {
     justify-content: center;
 }
 
-/* Car Section */
 .car-section {
     flex: 1;
     background: white;
@@ -66,6 +69,7 @@ h1 {
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     text-align: center;
+    margin: 30px;
 }
 
 .car-section h2 {
@@ -100,13 +104,13 @@ h1 {
     margin-right: 5px;
 }
 
-/* Invoice Section */
 .invoice-section {
     flex: 1;
     background: white;
     border-radius: 10px;
     padding: 20px;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    margin: 30px;
 }
 
 .invoice-section h2 {
@@ -147,20 +151,6 @@ h1 {
     justify-content: flex-end;
 }
 
-.btn-yellow {
-    background-color: #ffd700;
-    color: black;
-    border: none;
-    padding: 10px 20px;
-    font-size: 16px;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-}
-
-.btn-yellow:hover {
-    background-color: #e6c200;
-}
 
 .btn-red {
     background-color: #ff5e5e;
@@ -180,3 +170,38 @@ h1 {
 .d-none {
     display: none !important;
   }  
+  
+  .btn-yellow {
+    background-color: #ffd700;
+    color: black !important;
+    border: none;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-yellow:hover {
+    background-color: #e6c200;
+}
+
+input[type="date"] {
+    padding: 7px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+@media (max-width: 768px) {
+  .reservation-details {
+    flex-direction: column;
+  }
+
+  .car-section,
+  .invoice-section {
+    width: 100%; 
+  }
+}

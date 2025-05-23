@@ -8,13 +8,13 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/js/all.min.js" crossorigin="anonymous"></script>
 
     <link rel="stylesheet" href="../assets/css/index-admin.css">
-    <link rel="icon" type="image/x-icon" href="../favicon.ico" />
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.png" />
 </head>
 <body>
     <header>
         <div class="top-bar">
             <span class="logo">
-                <a href="../templates/index-admin.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+                <a href="../index.html" class="logo-link"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
             </span>
             <nav class="auth-section">
                 <a href="../templates/car-data-new.html" class="btn-yellow"><i class="fas fa-plus"></i> Agregar vehículo</a>
@@ -96,29 +96,30 @@
     </main>
 
     <footer>
-      <div class="footer-content">
-        <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
-        <div class="social-icons">
-          <a href="https://www.facebook.com" target="_blank"
-            ><i class="fab fa-facebook-f"></i
-          ></a>
-          <a href="https://www.twitter.com" target="_blank"
-            ><i class="fab fa-twitter"></i
-          ></a>
-          <a href="https://www.instagram.com" target="_blank"
-            ><i class="fab fa-instagram"></i
-          ></a>
-          <a href="https://www.linkedin.com" target="_blank"
-            ><i class="fab fa-linkedin-in"></i
-          ></a>
+        <div class="footer-content">
+            <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank">
+                    <i class="fab fa-facebook-f"></i>
+                </a>
+                <a href="https://www.twitter.com" target="_blank">
+                    <i class="fab fa-twitter"></i>
+                </a>
+                <a href="https://www.instagram.com" target="_blank">
+                    <i class="fab fa-instagram"></i>
+                </a>
+                <a href="https://www.linkedin.com" target="_blank">
+                    <i class="fab fa-linkedin-in"></i>
+                </a>
+            </div>
+            <div class="footer-links">
+                <a href="/templates/privacy.html">Política de privacidad</a> |
+                <a href="/templates/cookies.html">Política de cookies</a> |
+                <a href="/templates/legal.html">Aviso legal</a>
+            </div>
         </div>
-        <div class="footer-links">
-          <a href="/templates/privacy.html">Política de privacidad</a> |
-          <a href="/templates/cookies.html">Política de cookies</a> |
-          <a href="/templates/legal.html">Aviso legal</a>
-        </div>
-      </div>
     </footer>
+
     <script>
         function selectVehicle(button) {
             document.querySelectorAll('.vehicle-options button').forEach(btn => btn.classList.remove('selected'));

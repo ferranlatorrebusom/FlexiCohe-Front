@@ -19,45 +19,11 @@
     margin: 1em;
 }
 
-#details-container
-{
-    width: 60%;
-}
-
-#details-container .row
-{
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-between;
-    margin-top: 0.4em;
-}
-
-#details-container .row span
-{
-    width: auto;
-}
-
-#details-container .row input, #details-container .row select
-{
-    height: 1.5em;
-    width: 8em;
-    font-size: medium;
-    border-radius: 0.4em;
-    border-width: 1px;
-}
-
-#details-container .col-6.up
-{
-    margin-left: 3em;
-    
-}
-
 hr
 {
     margin-top: 4em;
     margin-bottom: 4em;
+    min-width: 500px;
 }
 
 #button-container
@@ -99,4 +65,71 @@ hr
 #vehicle-type button.selected
 {
     background-color: rgb(150,150,150);
+}
+
+#campos-camion{
+	width: 100px;
+}
+
+select, input{
+	padding: 7px;
+	min-width: 100px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+#form-editar-vehiculo .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 15px;
+}
+
+#form-editar-vehiculo .col-6 {
+  flex: 1;
+}
+
+/* Alineación vertical */
+#form-editar-vehiculo .up {
+  display: flex;
+  flex-direction: column;
+}
+
+/* Responsivo en pantallas pequeñas */
+@media screen and (max-width: 768px) {
+  #form-editar-vehiculo .row {
+    flex-direction: column;
+  }
+
+  #form-editar-vehiculo .col-6 {
+    width: 100%;
+  }
+}
+
+.down > span {
+	margin: 20px;
+}
+
+#details-container .row {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+
+#details-container .col-6 {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 0.5em;
+}
+
+/* En pantallas pequeñas: apilar elementos */
+@media screen and (max-width: 768px) {
+  #details-container .col-6 {
+    width: 100%;
+  }
+}
+
+#details-container .row {
+  margin-left: 100px;
 }

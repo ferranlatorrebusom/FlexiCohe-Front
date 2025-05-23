@@ -1,5 +1,6 @@
-import { getAlquileresDelUsuario, anularAlquiler, cambiarEstadoAlquiler } from '../api/rent.api.js';
+import { getAlquileresDelUsuario, anularAlquiler, cambiarEstadoAlquiler, pagarAlquiler } from '../api/rent.api.js';
 import { authUtils } from '../utils/auth.utils.js';
+import { API_BASE } from '../utils/config.js';
 
 function formatearFecha(fechaIso) {
     const date = new Date(fechaIso);
@@ -35,12 +36,16 @@ async function generarPDF(alquiler) {
     const doc = new jsPDF();
 
     const dias = calcularDias(alquiler.fechaInicio, alquiler.fechaFin);
-    const total = (alquiler.vehiculo.precioDia * dias + dias * 4.70).toFixed(2);
-    const imagenVehiculo = alquiler.vehiculo.imagenUrl?.trim() || '../assets/images/default.png';
+    const totalAlquiler = alquiler.vehiculo.precioDia * dias;
+    const tasaKm = dias * 4.70;
+    const seguro = 0.00;
+    const subtotal = totalAlquiler + tasaKm + seguro;
+    const total = subtotal.toFixed(2);
+    const imagenVehiculo = alquiler.vehiculo.imagenUrl?.trim() || `${API_BASE}/assets/images/default.png`;
 
     // Logo superior derecha
     try {
-        const logo = await loadImageAsBase64("../assets/images/logo.png");
+        const logo = await loadImageAsBase64(`${API_BASE}/assets/images/logo.png`);
         doc.addImage(logo, 'PNG', 150, 10, 40, 20);
     } catch (e) {
         console.warn("Logo no cargado:", e.message);
@@ -128,7 +133,7 @@ async function generarPDF(alquiler) {
     // FACTURA SIMPLIFICADA (Página 2)
 
     try {
-        const logo = await loadImageAsBase64("../assets/images/logo.png");
+        const logo = await loadImageAsBase64(`${API_BASE}/assets/images/logo.png`);
         doc.addImage(logo, 'PNG', 150, 10, 40, 20);
     } catch (e) {
         console.warn("Logo no cargado:", e.message);
@@ -166,14 +171,27 @@ async function generarPDF(alquiler) {
     doc.text(`Placa: ${alquiler.vehiculo.matricula || "N/A"}`, 20, y);
     y += 6;
 
-    // Precio total simplificado
+    // Subtotal desglosado antes del total
     y += 8;
     doc.setFont("times", "bold");
-    doc.text("Total", 20, y);
+    doc.text("Resumen de pagos", 20, y);
     y += 8;
     doc.setFont("times", "normal");
-    doc.text(`Total Alquiler: ${total}€`, 20, y);
+    doc.text(`Gastos de alquiler (${dias} días x ${alquiler.vehiculo.precioDia.toFixed(2)}€):`, 20, y);
+    doc.text(`${totalAlquiler.toFixed(2)}€`, 150, y, { align: 'right' });
     y += 6;
+    doc.text(`Tasa por kilómetros (${dias} días x 4.70€):`, 20, y);
+    doc.text(`${tasaKm.toFixed(2)}€`, 150, y, { align: 'right' });
+    y += 6;
+    doc.text(`Seguro protección básica:`, 20, y);
+    doc.text(`${seguro.toFixed(2)}€`, 150, y, { align: 'right' });
+
+    // Total general
+    y += 10;
+    doc.setFont("times", "bold");
+    doc.text("TOTAL", 20, y);
+    doc.text(`${total}€`, 150, y, { align: 'right' });
+    y += 10;
 
     // Firma y pie de página
     y += 10;
@@ -195,11 +213,14 @@ document.addEventListener('DOMContentLoaded', async () => {
 
     const contenedor = document.querySelector('main');
     const userRol = localStorage.getItem('userRol');
+    const logo = document.querySelector('.logo-link');
 
     if (userRol === 'ADMIN') {
-        document.querySelector('.btn-create')?.classList.remove('d-none'); 
+        document.querySelector('.btn-create')?.classList.remove('d-none');
+        logo.href= `${API_BASE}/templates/index-admin.html`;
     } else {
         document.querySelector('.btn-create')?.classList.add('d-none');
+        logo.href= `${API_BASE}/index.html`;
     }
 
     try {
@@ -209,8 +230,11 @@ document.addEventListener('DOMContentLoaded', async () => {
             contenedor.innerHTML += '<p class="text-muted">📭 No tienes ninguna reserva realizada.</p>';
             return;
         }
+// Separar activos y anteriores
+        const alquileresActivos = alquileres.filter(a => a.estado.toLowerCase() !== 'devuelto');
+        const alquileresAnteriores = alquileres.filter(a => a.estado.toLowerCase() === 'devuelto');
 
-        alquileres.forEach(alquiler => {
+        alquileresActivos.forEach(alquiler => {
             const { vehiculo, fechaInicio, fechaFin, estado, id } = alquiler;
             const dias = calcularDias(fechaInicio, fechaFin);
             const total = (vehiculo.precioDia * dias + dias * 4.70).toFixed(2);
@@ -221,11 +245,6 @@ document.addEventListener('DOMContentLoaded', async () => {
             }
 
             const estadoLower = estado.toLowerCase();
-            const anulableEstados = ['procesando', 'a pagar'];
-            
-            const isAnulable = anulableEstados.includes(estadoLower);
-            const btnDisabledAttr = isAnulable ? '' : 'disabled';
-            const btnDisabledClass = isAnulable ? '' : 'btn-disabled';
 
             const div = document.createElement('div');
             div.classList.add('contenedor');
@@ -233,23 +252,31 @@ document.addEventListener('DOMContentLoaded', async () => {
             let botonesExtra = '';
 
             if (userRol === 'ADMIN') {
-                const aceptarDisabled = estado !== 'procesando' ? 'disabled' : '';
-                const devolverDisabled = estado !== 'en alquiler' ? 'disabled' : '';
-                const pdfEnabledEstados = ['en alquiler', 'devuelto'];
-                const pdfDisabled = !pdfEnabledEstados.includes(estado.toLowerCase()) ? 'disabled' : '';
-            
+                const aceptarDisabled = (estadoLower === 'procesando') ? '' : 'btn-disabled';
+                const devolverDisabled = (estadoLower === 'en alquiler') ? '' : 'btn-disabled';
+                const denegarDisabled = (estadoLower === 'procesando') ? '': 'btn-disabled';
+                
                 botonesExtra = `
-                    <button class="btn-aceptar" data-id="${id}" ${aceptarDisabled}>✅ Aceptar</button>
-                    <button class="btn-devolver" data-id="${id}" ${devolverDisabled}>🔄 Devolver</button>
-                    <button class="btn-pdf" data-id="${id}" ${pdfDisabled}>📄 PDF</button>
+                    <button class="btn-rojo btn-denegar ${denegarDisabled}" data-id="${id}" >❌ Denegar</button>
+                    <button class="btn-aceptar ${aceptarDisabled}" data-id="${id}" >✅ Aceptar</button>
+                    <button class="btn-devolver ${devolverDisabled}" data-id="${id}">🔄 Devolver</button>
                 `;
             }
 
-        //<img src="../assets/images/${vehiculo.imagen || 'default.png'}" alt="${vehiculo.modelo}"> 
+            if(estadoLower === 'a pagar' && userRol !== 'ADMIN'){
+                    botonesExtra += `
+                        <button class="btn-rojo btn-anular" data-id="${id}" data-tipo="eliminar">❌ Anular</button>
+                        <button class="btn-amarillo btn-pagar" data-id="${id}">💳 Pagar</button>
+                    `;
+            }
+            
+            const pdfEnabledEstados = ['en alquiler', 'devuelto'];
+            const pdfDisabled = !pdfEnabledEstados.includes(estado.toLowerCase()) ? 'disabled' : '';
+            botonesExtra +=`<img src="${API_BASE}/assets/icons/pdficon.png" class="btn-pdf" data-id="${id}" ${pdfDisabled}></img>`
+
             div.innerHTML = `
                 <div class="vehiculo">
-                    <img src="${vehiculo.imagenUrl?.trim() || 'default.png'}" alt="${vehiculo.modelo}">     
-                    <a href="#">más info</a>
+                    <img src="${vehiculo.imagenUrl?.trim() || 'default.png'}" alt="${vehiculo.modelo}">   
                 </div>
                 <div class="info">
                     <h1>${vehiculo.marca} ${vehiculo.modelo}</h1>
@@ -261,7 +288,6 @@ document.addEventListener('DOMContentLoaded', async () => {
                     <p><strong>📍</strong> ${vehiculo.localizacion}</p>
                     <p><strong>Estado:</strong> ${estado}</p>
                     <div class="acciones">
-                        <button class="btn-rojo btn-anular ${btnDisabledClass}" data-id="${id}" ${btnDisabledAttr}>❌ Anular</button>
                         ${botonesExtra}
                     </div>
                 </div>
@@ -269,20 +295,39 @@ document.addEventListener('DOMContentLoaded', async () => {
             contenedor.appendChild(div);
         });
 
-        // Event listeners SOLO para los que no están deshabilitados
-        document.querySelectorAll('.btn-anular:not([disabled])').forEach(btn => {
-            btn.addEventListener('click', async () => {
-                const id = Number(btn.dataset.id);
-                try {
-                    await cambiarEstadoAlquiler(id, 'denegado');
-                    alert('❌ Reserva denegada correctamente.');
-                    window.location.reload();
-                } catch (err) {
-                    console.error('Error al denegar reserva:', err);
-                    alert('❌ No se pudo denegar la reserva.');
-                }
+        // Si hay reservas anteriores, creamos una sección aparte
+        if (alquileresAnteriores.length) {
+            const seccionAnteriores = document.createElement('section');
+            seccionAnteriores.classList.add('anteriores-reservas');
+            seccionAnteriores.innerHTML = `<h2 class="titulo-centrado">Reservas anteriores finalizadas</h2>`;
+            contenedor.appendChild(seccionAnteriores);
+
+            alquileresAnteriores.forEach(alquiler => {
+                const { vehiculo, fechaInicio, fechaFin, estado, id } = alquiler;
+                const dias = calcularDias(fechaInicio, fechaFin);
+                const total = (vehiculo.precioDia * dias + dias * 4.70).toFixed(2);
+
+                const div = document.createElement('div');
+                div.classList.add('contenedor', 'anterior');
+
+                div.innerHTML = `
+                    <div class="vehiculo">
+                        <img src="${vehiculo.imagenUrl?.trim() || 'default.png'}" alt="${vehiculo.modelo}">   
+                    </div>
+                    <div class="info">
+                        <h1>${vehiculo.marca} ${vehiculo.modelo}</h1>
+                        <p><strong>Usuario:</strong> ${userRol === 'ADMIN' ? alquiler.usuario?.nombre || 'N/A' : 'Tú'}</p>
+                        <p><strong>Desde el</strong> ${formatearFecha(fechaInicio)} <strong>hasta</strong> ${formatearFecha(fechaFin)}</p>
+                        <p><strong>Importe:</strong> ${total}€</p>
+                        <p><strong>Estado:</strong> ${estado}</p>
+                        <div class="acciones">
+                            <img src="${API_BASE}/assets/icons/pdficon.png" class="btn-pdf" data-id="${id}">
+                        </div>
+                    </div>
+                `;
+                seccionAnteriores.appendChild(div);
             });
-        });
+        }
 
         // Botón ACEPTAR
         document.querySelectorAll('.btn-aceptar').forEach(btn => {
@@ -306,6 +351,57 @@ document.addEventListener('DOMContentLoaded', async () => {
                 const id = Number(btn.dataset.id);
                 const alquiler = alquileres.find(a => a.id == id);
                 generarPDF(alquiler);
+            });
+        });
+
+        // Botón PAGAR
+        document.querySelectorAll('.btn-pagar').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const id = Number(btn.dataset.id);
+                try {
+                    await pagarAlquiler(id);
+                    alert('✅ Reserva pagada correctamente.');
+                    window.location.reload();
+                } catch (err) {
+                    console.error('Error al pagar:', err);
+                    alert(`❌ Error al realizar el pago: ${err.message}`);
+                }
+            });
+        });
+
+        // Botón ANULAR
+        document.querySelectorAll('.btn-anular').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const id = Number(btn.dataset.id);
+                const confirmacion = confirm('¿Seguro que quieres anular esta reserva? Esta acción la eliminará.');
+                if (!confirmacion) return;
+
+                try {
+                    await anularAlquiler(id);
+                    alert('✅ Reserva eliminada correctamente.');
+                    window.location.reload();
+                } catch (err) {
+                    console.error('Error al eliminar reserva:', err);
+                    alert('❌ No se pudo eliminar la reserva.');
+                }
+            });
+        });
+
+        // Botón DENEGAR
+        document.querySelectorAll('.btn-denegar').forEach(btn => {
+            btn.addEventListener('click', async () => {
+                const id = Number(btn.dataset.id);
+                const confirmacion = confirm('¿Seguro que quieres cancelar esta reserva? Se cambiará el estado a denegado.');
+                if (!confirmacion) return;
+
+                try {
+                    await cambiarEstadoAlquiler(id, 'denegado');
+                    alert('✅ Reserva cancelada correctamente.');
+                    window.location.reload();
+                } catch (err) {
+                    console.error('Error al cancelar reserva:', err);
+                    alert('❌ No se pudo cancelar la reserva.');
+                }
             });
         });
 

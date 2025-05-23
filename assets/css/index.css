@@ -45,19 +45,32 @@ body {
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
-    padding: 30px 30px;
+    /* padding: 100px 30px; */
     text-align: center;
     color: white;
     position: relative;
-    max-width: 60%; /* Reduce el ancho máximo del contenedor */
-    margin: 20px auto 20px; /* Añade margen superior para compensar el header fijo y centra el contenedor */
+    max-width: 60%; 
+    margin: 20px auto 20px; 
 }
+
 
 .search-box h1 {
     position: relative;
     z-index: 2;
     font-size: 36px;
     margin-bottom: 20px;
+}
+
+.search-container {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 10;
+    background-color: rgba(255, 255, 255, 0.384);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /*Carousel*/
@@ -71,9 +84,12 @@ body {
 }
 
 .carousel-images {
-  display: flex;
+  position: relative;
+  width: 100%;
+  height: 100%;
   transition: transform 0.5s ease-in-out;
 }
+
 .carousel-images::after{
     content: '';
     position: absolute;
@@ -120,38 +136,37 @@ body {
 .carousel-btn.next {
   right: 10px;
 }
-
-/*Carousel*/
-
-.search-container {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    z-index: 10;
-    background-color: rgba(255, 255, 255, 0.384);
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-}
+/**/
 
 .vehicle-options {
     display: flex;
+    flex-wrap: wrap; 
     justify-content: center;
-    gap: 30px;
+    gap: 15px; 
     margin-bottom: 15px;
 }
-
 .vehicle-options button {
     background: #ddd;
     border: none;
     padding: 10px 15px;
     cursor: pointer;
-    border-radius:45px;
+    border-radius: 45px;
     font-weight: bold;
     display: flex;
     align-items: center;
     gap: 10px;
+    justify-content: center; /* Centra el ícono y texto */
+}
+
+@media (max-width: 480px) {
+  .vehicle-options {
+    gap: 10px;
+  }
+
+  .vehicle-options button {
+    flex: 1 ;
+    max-width: none;
+  }
 }
 
 .vehicle-options .selected {
@@ -180,17 +195,18 @@ form {
 }
 
 form input[type="text"],
-form input[type="date"] {
+form input[type="date"],
+select {
     flex: 1 1 100%; /* Ocupa todo el ancho disponible */
     padding: 10px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    width: 150px;
 }
 
 form input[type="text"] {
-    padding-left: 30px; /* Añade espacio para el icono */
     background: white url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="gray" class="bi bi-caret-down-fill" viewBox="0 0 16 16"><path d="M7.247 11.14l-4.796-5.481C2.451 5.253 2.679 5 3.004 5h9.992c.325 0 .553.253.553.659 0 .106-.03.21-.09.3l-4.796 5.481a.513.513 0 0 1-.768 0z"/></svg>') no-repeat right 10px center;
     background-size: 16px 16px;
 }
@@ -234,7 +250,7 @@ form button:hover {
 
 .vehicles {
     text-align: center;
-    padding: 20px 20px;
+    padding: 40px 20px;
 }
 
 .vehicle-category {

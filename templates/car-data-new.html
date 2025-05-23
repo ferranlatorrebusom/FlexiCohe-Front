@@ -9,22 +9,22 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <link rel="stylesheet" href="../assets/css/car-detail.css">
     <link rel="stylesheet" href="../assets/css/car-data.css">
-    <link rel="icon" type="image/png" href="../assets/icons/logo.png">
+    <link rel="icon" type="image/x-icon" href="../assets/icons/favicon.png" />
 </head>
 <body>
     <header>
         <div class="top-bar">
             <span class="logo">
-            <a href="../templates/index-admin.html"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
+                <a href="../index.html" class="logo-link"><img src="../assets/images/logo.png" alt="FlexiCoche Logo" /></a>
             </span>
             <nav class="auth-section">
-            <a href="../templates/car-data-new.html" class="btn-yellow"><i class="fas fa-plus"></i> Agregar vehículo</a>
-            <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
-            <div id="userInfo"><a><i class="fas fa-user d-none"></i> Hola, <span id="headerUserName"></span></a></div>
-            <a id="loginLink" href="../templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
-            <a class="logout-btn d-none" id="headerLogoutBtn">
-                <i class="fas fa-sign-out-alt"></i>
-            </a>
+                <a href="../templates/car-data-new.html" class="btn-yellow"><i class="fas fa-plus"></i> Agregar vehículo</a>
+                <a href="/templates/consult-reserv.html"><i class="fas fa-car"></i> Gestionar reservas</a>
+                <div id="userInfo"><a><i class="fas fa-user d-none"></i> Hola, <span id="headerUserName"></span></a></div>
+                <a id="loginLink" href="../templates/login.html"><i class="fas fa-user"></i> Inicia sesión</a>
+                <a class="logout-btn d-none" id="headerLogoutBtn">
+                    <i class="fas fa-sign-out-alt"></i>
+                </a>
             </nav>
         </div>
     </header>
@@ -230,16 +230,21 @@
     </div>
 
     <footer>
-        <div class="footer-content">
-            <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
-            <div class="social-icons">
-                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
-            </div>
+    <div class="footer-content">
+        <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+        <div class="social-icons">
+            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
         </div>
-    </footer>
+        <div class="footer-links">
+          <a href="privacy.html">Política de privacidad</a> |
+          <a href="cookies.html">Política de cookies</a> |
+          <a href="legal.html">Aviso legal</a>
+      </div>
+    </div>
+  </footer>
 
     <script type="module" src="../js/modules/pages/car-create.page.js"></script>
 

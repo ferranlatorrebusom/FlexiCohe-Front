@@ -6,6 +6,10 @@ body {
     color: #333;
 }
 
+main {
+	padding: 20px;
+}
+
 /* Header */
 .top-bar {
     background-color: #222;
@@ -14,7 +18,7 @@ body {
     justify-content: space-between;
     padding: 10px 30px;
     align-items: center;
-    height: 30px; /* Ajusta la altura según sea necesario */
+    height: 40px; /* Ajusta la altura según sea necesario */
 }
 
 .top-bar nav {
@@ -88,7 +92,7 @@ body {
 
 .profile-info {
     flex: 1;
-    margin-left: 20px;
+    padding: 30px;
 }
 
 .username {
@@ -179,6 +183,11 @@ body {
     margin: 0 10px; /* Espaciado horizontal entre botones */
 }
 
+.change-password-btn > a {
+	text-decoration: none;
+	color: inherit;
+}
+
 .change-password-btn:hover {
     background-color: #1e88e5; /* Azul más oscuro al pasar el cursor */
 }
@@ -186,3 +195,30 @@ body {
 .d-none {
     display: none !important;
   }  
+  
+  @media (max-width: 768px) {
+  .profile-card {
+    flex-direction: column;
+  }
+
+  .profile-img {
+    order: -1;
+  }
+}
+
+.btn-yellow {
+    background-color: #ffd700;
+    color: black !important;
+    border: none;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-yellow:hover {
+    background-color: #e6c200;
+}
+

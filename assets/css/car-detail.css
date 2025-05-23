@@ -182,23 +182,10 @@ hr
 #resumen button
 {
     background-color: rgb(240,240,0);
+    color: black;
     border:none;
     border-radius: 0.5em;
     padding: 0.2em 0.3em 0.2em 0.3em;
-}
-
-footer {
-    background: hwb(210 60% 38%);
-    color: white;
-    text-align: center;
-    padding: 10px;
-    margin-top: 20px;
-    position: relative;
-}
-.footer-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
 }
 
 .logo img {
@@ -263,4 +250,85 @@ footer {
 }
 .social-icons a:hover {
     color: #ddd;
+}
+
+#rent-form {
+    display: flex;
+    gap: 1em;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#rent-form .form-control {
+    min-width: 220px;
+}
+
+#rent-form button {
+    height: 100%;
+    padding: 0.6em;
+    font-size: 1.1em;
+}
+
+.updateImg, .carousel-inner{
+    place-items: center;
+}
+
+
+/*********** Footer *************/
+
+footer {
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+    padding: 35px 0 20px 0;
+    font-size: 16px;
+    margin-top: 40px;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-content p {
+    margin-bottom: 18px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ffd600;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    margin: 0 8px;
+    font-size: 22px;
+    display: inline-block;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.social-icons a:hover {
+    color: #ffd600;
+    transform: scale(1.2) rotate(-10deg);
 }
