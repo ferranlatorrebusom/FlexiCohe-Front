@@ -31,9 +31,9 @@ export class LoginPage {
                 localStorage.setItem('userRol', userRole);
                 
                 if (userRole === 'ADMIN') {
-                    window.location.href = `${API_BASE}/templates/index-admin.html`;
+                    window.location.href = '/templates/index-admin.html';
                 } else {
-                    window.location.href =  `${API_BASE}/index.html`;
+                    window.location.href =  '/index.html';
                 }
 
             } catch (error) {
