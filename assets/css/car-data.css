@@ -53,11 +53,15 @@
     margin: 1em;
 }
 
-hr
-{
-    margin-top: 4em;
-    margin-bottom: 4em;
-    min-width: 500px;
+hr {
+  margin-top: 4em;
+  margin-bottom: 4em;
+  width: 90%;           /* Ocupa el 90% del ancho del contenedor */
+  max-width: 800px;     /* No crecerá más allá de 800px */
+  margin-left: auto;    /* Centrado horizontal */
+  margin-right: auto;
+  border: none;
+  border-top: 1px solid #ccc; /* Estilo del separador */
 }
 
 #button-container
@@ -196,11 +200,12 @@ select, input{
 /* Cada campo individual */
 .row.down > * {
   display: flex;
-  flex-direction: column; /* label arriba del input */
-  gap: 0.5em;              /* separación entre label e input */
-  flex: 1 1 200px;         /* base de 200px, se ajusta */
+  flex-direction: row; 
+  gap: 1em;             
+  flex: 1 1 200px;       
   max-width: 250px;
   text-align: left;
+  place-content: center;
 }
 /* Responsive: en pantallas pequeñas, menos columnas */ 
 @media screen and (max-width: 900px) {
