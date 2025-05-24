@@ -193,7 +193,7 @@ select, input{
   background: none;
 }
 
-/* Para que los campos ocupen todo el ancho de su celda /
+/* Para que los campos ocupen todo el ancho de su celda */
 .row.down > {
   width: 100%;
   max-width: 260px;
