@@ -167,40 +167,32 @@ select, input{
 #details-container .row {
   margin-left: 100px;
 }
+
 .row.down {
-  width: 95%;
+  width: 100%;
   max-width: 900px;
   min-width: 250px;
   margin: 0 auto 1em auto;
-  display: flex;
-  flex-direction: column;
-  gap: 1em;
-  align-items: center; /* Centra los campos horizontalmente */
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); 
+  gap: 1.5em;
+  justify-items: center; 
+  align-items: start;
   background: none;
 }
 
-.row.down > span {
-  flex: 1 1 200px;
-  min-width: 180px;
-  max-width: 300px;
-  display: flex;
-  align-items: center;
-  gap: 0.5em;
-  margin: 0;
+.row.down > * {
+  width: 100%;
+  max-width: 260px;
 }
 
-/* Responsive: en pantallas pequeñas, los campos ocupan toda la fila */
-@media screen and (max-width: 800px) {
+@media screen and (max-width: 900px) {
   .row.down {
-    flex-direction: column;
-    align-items: stretch;
-    gap: 0.5em;
+    grid-template-columns: repeat(2, 1fr);
   }
-  .row.down > span {
-    min-width: 100%;
-    max-width: 100%;
-    flex: 1 1 100%;
-    justify-content: flex-start;
+}
+@media screen and (max-width: 600px) {
+  .row.down {
+    grid-template-columns: 1fr;
   }
 }
