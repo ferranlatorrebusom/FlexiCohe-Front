@@ -198,18 +198,16 @@ select, input{
   background: none;
 }
 
-/* Cada campo individual */
 .row.down > * {
   display: flex;
   flex-direction: row; 
   gap: 1em;             
-  flex: 1 1 200px;       
-  max-width: 250px;
+  flex: 1 1 200px;      
   text-align: left;
   place-content: center;
 }
 /* Responsive: en pantallas pequeñas, menos columnas */ 
-/* @media screen and (max-width: 900px) {
+@media screen and (max-width: 900px) {
   .row.down {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -218,4 +216,4 @@ select, input{
   .row.down {
     grid-template-columns: 1fr;
   }
-} */
+}
