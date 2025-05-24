@@ -181,22 +181,20 @@ select, input{
 }
 
 .row.down {
-  width: 100%;
-  max-width: 900px;
-  margin: 0 auto 1em auto;
-  display: flex;
-  flex-direction: row;  /* <--- cambia de column a row */
-  flex-wrap: wrap;      /* <--- permite que bajen de línea si no caben */
-  justify-content: center;
-  align-items: flex-start;  /* alinea arriba, no centrado vertical */
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); /* columnas flexibles */
   gap: 2em;
-  background: none;
+  justify-content: center;
+  max-width: 1000px;
+  margin: 0 auto 2em auto;
+  width: 100%;
 }
 
 .row.down > * {
-  flex: 1 1 200px;     /* <--- permite que crezcan y se contraigan */
-  max-width: 250px;
-  text-align: left;    /* <--- más natural para formularios */
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  text-align: left;
 }
 /* Responsive: en pantallas pequeñas, menos columnas */
 /* @media screen and (max-width: 900px) {
