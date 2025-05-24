@@ -108,8 +108,9 @@ hr {
 
 
 select, input{
-	padding: 7px;
-	min-width: 100px;
+    width: 90%;
+    padding: 7px;
+    min-width: 100px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
