@@ -225,22 +225,30 @@ export async function actualizarVehiculoFurgoneta(matricula, volumen, longitud, 
     return res.json();
 }
 
-
 export async function actualizarVehiculoCamion(matricula, altura, numRemolques, tipoCarga, matriculaRemolque, pesoMax) {
     const token = localStorage.getItem('jwtToken');
 
-    const res = await fetch(`${API_BASE}/vehiculos/updateVehiculoCamion/${matricula}`, {
+    const query = new URLSearchParams({
+        altura,
+        numRemolques,
+        tipoCarga,
+        matriculaRemolque,
+        pesoMax
+    });
+
+    const res = await fetch(`${API_BASE}/vehiculos/updateVehiculoCamion/${matricula}?${query.toString()}`, {
         method: 'PUT',
         headers: {
-            'Authorization': `Bearer ${token}`,
-            'Content-Type': 'application/json'
-        },
-        body: new URLSearchParams({ altura, numRemolques, tipoCarga, matriculaRemolque, pesoMax })
+            'Authorization': `Bearer ${token}`
+        }
     });
+
     if (!res.ok) {
         const errorText = await res.text();
-        throw new Error(errorText || 'Error al eliminar el vehículo');
+        throw new Error(errorText || 'Error al actualizar el vehículo');
     }
 
     return res;
 }
+
+
