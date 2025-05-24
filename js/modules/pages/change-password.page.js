@@ -46,13 +46,13 @@ document.addEventListener("DOMContentLoaded", async function () {
                 
                 const userRol = localStorage.getItem('userRol');
                 if (userRol === 'ADMIN') {
-                    window.location.href = `${API_BASE}/templates/index-admin.html`;
+                    window.location.href = '../templates/index-admin.html';
                 } else {
-                    window.location.href = `${API_BASE}/index.html`;
+                    window.location.href = '/index.html';
                 }
             } else if (response.status === 401) {
                 alert("⚠️ No estás autenticado. Vuelve a iniciar sesión.");
-                window.location.href = `${API_BASE}/templates/login.html`;
+                window.location.href = '../templates/login.html';
             } else {
                 const errorText = await response.text();
                 alert("❌ Error al cambiar la contraseña: " + errorText);
