@@ -172,3 +172,22 @@ select, input{
     justify-content: flex-start;
   }
 }
+
+.campos-especificos {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 16px 24px;
+  align-items: end;
+  margin-bottom: 1em;
+}
+
+.campos-especificos label {
+  margin-bottom: 4px;
+  display: block;
+}
+
+.campos-especificos input,
+.campos-especificos select {
+  width: 100%;
+  box-sizing: border-box;
+}
