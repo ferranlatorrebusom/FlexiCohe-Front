@@ -161,12 +161,13 @@ async function rellenarFormulario(vehiculo) {
     
     const combustibleSelect = document.getElementById('combustible');
     const combustibleOptions = Array.from(combustibleSelect.options);
-    const selectedCombustible = vehiculo.combustible;
-    combustibleOptions.forEach(option => {
-        if (option.value === selectedCombustible) {
-            option.selected = true;
-        }
-    });
+    const selectedCombustible = (vehiculo.combustible || '').trim().toLowerCase();
+            combustibleOptions.forEach(option => {
+                if (option.value.trim().toLowerCase() === selectedCombustible) {
+                    option.selected = true;
+                }
+            });
+
 
     const locationSelect = document.getElementById('location');
 
