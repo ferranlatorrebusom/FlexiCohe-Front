@@ -182,25 +182,22 @@ select, input{
 
 .row.down {
   width: 100%;
-  max-width: 900px;
-  min-width: 250px;
+  max-width: 600px;
   margin: 0 auto 1em auto;
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
   gap: 1.5em;
-  justify-items: center;
-  align-items: start;
   background: none;
 }
 
-/* Para que los campos ocupen todo el ancho de su celda */
-.row.down > {
+.row.down > * {
   width: 100%;
-  max-width: 260px;
+  max-width: 350px;
+  text-align: center;
 }
-
 /* Responsive: en pantallas pequeñas, menos columnas */
-@media screen and (max-width: 900px) {
+/* @media screen and (max-width: 900px) {
   .row.down {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -209,4 +206,4 @@ select, input{
   .row.down {
     grid-template-columns: 1fr;
   }
-}
+} */
