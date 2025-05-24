@@ -31,10 +31,54 @@ document.addEventListener('DOMContentLoaded', async () => {
         return;
     }
 
+            
+ let selectedImage = null;
+    const imageInput = document.createElement('input');
+    imageInput.type = 'file';
+    imageInput.accept = 'image/*';
+
+    const imageDisplay = document.getElementById('foto-vehiculo');
+    const imageFeedback = document.getElementById('image-feedback');
+
+    imageDisplay.addEventListener('click', () => {
+        imageInput.click();
+    });
+
+    imageInput.addEventListener('change', () => {
+        const file = imageInput.files[0];
+
+        if (!file) {
+            imageFeedback.textContent = '⚠️ No se seleccionó ningún archivo.';
+            return;
+        }
+
+        if (!file.type.startsWith('image/')) {
+            imageFeedback.textContent = '⚠️ El archivo debe ser una imagen.';
+            return;
+        }
+
+        imageFeedback.textContent = '';
+
+        const reader = new FileReader();
+        reader.onload = function (e) {
+            imageDisplay.src = e.target.result;
+            imageDisplay.style.opacity = '1';
+        };
+        reader.readAsDataURL(file);
+
+        selectedImage = file;
+    });
+
+            
+            
     const vehiculo = await getVehiculoByMatricula(matricula);
     detectarTipoVehiculo(vehiculo)        
     rellenarFormulario(vehiculo);
+imageDisplay.src = `${API_BASE}/vehiculos/imagen/${vehiculo.matricula}`;
+        imageDisplay.style.opacity = '1';
 
+
+            
     const form = document.getElementById('form-editar-vehiculo');
     form.addEventListener('submit', async (event) => {
         event.preventDefault();
@@ -53,7 +97,9 @@ document.addEventListener('DOMContentLoaded', async () => {
             nplazas: document.getElementById('plazas').value,
             precioDia: document.getElementById('precio').value,
         };
-
+ if (selectedImage) {
+                await actualizarImagenVehiculo(matricula, selectedImage);
+            }
         const tipo = detectarTipoVehiculo(vehiculo);
 
         switch (tipo) {
@@ -227,8 +273,8 @@ async function rellenarFormulario(vehiculo) {
             break;
     }
 
-    const fotoVehiculo = vehiculo.imagen.imagen?.trim() || '../assets/images/default.png';
-    document.getElementById('foto-vehiculo').src = fotoVehiculo;
+    //const fotoVehiculo = vehiculo.imagen.imagen?.trim() || '../assets/images/default.png';
+   // document.getElementById('foto-vehiculo').src = fotoVehiculo;
 }
 
 function detectarTipoVehiculo(vehicle) {
