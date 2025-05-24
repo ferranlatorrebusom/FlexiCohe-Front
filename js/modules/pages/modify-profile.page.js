@@ -105,14 +105,41 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    document.querySelector('.delete-btn')?.addEventListener('click', () => {
-        alert('🔒 Funcionalidad de eliminar usuario aún no implementada.');
-    });
+    document.querySelector('.delete-btn')?.addEventListener('click', async () => {
+    const confirmacion = confirm("⚠️ ¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.");
 
-    document.querySelector('.change-password-btn')?.addEventListener('click', (e) => {
-        e.preventDefault();
-        alert('🔒 Funcionalidad de cambiar contraseña aún no implementada.');
-    });
+    if (!confirmacion) return;
+
+    const token = localStorage.getItem('jwtToken');
+
+    try {
+        const res = await fetch(`${API_BASE}/usuarios/eliminar`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const mensaje = await res.text();
+
+        if (res.ok) {
+            alert("✅ Tu cuenta ha sido eliminada correctamente.");
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.href = '../templates/login.html'; // O index.html, según tu flujo
+        } else {
+            alert("❌ Error al eliminar cuenta: " + mensaje);
+        }
+    } catch (err) {
+        console.error('❌ Error al eliminar cuenta:', err);
+        alert('Ocurrió un error al intentar eliminar tu cuenta.');
+    }
+});
+
+    // document.querySelector('.change-password-btn')?.addEventListener('click', (e) => {
+    //     e.preventDefault();
+    //     alert('🔒 Funcionalidad de cambiar contraseña aún no implementada.');
+    // });
 
     const imageInput = document.querySelector('#imageInput');
     const changeImageBtn = document.querySelector('.change-img');
