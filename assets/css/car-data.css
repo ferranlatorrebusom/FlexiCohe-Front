@@ -1,3 +1,7 @@
+.main-title {
+  text-align: center;
+}
+
 #car-data-carousel-container {
   display: flex;
   justify-content: center;
@@ -9,9 +13,6 @@
   flex-direction: column;
   align-items: center;
 }
-.main-title {
-  text-align: center;
-}
 
 .updateImg {
   display: flex;
@@ -19,7 +20,6 @@
   align-items: center;
   width: 100%;
 }
-
 
 @media screen and (max-width: 768px) {
   #car-data-carousel-container {
@@ -47,11 +47,14 @@
     margin: 1em;
 }
 
-hr
-{
+hr {
     margin-top: 4em;
     margin-bottom: 4em;
-    min-width: 500px;
+    width: 80%;        /* O el ancho que prefieras */
+    min-width: 0;
+    max-width: 600px;  /* Igual que el details-container */
+    margin-left: auto;
+    margin-right: auto;
 }
 
 #button-container
@@ -98,8 +101,8 @@ hr
 
 
 select, input{
-    padding: 7px;
-    min-width: 100px;
+	padding: 7px;
+	min-width: 100px;
     border: 1px solid #ccc;
     border-radius: 5px;
     font-size: 16px;
@@ -116,11 +119,19 @@ select, input{
   flex: 1;
 }
 
+#form-editar-vehiculo {
+  max-width: 600px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+/* Alineación vertical */
 #form-editar-vehiculo .up {
   display: flex;
   flex-direction: column;
 }
 
+/* Responsivo en pantallas pequeñas */
 @media screen and (max-width: 768px) {
   #form-editar-vehiculo .row {
     flex-direction: column;
@@ -131,12 +142,20 @@ select, input{
   }
 }
 
+#details-container {
+  max-width: 600px;
+  margin: 32px auto 0 auto;
+  padding: 0;
+  background: none;
+  border: none;
+  box-shadow: none;
+}
 
-#details-container .row {
+/*#details-container .row {
   display: flex;
   flex-wrap: wrap;
   margin-bottom: 1em;
-}
+}*/
 
 #details-container .col-6 {
   width: 50%;
@@ -144,6 +163,7 @@ select, input{
   padding: 0.5em;
 }
 
+/* En pantallas pequeñas: apilar elementos */
 @media screen and (max-width: 768px) {
   #details-container .col-6 {
     width: 100%;
@@ -154,15 +174,14 @@ select, input{
   margin-left: 100px;
 }
 .row.down {
-  width: 95%;
-  max-width: 900px;
-  min-width: 250px;
-  margin: 0 auto 1em auto;
   display: flex;
-  flex-wrap: wrap;
+  flex-direction: column;
+  align-items: center;      /* Centra los hijos horizontalmente */
+  justify-content: center;
+  width: 100%;
+  max-width: 600px;         /* Igual que #details-container */
+  margin: 0 auto 1em auto;  /* Centrado horizontal */
   gap: 1em;
-  align-items: center;
-  justify-content: flex-start;
   background: none;
 }
 
@@ -176,6 +195,7 @@ select, input{
   margin: 0;
 }
 
+/* Responsive: en pantallas pequeñas, los campos ocupan toda la fila */
 @media screen and (max-width: 800px) {
   .row.down {
     flex-direction: column;
@@ -191,18 +211,24 @@ select, input{
 }
 
 .campos-especificos {
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 16px 24px;
+  align-items: end;
+  margin-bottom: 1em;
+  width: 100%;
+  max-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
 
 .campos-especificos label {
-  margin-bottom: 2px;
+  margin-bottom: 4px;
+  display: block;
 }
 
 .campos-especificos input,
 .campos-especificos select {
   width: 100%;
-  max-width: 350px;
   box-sizing: border-box;
 }
