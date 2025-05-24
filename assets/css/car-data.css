@@ -182,19 +182,21 @@ select, input{
 
 .row.down {
   width: 100%;
-  max-width: 600px;
+  max-width: 900px;
   margin: 0 auto 1em auto;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  gap: 2.5em;
+  flex-direction: row;  /* <--- cambia de column a row */
+  flex-wrap: wrap;      /* <--- permite que bajen de línea si no caben */
+  justify-content: center;
+  align-items: flex-start;  /* alinea arriba, no centrado vertical */
+  gap: 2em;
   background: none;
 }
 
 .row.down > * {
-  width: 100%;
-  max-width: 350px;
-  text-align: center;
+  flex: 1 1 200px;     /* <--- permite que crezcan y se contraigan */
+  max-width: 250px;
+  text-align: left;    /* <--- más natural para formularios */
 }
 /* Responsive: en pantallas pequeñas, menos columnas */
 /* @media screen and (max-width: 900px) {
