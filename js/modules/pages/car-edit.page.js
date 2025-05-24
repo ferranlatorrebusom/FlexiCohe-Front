@@ -249,16 +249,16 @@ function mostrarCamposPorTipo(tipo) {
     document.querySelectorAll('.campos-especificos').forEach(div => div.style.display = 'none');
     switch(tipo) {
         case 'COCHE':
-            document.getElementById('camposCoche');
+            document.getElementById('camposCoche').style.display='flex';
             break;
         case 'MOTO':
-            document.getElementById('camposMoto');
+            document.getElementById('camposMoto').style.display='flex';
             break;
         case 'FURGONETA':
-            document.getElementById('camposFurgoneta');
+            document.getElementById('camposFurgoneta').style.display='flex';
             break;
         case 'CAMION':
-            document.getElementById('camposCamion');
+            document.getElementById('camposCamion').style.display='flex';
             break;
     }
 }
