@@ -28,7 +28,6 @@
             </nav>
         </div>
     </header>
-    
     <div class="container">
         <h2 class="main-title">
             <b>Detalles del vehículo</b>
@@ -167,6 +166,7 @@
                     <span>Puertas:</span>
                     <input type="text" id="puertas" value=""/>
                 </span>
+                <span style="visibility: hidden;"></span>
             </div>
             
             <div id="campos-moto" class="row down" style="display: none;">
@@ -174,6 +174,7 @@
                     <span>Cilindrada:</span>
                     <input type="number" id="cilindrada" value=""/>&nbsp;cc
                 </span>
+                <span style="visibility: hidden;"></span>
                 <span>
                     <span>Baúl:</span>
                     <select id="baul">
@@ -181,6 +182,7 @@
                         <option value="0">No</option>
                     </select>
                 </span>
+                <span style="visibility: hidden;"></span>
             </div>
 
             <div id="campos-furgoneta" class="row down" style="display: none;">
@@ -230,21 +232,21 @@
     </div>
 
     <footer>
-    <div class="footer-content">
-        <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
-        <div class="social-icons">
-            <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
-            <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
-            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+        <div class="footer-content">
+            <p>&copy; 2025 FlexiCoche - Todos los derechos reservados</p>
+            <div class="social-icons">
+                <a href="https://www.facebook.com" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                <a href="https://www.twitter.com" target="_blank"><i class="fab fa-twitter"></i></a>
+                <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
+                <a href="https://www.linkedin.com" target="_blank"><i class="fab fa-linkedin-in"></i></a>
+            </div>
+            <div class="footer-links">
+                <a href="privacy.html">Política de privacidad</a> |
+                <a href="cookies.html">Política de cookies</a> |
+                <a href="legal.html">Aviso legal</a>
+            </div>
         </div>
-        <div class="footer-links">
-          <a href="privacy.html">Política de privacidad</a> |
-          <a href="cookies.html">Política de cookies</a> |
-          <a href="legal.html">Aviso legal</a>
-      </div>
-    </div>
-  </footer>
+    </footer>
 
     <script type="module" src="../js/modules/pages/car-create.page.js"></script>
 
