@@ -1,10 +1,9 @@
-/* .container
+.container
 {
     display: flex;
     align-items: center;
     flex-direction: column;
-} */
-.container {
+
   max-width: 900px;
   margin: 0 auto;
   padding: 16px;
