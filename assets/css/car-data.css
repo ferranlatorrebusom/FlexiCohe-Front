@@ -185,20 +185,23 @@ select, input{
   max-width: 900px;
   margin: 0 auto 1em auto;
   display: flex;
-  flex-direction: row;  
-  flex-wrap: wrap;     
+  flex-direction: row;
+  flex-wrap: wrap;
   justify-content: center;
-  align-items: flex-start; 
+  align-items: flex-start;
   gap: 2em;
   background: none;
 }
 
+/* Cada campo individual */
 .row.down > * {
-  flex: 1 1 200px;   
+  display: flex;
+  flex-direction: column; /* label arriba del input */
+  gap: 0.5em;              /* separación entre label e input */
+  flex: 1 1 200px;         /* base de 200px, se ajusta */
   max-width: 250px;
-  text-align: left;    
+  text-align: left;
 }
-
 /* Responsive: en pantallas pequeñas, menos columnas */ 
 @media screen and (max-width: 900px) {
   .row.down {
