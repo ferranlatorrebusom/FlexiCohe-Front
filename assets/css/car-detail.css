@@ -1,3 +1,4 @@
+
 .container
 {
     display: flex;
@@ -331,3 +332,338 @@ footer {
     color: #ffd600;
     transform: scale(1.2) rotate(-10deg);
 }
+
+/* .container
+{
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+}
+
+#car-box
+{
+    margin: 2em 0 2em 0;
+    width: 70%;
+    border-radius: 2em;
+}
+
+#car-box .content
+{
+    padding: 2em 5em 2em 5em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.car-name
+{
+    color:white;
+}
+
+
+.carousel-item .img-container
+{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    width: 100%;
+}
+
+#car-properties .row
+{
+    margin-top: 1em;
+}
+
+#car-properties .row .col-6
+{
+    display: inline;
+}
+
+#car-properties h5
+{
+    color: white;
+    background-color: rgb(64,64,64);
+    text-align: center;
+    border-radius: 0.35em;
+    min-width: 65%;
+    padding: 0.2em 0.70em 0.2em 0.70em;
+    width: max-content;
+}
+
+.grad-black-white {
+    background-image: linear-gradient(to right, black , gray);
+  }
+
+#tarifas
+{
+    width: 60%;
+    margin: 1em 0 1em 0;
+}
+
+#tarifas .select
+{
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content:space-between;
+    flex-direction: row;
+}
+
+#tarifas input[type="radio"]
+{
+    width: 1.25em;
+    height: 1.25em;
+    margin: 0 1em 0 1em;
+}
+
+#tarifas .option
+{
+    display: flex;
+    align-items: center;
+    margin-bottom: 2em;
+}
+
+#tarifas .option .text
+{
+    display: block;
+}
+
+hr
+{
+    opacity: 1;
+    margin: 2em ;
+    border: 2px solid black;
+    height: 1px;
+    background-color: black;
+}
+
+#proteccion
+{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+#proteccion .card
+{
+    margin: 2em 1em 2em 1em;
+    display: flex;
+    flex-direction: row;
+    border:none;
+    padding: 0.5em;
+    border: 1px solid rgba(0,0,0,0.05);
+}
+
+#proteccion .card input[type="radio"]
+{
+    display: inline;
+    width: 1.5em;
+    height: 1.5em;
+    margin: 0 0.3em 0 0.3em;
+}
+
+#proteccion .card .right
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    min-height: 8em;
+}
+
+#proteccion .card::after
+{
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.2); /* Sombra solo visible arriba y abajo */
+    border-radius: 2em; /* Bordes redondeados también para la sombra */
+  }
+
+#resumen
+{
+    width: 40%;
+
+}
+
+#resumen .price
+{
+    font-size: 2em;
+    margin-left: -1em;
+}
+
+#resumen .price + span
+{
+    font-size: 1.25em;
+}
+
+#resumen .title
+{
+    margin: 1em 0 1em 0;
+}
+
+#resumen .total
+{
+    font-size: 1.25em;
+    margin-top: 2em;
+}
+
+#resumen button
+{
+    background-color: rgb(240,240,0);
+    color: black;
+    border:none;
+    border-radius: 0.5em;
+    padding: 0.2em 0.3em 0.2em 0.3em;
+}
+
+.logo img {
+    width: 140px; /* Ajusta el ancho según sea necesario */
+    height: auto; /* Mantiene la proporción de la imagen */
+}
+
+*{
+    box-sizing: content-box;
+}
+
+.top-bar {
+    background-color: #222;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    align-items: center;
+    height: 30px; /* Ajusta la altura según sea necesario */
+}
+
+.top-bar nav {
+    display: flex;
+    align-items: center;
+}
+
+.top-bar nav a {
+    color: white;
+    text-decoration: none;
+    margin-left: 20px; /* Reduce el margen izquierdo */
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+}
+.top-bar nav a:hover {
+    color: #ccc;
+}
+
+/* Botón amarillo */
+.btn-yellow {
+    background-color: #ffd700;
+    color: black !important;
+    border: none;
+    padding: 5px 15px;
+    font-size: 14px;
+    font-weight: bold;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+.btn-yellow:hover {
+    background-color: #e6c200;
+}
+
+.social-icons a {
+    color: white;
+    margin: 0 10px;
+    font-size: 18px;
+    text-decoration: none;
+}
+.social-icons a:hover {
+    color: #ddd;
+}
+
+#rent-form {
+    display: flex;
+    gap: 1em;
+    align-items: flex-end;
+    justify-content: space-between;
+    flex-wrap: wrap;
+}
+
+#rent-form .form-control {
+    min-width: 220px;
+}
+
+#rent-form button {
+    height: 100%;
+    padding: 0.6em;
+    font-size: 1.1em;
+}
+
+.updateImg, .carousel-inner{
+    place-items: center;
+}
+
+
+/*********** Footer *************/
+
+footer {
+    background: linear-gradient(90deg, #232526 0%, #414345 100%);
+    color: #fff;
+    padding: 35px 0 20px 0;
+    font-size: 16px;
+    margin-top: 40px;
+    box-shadow: 0 -2px 12px rgba(0,0,0,0.08);
+}
+
+.footer-content {
+    max-width: 1100px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.footer-content p {
+    margin-bottom: 18px;
+    font-size: 18px;
+    letter-spacing: 1px;
+}
+
+.footer-links {
+    margin-top: 12px;
+    margin-bottom: 10px;
+}
+
+.footer-links a {
+    color: #ffd600;
+    text-decoration: none;
+    margin: 0 10px;
+    font-weight: 500;
+    transition: color 0.2s;
+}
+
+.footer-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.social-icons {
+    margin-bottom: 10px;
+}
+
+.social-icons a {
+    color: #fff;
+    margin: 0 8px;
+    font-size: 22px;
+    display: inline-block;
+    transition: color 0.2s, transform 0.2s;
+}
+
+.social-icons a:hover {
+    color: #ffd600;
+    transform: scale(1.2) rotate(-10deg);
+}
+ */
