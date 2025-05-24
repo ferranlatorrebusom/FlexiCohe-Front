@@ -1,8 +1,25 @@
-#car-data-carousel-container
-{
-    max-width: 50%;
-    margin-bottom: 2em;
+#car-data-carousel-container {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 24px;
 }
+
+#carousel-show {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.main-title {
+  text-align: center;
+}
+
+.updateImg {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+}
+
 
 @media screen and (max-width: 768px) {
   #car-data-carousel-container {
