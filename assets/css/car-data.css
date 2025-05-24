@@ -164,9 +164,9 @@ select, input{
   }
 }
 
-#details-container .row {
+/* #details-container .row {
   margin-left: 100px;
-}
+} */
 
 .row.down {
   width: 100%;
