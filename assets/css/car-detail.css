@@ -3,11 +3,6 @@
     display: flex;
     align-items: center;
     flex-direction: column;
-
-  max-width: 900px;
-  margin: 0 auto;
-  padding: 16px;
-  box-sizing: border-box;
 }
 
 #car-box
