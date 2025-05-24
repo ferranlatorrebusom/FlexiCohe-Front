@@ -164,9 +164,21 @@ select, input{
   }
 }
 
-/* #details-container .row {
-  margin-left: 100px;
-} */
+#details-container .row:not(.down) {
+  display: flex;
+  flex-wrap: wrap;
+  margin-bottom: 1em;
+}
+#details-container .row:not(.down) .col-6 {
+  width: 50%;
+  box-sizing: border-box;
+  padding: 0.5em;
+}
+@media screen and (max-width: 768px) {
+  #details-container .row:not(.down) .col-6 {
+    width: 100%;
+  }
+}
 
 .row.down {
   width: 100%;
@@ -174,18 +186,20 @@ select, input{
   min-width: 250px;
   margin: 0 auto 1em auto;
   display: grid;
-  grid-template-columns: repeat(3, 1fr); 
+  grid-template-columns: repeat(3, 1fr);
   gap: 1.5em;
-  justify-items: center; 
+  justify-items: center;
   align-items: start;
   background: none;
 }
 
-.row.down > * {
+/* Para que los campos ocupen todo el ancho de su celda /
+.row.down > {
   width: 100%;
   max-width: 260px;
 }
 
+/* Responsive: en pantallas pequeñas, menos columnas */
 @media screen and (max-width: 900px) {
   .row.down {
     grid-template-columns: repeat(2, 1fr);
