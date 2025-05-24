@@ -156,7 +156,7 @@ async function rellenarFormulario(vehiculo) {
     document.getElementById('matricula').value = vehiculo.matricula;
     document.getElementById('marca').value = vehiculo.marca;
     document.getElementById('modelo').value = vehiculo.modelo;
-    document.getElementById('anio').value = vehiculo.anioMatricula.split('/').pop(); 
+    document.getElementById('anio').value = new Date(vehiculo.anioMatricula).toISOString().split('T')[0];
     document.getElementById('transmision').value = vehiculo.transmision;
     
     const combustibleSelect = document.getElementById('combustible');
