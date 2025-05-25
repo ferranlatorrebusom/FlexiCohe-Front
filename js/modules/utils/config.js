@@ -1,3 +1,3 @@
-const API_BASE = 'https://flexicohe-back.onrender.com'; 
+const API_BASE = 'https://flexicoche-back.onrender.com'; 
 
 export { API_BASE };
