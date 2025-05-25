@@ -115,11 +115,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         try {
-            await createAlquiler(idVehiculo, fechaInicio, fechaFin);
-            
-            // await createAlquiler({ idVehiculo: parseInt(idVehiculo), fechaInicio, fechaFin });
-            const alquileres = await getAlquileresDelUsuario();
-console.log("🧾 Alquileres del usuario después de crear:", alquileres);
+            await createAlquiler({ idVehiculo: parseInt(idVehiculo), fechaInicio, fechaFin });
             localStorage.removeItem('lastSearch');
             rentMessage.textContent = '✅ Reserva realizada con éxito.';
             rentMessage.classList.remove('text-danger');
