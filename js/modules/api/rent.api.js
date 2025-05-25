@@ -2,7 +2,7 @@ import { API_BASE } from '../utils/config.js';
 
 const API_URL = `${API_BASE}/alquileres`;
 
-export async function createAlquiler(idVehiculo, fechaInicio, fechaFin) {
+export async function createAlquiler(data) {
     const token = localStorage.getItem('jwtToken');
 
     if (!token) {
@@ -14,10 +14,6 @@ export async function createAlquiler(idVehiculo, fechaInicio, fechaFin) {
     const headers = {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`
-    };
-
-    const data = {
-        idVehiculo: Number(idVehiculo), fechaInicio, fechaFin
     };
     
     console.log("📦 Payload final que se enviará al backend:", data);
