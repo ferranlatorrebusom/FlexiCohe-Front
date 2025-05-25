@@ -111,7 +111,8 @@ document.addEventListener('DOMContentLoaded', async () => {
     if (!confirmacion) return;
 
     const token = localStorage.getItem('jwtToken');
-
+    console.log('entrada boton delete');
+        
     try {
         const res = await fetch(`${API_BASE}/usuarios/eliminar`, {
             method: 'DELETE',
@@ -121,7 +122,8 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         const mensaje = await res.text();
-
+        console.log('mensaje');
+        
         if (res.ok) {
             alert("✅ Tu cuenta ha sido eliminada correctamente.");
             localStorage.clear();
