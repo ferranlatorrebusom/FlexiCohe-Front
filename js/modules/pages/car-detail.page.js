@@ -115,7 +115,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
 
         try {
-            await createAlquiler({ idVehiculo: parseInt(idVehiculo), fechaInicio, fechaFin });
+            await createAlquiler(idVehiculo, fechaInicio, fechaFin);
+            
+            // await createAlquiler({ idVehiculo: parseInt(idVehiculo), fechaInicio, fechaFin });
             const alquileres = await getAlquileresDelUsuario();
 console.log("🧾 Alquileres del usuario después de crear:", alquileres);
             localStorage.removeItem('lastSearch');
