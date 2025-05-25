@@ -65,9 +65,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     
     try {
-        console.log('Matricula desde URL:', matricula);
         const vehiculo = await getVehiculoByMatricula(matricula);
-        console.log('Vehículo obtenido:', vehiculo);
         renderCarDetails(vehiculo, tipoVehiculoURL);
     } catch (error) {
         document.getElementById('car-box').innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
@@ -118,6 +116,8 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         try {
             await createAlquiler({ idVehiculo: parseInt(idVehiculo), fechaInicio, fechaFin });
+            const alquileres = await getAlquileresDelUsuario();
+console.log("🧾 Alquileres del usuario después de crear:", alquileres);
             localStorage.removeItem('lastSearch');
             rentMessage.textContent = '✅ Reserva realizada con éxito.';
             rentMessage.classList.remove('text-danger');
@@ -181,8 +181,7 @@ function renderCarDetails(vehiculo, tipoVehiculo) {
     }
 
     const imagenUrl = vehiculo.imagen.imagen?.trim() || '../assets/images/DEFAULT-USER-IMAGE.png';
-console.log(imagenUrl);
-console.log(vehiculo);
+    console.log(vehiculo);
 
     document.querySelectorAll('#carousel-show .carousel-item img').forEach(img => {
         img.src = imagenUrl;
