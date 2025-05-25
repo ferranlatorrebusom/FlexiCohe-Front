@@ -106,40 +106,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    document.querySelector('.delete-btn')?.addEventListener('click', async (e) => {
-    console.log("🗑 Clic en botón BORRAR");
-
-    e.preventDefault();
-    e.stopPropagation();
-
-    const confirmacion = confirm("⚠️ ¿Estás seguro de que deseas eliminar tu cuenta?");
-    if (!confirmacion) return;
-
-    const token = localStorage.getItem('jwtToken');
-    
-    try {
-        const res = await fetch(`${API_BASE}/usuarios/eliminar`, {
-            method: 'DELETE',
-            headers: {
-                'Authorization': `Bearer ${token}`
-            }
-        });
-
-        const mensaje = await res.text();
-        
-        if (res.ok) {
-            alert("✅ Tu cuenta ha sido eliminada correctamente.");
-            localStorage.clear();
-            sessionStorage.clear();
-            window.location.href = '../templates/login.html';
-        } else {
-            alert("❌ Error al eliminar cuenta: " + mensaje);
-        }
-    } catch (err) {
-        console.error('❌ Error al eliminar cuenta:', err);
-        alert('Ocurrió un error al intentar eliminar tu cuenta.');
-    }
-});
 
     // document.querySelector('.change-password-btn')?.addEventListener('click', (e) => {
     //     e.preventDefault();
@@ -183,6 +149,42 @@ document.addEventListener('DOMContentLoaded', async () => {
             alert('Error al actualizar la imagen de perfil.');
         }
     });
+});
+
+
+    document.querySelector('.delete-btn')?.addEventListener('click', async (e) => {
+    console.log("🗑 Clic en botón BORRAR");
+
+    e.preventDefault();
+    e.stopPropagation();
+
+    const confirmacion = confirm("⚠️ ¿Estás seguro de que deseas eliminar tu cuenta?");
+    if (!confirmacion) return;
+
+    const token = localStorage.getItem('jwtToken');
+    
+    try {
+        const res = await fetch(`${API_BASE}/usuarios/eliminar`, {
+            method: 'DELETE',
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        });
+
+        const mensaje = await res.text();
+        
+        if (res.ok) {
+            alert("✅ Tu cuenta ha sido eliminada correctamente.");
+            localStorage.clear();
+            sessionStorage.clear();
+            window.location.href = '../templates/login.html';
+        } else {
+            alert("❌ Error al eliminar cuenta: " + mensaje);
+        }
+    } catch (err) {
+        console.error('❌ Error al eliminar cuenta:', err);
+        alert('Ocurrió un error al intentar eliminar tu cuenta.');
+    }
 });
 
 function convertirDdMmYyyyToIso(fechaStr) {
