@@ -72,7 +72,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     document.querySelector('.edit-user')?.addEventListener('click', (e) => {
         e.preventDefault();
         e.stopPropagation();
-        [...form.elements].forEach(input => input.disabled = false);
+        form.querySelectorAll('input, select, textarea').forEach(input => input.disabled = true);
     });
 
     form.addEventListener('submit', async (e) => {
