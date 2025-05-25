@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', async () => {
     // Permitir edición
     document.querySelector('.edit-user')?.addEventListener('click', (e) => {
         e.preventDefault();
+        e.stopPropagation();
         [...form.elements].forEach(input => input.disabled = false);
     });
 
@@ -105,14 +106,17 @@ document.addEventListener('DOMContentLoaded', async () => {
         }
     });
 
-    document.querySelector('.delete-btn')?.addEventListener('click', async () => {
-    const confirmacion = confirm("⚠️ ¿Estás seguro de que deseas eliminar tu cuenta? Esta acción no se puede deshacer.");
+    document.querySelector('.delete-btn')?.addEventListener('click', async (e) => {
+    console.log("🗑 Clic en botón BORRAR");
 
+    e.preventDefault();
+    e.stopPropagation();
+
+    const confirmacion = confirm("⚠️ ¿Estás seguro de que deseas eliminar tu cuenta?");
     if (!confirmacion) return;
 
     const token = localStorage.getItem('jwtToken');
-    console.log('entrada boton delete');
-        
+    
     try {
         const res = await fetch(`${API_BASE}/usuarios/eliminar`, {
             method: 'DELETE',
@@ -122,13 +126,12 @@ document.addEventListener('DOMContentLoaded', async () => {
         });
 
         const mensaje = await res.text();
-        console.log('mensaje');
         
         if (res.ok) {
             alert("✅ Tu cuenta ha sido eliminada correctamente.");
             localStorage.clear();
             sessionStorage.clear();
-            window.location.href = '../templates/login.html'; // O index.html, según tu flujo
+            window.location.href = '../templates/login.html';
         } else {
             alert("❌ Error al eliminar cuenta: " + mensaje);
         }
