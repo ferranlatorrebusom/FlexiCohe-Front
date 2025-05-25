@@ -65,7 +65,9 @@ document.addEventListener('DOMContentLoaded', async () => {
     });
     
     try {
+        console.log('Matricula desde URL:', matricula);
         const vehiculo = await getVehiculoByMatricula(matricula);
+        console.log('Vehículo obtenido:', vehiculo);
         renderCarDetails(vehiculo, tipoVehiculoURL);
     } catch (error) {
         document.getElementById('car-box').innerHTML = `<p class="text-danger">Error: ${error.message}</p>`;
