@@ -86,7 +86,10 @@ export async function getVehiculos() {
         method: 'GET',
         headers
     });
-
+catch (error) {
+    console.error('Error al cargar filtros dinámicos:', error);
+    alert('Error al cargar filtros: ' + error.message);
+}
     if (!response.ok) throw new Error('Error al cargar vehículos');
     return await response.json();
 }
