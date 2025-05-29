@@ -79,7 +79,7 @@ export async function getVehiculoByMatricula(matricula) {
 export async function getVehiculos() {
     const url = `${API_BASE}/vehiculos`;
 
-    const token = localStorage.getItem('jwtToken');
+    const token = localStorage.getItem('jwtToken') || localStorage.getItem('token');
     const headers = token ? { Authorization: `Bearer ${token}` } : {};
 
     const response = await fetch(url, {
