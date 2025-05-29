@@ -92,9 +92,6 @@ export async function getVehiculos() {
         }
     });
 
-    const text = await response.text(); // ← debug respuesta
-    console.log('Respuesta /vehiculos:', text);
-    
     if (!response.ok) throw new Error('Error al cargar vehículos');
     return await response.json();
 }
