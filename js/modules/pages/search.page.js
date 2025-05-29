@@ -16,7 +16,7 @@ function restaurarTipoSeleccionado() {
 document.addEventListener('DOMContentLoaded', async () => {
     await authUtils.init();
 
-    cargarFiltrosDinamicos();
+    await cargarFiltrosDinamicos();
 
     restaurarFiltrosExtendidos();
 
