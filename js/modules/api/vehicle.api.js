@@ -80,11 +80,16 @@ export async function getVehiculos() {
     const url = `${API_BASE}/vehiculos`;
 
     const token = localStorage.getItem('jwtToken') || localStorage.getItem('token');
-    const headers = token ? { Authorization: `Bearer ${token}` } : {};
+    if (!token) {
+        throw new Error('Token de autenticación no encontrado. Por favor inicia sesión de nuevo.');
+    }
 
     const response = await fetch(url, {
         method: 'GET',
-        headers
+        headers: {
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${token}`
+        }
     });
 
     if (!response.ok) throw new Error('Error al cargar vehículos');
